@@ -13181,33 +13181,6 @@ Public Class Niveles_pensamiento
             Varianza = Suma / (cantidad_materias_1 - 1)
             DesviacionTipica = Math.Sqrt(Varianza)
 
-
-            '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ESTO ES PARA GUARDAR EN EL PROMEDIO DE CADA MATERIA  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            '%%%%%%%%%%%%%%%%%%%%%%%%%%%% FORMULA GLOBAL DE LOS REPORTES  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            Dim dosPrimerasMaterias As Double = 0
-            Dim tresUltimasMaterias As Double = 0
-            For i = 0 To 0
-                dosPrimerasMaterias = dosPrimerasMaterias + (Cantidad_Componentes_Materias_Sesion1_Matematicas(8, i) * 3) + (Cantidad_Componentes_Materias_Sesion1_Naturales(8, i) * 3)
-            Next
-            For i = 0 To 0
-                tresUltimasMaterias = tresUltimasMaterias + (Cantidad_Componentes_Materias_Sesion2_Ingles(8, i)) + (Cantidad_Componentes_Materias_Sesion2_Lectura(8, i) * 3) + (Cantidad_Componentes_Materias_Sesion2_Sociales(8, i) * 3)
-            Next
-            puntajeGlobal = (dosPrimerasMaterias + tresUltimasMaterias) * 5 / 13
-
-            Dim nivelIngles As String = ""
-            If Cantidad_Componentes_Materias_Sesion2_Ingles(8, 0) >= 0 And Cantidad_Componentes_Materias_Sesion2_Ingles(8, 0) <= 42 Then
-                nivelIngles = "A-"
-            ElseIf Cantidad_Componentes_Materias_Sesion2_Ingles(8, 0) > 42 And Cantidad_Componentes_Materias_Sesion2_Ingles(8, 0) <= 52 Then
-                nivelIngles = "A1"
-            ElseIf Cantidad_Componentes_Materias_Sesion2_Ingles(8, 0) > 52 And Cantidad_Componentes_Materias_Sesion2_Ingles(8, 0) <= 61 Then
-                nivelIngles = "A2"
-            ElseIf Cantidad_Componentes_Materias_Sesion2_Ingles(8, 0) > 61 And Cantidad_Componentes_Materias_Sesion2_Ingles(8, 0) <= 81 Then
-                nivelIngles = "B1"
-            ElseIf Cantidad_Componentes_Materias_Sesion2_Ingles(8, 0) > 81 And Cantidad_Componentes_Materias_Sesion2_Ingles(8, 0) <= 100 Then
-                nivelIngles = "B+"
-            End If
-
-
             '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ESTO ES PARA GUARDAR EN EL PROMEDIO DE CADA MATERIA  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             'COMPROBAR QUE EL EXAMEN NO ESTE REPETIDO EN "Informe_Resultados", Y EN "Total_Promedio_Materias_Saber" 
 
@@ -13248,7 +13221,56 @@ Public Class Niveles_pensamiento
                     End Try
 
                     Try
-                        Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados VALUES ( '" & codigoestudiante & "','" & CBOSIMULACRO.Text & "','" & Cantidad_Componentes_Materias_Sesion1(23, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 4) & "','" & puntajepromedio & "','" & Cantidad_Componentes_Materias_Sesion1(16, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 4) & "','" & 0 & "','" & acumulador_competencias_ciudadanas & "')", CN)
+                        Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados VALUES ( '" & codigoestudiante & "','" & CBOSIMULACRO.Text & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(23, 0) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(8, 0) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(23, 1) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(8, 1) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(23, 2) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(8, 2) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(23, 3) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(8, 3) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(23, 4) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(8, 4) & "','" &
+                                                           puntajepromedio & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(16, 0) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(17, 0) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(18, 0) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(19, 0) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(20, 0) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(21, 0) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(22, 0) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(16, 1) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(17, 1) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(18, 1) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(19, 1) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(20, 1) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(21, 1) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(22, 1) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(16, 2) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(17, 2) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(18, 2) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(19, 2) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(20, 2) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(21, 2) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(22, 2) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(16, 3) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(17, 3) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(18, 3) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(19, 3) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(20, 3) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(21, 3) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(22, 3) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(16, 4) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(17, 4) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(18, 4) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(19, 4) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(20, 4) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(21, 4) & "','" &
+                                                           Cantidad_Componentes_Materias_Sesion1(22, 4) & "','" &
+                                                           0 & "','" &
+                                                           acumulador_competencias_ciudadanas & "')", CN)
+
                         CN.Open()
                         CMD2.ExecuteNonQuery()
                         CN.Close()
@@ -13271,7 +13293,15 @@ Public Class Niveles_pensamiento
                     End Try
 
                     Try
-                        Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados VALUES ( '" & codigoestudiante & "','" & CBOSIMULACRO.Text & "','" & Cantidad_Componentes_Materias_Sesion1(23, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 1) & "','" & "" & "','" & 0 & "','" & "" & "','" & 0 & "','" & "" & "','" & 0 & "','" & puntajepromedio & "','" & Cantidad_Componentes_Materias_Sesion1(16, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 1) & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "')", CN)
+                        Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados VALUES ( '" & codigoestudiante & "','" & CBOSIMULACRO.Text & "','" & Cantidad_Componentes_Materias_Sesion1(23, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 1) & "','" & "" & "','" & 0 & "','" & "" & "','" & 0 & "','" & "" & "','" & 0 & "','" & puntajepromedio & "','" & Cantidad_Componentes_Materias_Sesion1(16, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 1) & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" &
+                                             0 & "','" &
+                                             nombreEstudiante & "','" &
+                        colegio & "','" &
+                        ciudad & "','" &
+                        fechaAplico & "','" &
+                        " " & "','" &
+                        simulacro & "')", CN)
+
                         CN.Open()
                         CMD2.ExecuteNonQuery()
                         CN.Close()
@@ -13489,7 +13519,7 @@ Public Class Niveles_pensamiento
                                                   colegio & "','" &
                                                   ciudad & "','" &
                                                   fechaAplico & "','" &
-                                                  nivelIngles & "','" &
+                                                  " " & "','" &
                                                   simulacro & "')", CN)
 
                         CN.Open()
