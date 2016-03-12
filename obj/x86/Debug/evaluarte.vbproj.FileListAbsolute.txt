@@ -204,3 +204,8 @@ C:\Users\sistemas\Documents\Visual Studio 2010\Projects\evaluarte\evaluarte\obj\
 C:\Users\sistemas\Documents\Visual Studio 2010\Projects\evaluarte\evaluarte\obj\x86\Debug\evaluarte.pdb
 C:\Users\sistemas\Documents\Visual Studio 2010\Projects\evaluarte\evaluarte\obj\x86\Debug\evaluarte.vbprojResolveAssemblyReference.cache
 C:\Users\sistemas\Documents\Visual Studio 2010\Projects\evaluarte\evaluarte\obj\x86\Debug\evaluarte.Asertividad_Materias.resources
+C:\Users\sistemas\Documents\Visual Studio 2010\Projects\evaluarte\evaluarte\obj\x86\Debug\evaluarte.LECTURA_GRADO.resources
+C:\Users\sistemas\Documents\Visual Studio 2010\Projects\evaluarte\evaluarte\obj\x86\Debug\evaluarte.MATEMATICAS_GRADO.resources
+C:\Users\sistemas\Documents\Visual Studio 2010\Projects\evaluarte\evaluarte\obj\x86\Debug\evaluarte.CIENCIAS_NATURALES_GRADO.resources
+C:\Users\sistemas\Documents\Visual Studio 2010\Projects\evaluarte\evaluarte\obj\x86\Debug\evaluarte.INGLES_GRADO.resources
+C:\Users\sistemas\Documents\Visual Studio 2010\Projects\evaluarte\evaluarte\obj\x86\Debug\evaluarte.SOCIALES_GRADO.resources

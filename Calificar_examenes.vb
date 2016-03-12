@@ -385,4 +385,34 @@
         MDIForm.MdiParent = Me
         MDIForm.Show()
     End Sub
+
+    Private Sub GeneralesLecturaToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GeneralesLecturaToolStripMenuItem1.Click
+        Dim MDIForm As New LECTURA_GRADO
+        MDIForm.MdiParent = Me
+        MDIForm.Show()
+    End Sub
+
+    Private Sub GeneralesMatematicasToolStripMenuItem2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GeneralesMatematicasToolStripMenuItem2.Click
+        Dim MDIForm As New MATEMATICAS_GRADO
+        MDIForm.MdiParent = Me
+        MDIForm.Show()
+    End Sub
+
+    Private Sub GeneralesCienciasNaturalesToolStripMenuItem2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GeneralesCienciasNaturalesToolStripMenuItem2.Click
+        Dim MDIForm As New CIENCIAS_NATURALES_GRADO
+        MDIForm.MdiParent = Me
+        MDIForm.Show()
+    End Sub
+
+    Private Sub GeneralesSocialesToolStripMenuItem2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GeneralesSocialesToolStripMenuItem2.Click
+        Dim MDIForm As New SOCIALES_GRADO
+        MDIForm.MdiParent = Me
+        MDIForm.Show()
+    End Sub
+
+    Private Sub GeneralesInglesToolStripMenuItem2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GeneralesInglesToolStripMenuItem2.Click
+        Dim MDIForm As New INGLES_GRADO
+        MDIForm.MdiParent = Me
+        MDIForm.Show()
+    End Sub
 End Class

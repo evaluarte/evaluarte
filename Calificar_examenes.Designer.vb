@@ -78,6 +78,11 @@ Partial Class Calificar_examenes
         Me.GeneralesInglesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GradoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PromediosGeneralesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GeneralesLecturaToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GeneralesMatematicasToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GeneralesCienciasNaturalesToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GeneralesSocialesToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GeneralesInglesToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.PerfilProfesionalToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.IndividualesToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GrupoToolStripMenuItem7 = New System.Windows.Forms.ToolStripMenuItem()
@@ -98,10 +103,10 @@ Partial Class Calificar_examenes
         Me.AdministrarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NuevoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SimulacrosPresentadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AsertividadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LABELUSUARIO = New System.Windows.Forms.Label()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.AsertividadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -480,7 +485,7 @@ Partial Class Calificar_examenes
         '
         'GradoToolStripMenuItem
         '
-        Me.GradoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PromediosGeneralesToolStripMenuItem})
+        Me.GradoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PromediosGeneralesToolStripMenuItem, Me.GeneralesLecturaToolStripMenuItem1, Me.GeneralesMatematicasToolStripMenuItem2, Me.GeneralesCienciasNaturalesToolStripMenuItem2, Me.GeneralesSocialesToolStripMenuItem2, Me.GeneralesInglesToolStripMenuItem2})
         Me.GradoToolStripMenuItem.Image = CType(resources.GetObject("GradoToolStripMenuItem.Image"), System.Drawing.Image)
         Me.GradoToolStripMenuItem.Name = "GradoToolStripMenuItem"
         Me.GradoToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
@@ -489,8 +494,38 @@ Partial Class Calificar_examenes
         'PromediosGeneralesToolStripMenuItem
         '
         Me.PromediosGeneralesToolStripMenuItem.Name = "PromediosGeneralesToolStripMenuItem"
-        Me.PromediosGeneralesToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.PromediosGeneralesToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
         Me.PromediosGeneralesToolStripMenuItem.Text = "Promedios Generales"
+        '
+        'GeneralesLecturaToolStripMenuItem1
+        '
+        Me.GeneralesLecturaToolStripMenuItem1.Name = "GeneralesLecturaToolStripMenuItem1"
+        Me.GeneralesLecturaToolStripMenuItem1.Size = New System.Drawing.Size(229, 22)
+        Me.GeneralesLecturaToolStripMenuItem1.Text = "Generales_Lectura"
+        '
+        'GeneralesMatematicasToolStripMenuItem2
+        '
+        Me.GeneralesMatematicasToolStripMenuItem2.Name = "GeneralesMatematicasToolStripMenuItem2"
+        Me.GeneralesMatematicasToolStripMenuItem2.Size = New System.Drawing.Size(229, 22)
+        Me.GeneralesMatematicasToolStripMenuItem2.Text = "Generales_Matematicas"
+        '
+        'GeneralesCienciasNaturalesToolStripMenuItem2
+        '
+        Me.GeneralesCienciasNaturalesToolStripMenuItem2.Name = "GeneralesCienciasNaturalesToolStripMenuItem2"
+        Me.GeneralesCienciasNaturalesToolStripMenuItem2.Size = New System.Drawing.Size(229, 22)
+        Me.GeneralesCienciasNaturalesToolStripMenuItem2.Text = "Generales_Ciencias_Naturales"
+        '
+        'GeneralesSocialesToolStripMenuItem2
+        '
+        Me.GeneralesSocialesToolStripMenuItem2.Name = "GeneralesSocialesToolStripMenuItem2"
+        Me.GeneralesSocialesToolStripMenuItem2.Size = New System.Drawing.Size(229, 22)
+        Me.GeneralesSocialesToolStripMenuItem2.Text = "Generales_Sociales"
+        '
+        'GeneralesInglesToolStripMenuItem2
+        '
+        Me.GeneralesInglesToolStripMenuItem2.Name = "GeneralesInglesToolStripMenuItem2"
+        Me.GeneralesInglesToolStripMenuItem2.Size = New System.Drawing.Size(229, 22)
+        Me.GeneralesInglesToolStripMenuItem2.Text = "Generales_Ingles"
         '
         'PerfilProfesionalToolStripMenuItem1
         '
@@ -504,7 +539,7 @@ Partial Class Calificar_examenes
         '
         Me.IndividualesToolStripMenuItem4.Image = CType(resources.GetObject("IndividualesToolStripMenuItem4.Image"), System.Drawing.Image)
         Me.IndividualesToolStripMenuItem4.Name = "IndividualesToolStripMenuItem4"
-        Me.IndividualesToolStripMenuItem4.Size = New System.Drawing.Size(137, 22)
+        Me.IndividualesToolStripMenuItem4.Size = New System.Drawing.Size(152, 22)
         Me.IndividualesToolStripMenuItem4.Text = "Individuales"
         '
         'GrupoToolStripMenuItem7
@@ -512,7 +547,7 @@ Partial Class Calificar_examenes
         Me.GrupoToolStripMenuItem7.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PromediosGeneralesToolStripMenuItem4})
         Me.GrupoToolStripMenuItem7.Image = CType(resources.GetObject("GrupoToolStripMenuItem7.Image"), System.Drawing.Image)
         Me.GrupoToolStripMenuItem7.Name = "GrupoToolStripMenuItem7"
-        Me.GrupoToolStripMenuItem7.Size = New System.Drawing.Size(137, 22)
+        Me.GrupoToolStripMenuItem7.Size = New System.Drawing.Size(152, 22)
         Me.GrupoToolStripMenuItem7.Text = "Grupo"
         '
         'PromediosGeneralesToolStripMenuItem4
@@ -527,7 +562,7 @@ Partial Class Calificar_examenes
         Me.InstituciónToolStripMenuItem5.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PromediosGeneralesToolStripMenuItem5})
         Me.InstituciónToolStripMenuItem5.Image = CType(resources.GetObject("InstituciónToolStripMenuItem5.Image"), System.Drawing.Image)
         Me.InstituciónToolStripMenuItem5.Name = "InstituciónToolStripMenuItem5"
-        Me.InstituciónToolStripMenuItem5.Size = New System.Drawing.Size(137, 22)
+        Me.InstituciónToolStripMenuItem5.Size = New System.Drawing.Size(152, 22)
         Me.InstituciónToolStripMenuItem5.Text = "Institución"
         '
         'PromediosGeneralesToolStripMenuItem5
@@ -619,7 +654,7 @@ Partial Class Calificar_examenes
         'NuevoToolStripMenuItem
         '
         Me.NuevoToolStripMenuItem.Name = "NuevoToolStripMenuItem"
-        Me.NuevoToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.NuevoToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
         Me.NuevoToolStripMenuItem.Text = "Nuevo"
         '
         'SimulacrosPresentadosToolStripMenuItem
@@ -627,6 +662,12 @@ Partial Class Calificar_examenes
         Me.SimulacrosPresentadosToolStripMenuItem.Name = "SimulacrosPresentadosToolStripMenuItem"
         Me.SimulacrosPresentadosToolStripMenuItem.Size = New System.Drawing.Size(144, 20)
         Me.SimulacrosPresentadosToolStripMenuItem.Text = "Simulacros Presentados"
+        '
+        'AsertividadToolStripMenuItem
+        '
+        Me.AsertividadToolStripMenuItem.Name = "AsertividadToolStripMenuItem"
+        Me.AsertividadToolStripMenuItem.Size = New System.Drawing.Size(78, 20)
+        Me.AsertividadToolStripMenuItem.Text = "Asertividad"
         '
         'LABELUSUARIO
         '
@@ -660,12 +701,6 @@ Partial Class Calificar_examenes
         Me.Label1.Size = New System.Drawing.Size(78, 16)
         Me.Label1.TabIndex = 5
         Me.Label1.Text = "USUARIO:"
-        '
-        'AsertividadToolStripMenuItem
-        '
-        Me.AsertividadToolStripMenuItem.Name = "AsertividadToolStripMenuItem"
-        Me.AsertividadToolStripMenuItem.Size = New System.Drawing.Size(78, 20)
-        Me.AsertividadToolStripMenuItem.Text = "Asertividad"
         '
         'Calificar_examenes
         '
@@ -771,5 +806,10 @@ Partial Class Calificar_examenes
     Friend WithEvents GradoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PromediosGeneralesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AsertividadToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents GeneralesLecturaToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents GeneralesMatematicasToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents GeneralesCienciasNaturalesToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents GeneralesSocialesToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents GeneralesInglesToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
 
 End Class

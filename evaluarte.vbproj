@@ -148,6 +148,12 @@
     <Compile Include="CIENCIAS_NATURALES.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="CIENCIAS_NATURALES_GRADO.Designer.vb">
+      <DependentUpon>CIENCIAS_NATURALES_GRADO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CIENCIAS_NATURALES_GRADO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="CIENCIAS_NATURALES_GRUPO.Designer.vb">
       <DependentUpon>CIENCIAS_NATURALES_GRUPO.vb</DependentUpon>
     </Compile>
@@ -166,6 +172,12 @@
     <Compile Include="INGLES.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="INGLES_GRADO.Designer.vb">
+      <DependentUpon>INGLES_GRADO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="INGLES_GRADO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="INGLES_GRUPO.Designer.vb">
       <DependentUpon>INGLES_GRUPO.vb</DependentUpon>
     </Compile>
@@ -178,6 +190,12 @@
     <Compile Include="LECTURA.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="LECTURA_GRADO.Designer.vb">
+      <DependentUpon>LECTURA_GRADO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LECTURA_GRADO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="LECTURA_GRUPOS.Designer.vb">
       <DependentUpon>LECTURA_GRUPOS.vb</DependentUpon>
     </Compile>
@@ -188,6 +206,12 @@
       <DependentUpon>MATEMATICAS.vb</DependentUpon>
     </Compile>
     <Compile Include="MATEMATICAS.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MATEMATICAS_GRADO.Designer.vb">
+      <DependentUpon>MATEMATICAS_GRADO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MATEMATICAS_GRADO.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MATEMATICAS_GRUPOS.Designer.vb">
@@ -497,6 +521,12 @@
     <Compile Include="SOCIALES.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SOCIALES_GRADO.Designer.vb">
+      <DependentUpon>SOCIALES_GRADO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SOCIALES_GRADO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SOCIALES_GRUPO.Designer.vb">
       <DependentUpon>SOCIALES_GRUPO.vb</DependentUpon>
     </Compile>
@@ -529,6 +559,9 @@
     <EmbeddedResource Include="CIENCIAS_NATURALES.resx">
       <DependentUpon>CIENCIAS_NATURALES.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CIENCIAS_NATURALES_GRADO.resx">
+      <DependentUpon>CIENCIAS_NATURALES_GRADO.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CIENCIAS_NATURALES_GRUPO.resx">
       <DependentUpon>CIENCIAS_NATURALES_GRUPO.vb</DependentUpon>
     </EmbeddedResource>
@@ -538,17 +571,26 @@
     <EmbeddedResource Include="INGLES.resx">
       <DependentUpon>INGLES.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="INGLES_GRADO.resx">
+      <DependentUpon>INGLES_GRADO.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="INGLES_GRUPO.resx">
       <DependentUpon>INGLES_GRUPO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LECTURA.resx">
       <DependentUpon>LECTURA.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LECTURA_GRADO.resx">
+      <DependentUpon>LECTURA_GRADO.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LECTURA_GRUPOS.resx">
       <DependentUpon>LECTURA_GRUPOS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MATEMATICAS.resx">
       <DependentUpon>MATEMATICAS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MATEMATICAS_GRADO.resx">
+      <DependentUpon>MATEMATICAS_GRADO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MATEMATICAS_GRUPOS.resx">
       <DependentUpon>MATEMATICAS_GRUPOS.vb</DependentUpon>
@@ -698,6 +740,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SOCIALES.resx">
       <DependentUpon>SOCIALES.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SOCIALES_GRADO.resx">
+      <DependentUpon>SOCIALES_GRADO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SOCIALES_GRUPO.resx">
       <DependentUpon>SOCIALES_GRUPO.vb</DependentUpon>
