@@ -35,6 +35,8 @@ Partial Class Reporte_Saber_Institucion_Promedios_Generales
         Me.Label6 = New System.Windows.Forms.Label()
         Me.CBOCOLEGIOS = New System.Windows.Forms.ComboBox()
         Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.FECHA = New System.Windows.Forms.DateTimePicker()
         Me.SuspendLayout()
         '
         'CBOSIMULACRO
@@ -161,6 +163,24 @@ Partial Class Reporte_Saber_Institucion_Promedios_Generales
         Me.Label18.TabIndex = 133
         Me.Label18.Text = "Nombre Colegio:"
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.White
+        Me.Label2.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(72, 236)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(122, 14)
+        Me.Label2.TabIndex = 147
+        Me.Label2.Text = "Fecha Calificación:"
+        '
+        'FECHA
+        '
+        Me.FECHA.Location = New System.Drawing.Point(209, 231)
+        Me.FECHA.Name = "FECHA"
+        Me.FECHA.Size = New System.Drawing.Size(200, 20)
+        Me.FECHA.TabIndex = 146
+        '
         'Reporte_Saber_Institucion_Promedios_Generales
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -169,6 +189,8 @@ Partial Class Reporte_Saber_Institucion_Promedios_Generales
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(524, 341)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.FECHA)
         Me.Controls.Add(Me.CBOSIMULACRO)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.CBOTIPO)
@@ -201,4 +223,6 @@ Partial Class Reporte_Saber_Institucion_Promedios_Generales
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents CBOCOLEGIOS As System.Windows.Forms.ComboBox
     Friend WithEvents Label18 As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents FECHA As System.Windows.Forms.DateTimePicker
 End Class

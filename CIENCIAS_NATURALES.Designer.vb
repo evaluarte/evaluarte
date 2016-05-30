@@ -35,13 +35,15 @@ Partial Class CIENCIAS_NATURALES
         Me.Label18 = New System.Windows.Forms.Label()
         Me.BTNSALIR = New System.Windows.Forms.Button()
         Me.BTNCALIFICAR = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.FECHA = New System.Windows.Forms.DateTimePicker()
         Me.SuspendLayout()
         '
         'CBOSIMULACRO
         '
         Me.CBOSIMULACRO.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CBOSIMULACRO.FormattingEnabled = True
-        Me.CBOSIMULACRO.Location = New System.Drawing.Point(209, 233)
+        Me.CBOSIMULACRO.Location = New System.Drawing.Point(183, 224)
         Me.CBOSIMULACRO.Name = "CBOSIMULACRO"
         Me.CBOSIMULACRO.Size = New System.Drawing.Size(57, 21)
         Me.CBOSIMULACRO.TabIndex = 185
@@ -51,7 +53,7 @@ Partial Class CIENCIAS_NATURALES
         Me.Label10.AutoSize = True
         Me.Label10.BackColor = System.Drawing.Color.White
         Me.Label10.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(122, 240)
+        Me.Label10.Location = New System.Drawing.Point(96, 231)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(72, 14)
         Me.Label10.TabIndex = 184
@@ -61,7 +63,7 @@ Partial Class CIENCIAS_NATURALES
         '
         Me.CBOTIPO.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CBOTIPO.FormattingEnabled = True
-        Me.CBOTIPO.Location = New System.Drawing.Point(209, 202)
+        Me.CBOTIPO.Location = New System.Drawing.Point(183, 193)
         Me.CBOTIPO.Name = "CBOTIPO"
         Me.CBOTIPO.Size = New System.Drawing.Size(269, 21)
         Me.CBOTIPO.TabIndex = 182
@@ -71,7 +73,7 @@ Partial Class CIENCIAS_NATURALES
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.White
         Me.Label1.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.Label1.Location = New System.Drawing.Point(113, 204)
+        Me.Label1.Location = New System.Drawing.Point(87, 195)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(87, 14)
         Me.Label1.TabIndex = 183
@@ -81,7 +83,7 @@ Partial Class CIENCIAS_NATURALES
         '
         Me.CBOCIUDADES.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CBOCIUDADES.FormattingEnabled = True
-        Me.CBOCIUDADES.Location = New System.Drawing.Point(209, 121)
+        Me.CBOCIUDADES.Location = New System.Drawing.Point(183, 112)
         Me.CBOCIUDADES.MaxDropDownItems = 50
         Me.CBOCIUDADES.Name = "CBOCIUDADES"
         Me.CBOCIUDADES.Size = New System.Drawing.Size(269, 21)
@@ -92,7 +94,7 @@ Partial Class CIENCIAS_NATURALES
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.White
         Me.Label4.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(140, 123)
+        Me.Label4.Location = New System.Drawing.Point(114, 114)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(56, 14)
         Me.Label4.TabIndex = 181
@@ -103,7 +105,7 @@ Partial Class CIENCIAS_NATURALES
         Me.CBOCODIGOSEDE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CBOCODIGOSEDE.Enabled = False
         Me.CBOCODIGOSEDE.FormattingEnabled = True
-        Me.CBOCODIGOSEDE.Location = New System.Drawing.Point(209, 175)
+        Me.CBOCODIGOSEDE.Location = New System.Drawing.Point(183, 166)
         Me.CBOCODIGOSEDE.MaxDropDownItems = 50
         Me.CBOCODIGOSEDE.Name = "CBOCODIGOSEDE"
         Me.CBOCODIGOSEDE.Size = New System.Drawing.Size(66, 21)
@@ -114,7 +116,7 @@ Partial Class CIENCIAS_NATURALES
         Me.Label6.AutoSize = True
         Me.Label6.BackColor = System.Drawing.Color.White
         Me.Label6.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(93, 177)
+        Me.Label6.Location = New System.Drawing.Point(67, 168)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(107, 14)
         Me.Label6.TabIndex = 179
@@ -124,7 +126,7 @@ Partial Class CIENCIAS_NATURALES
         '
         Me.CBOCOLEGIOS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CBOCOLEGIOS.FormattingEnabled = True
-        Me.CBOCOLEGIOS.Location = New System.Drawing.Point(209, 148)
+        Me.CBOCOLEGIOS.Location = New System.Drawing.Point(183, 139)
         Me.CBOCOLEGIOS.MaxDropDownItems = 50
         Me.CBOCOLEGIOS.Name = "CBOCOLEGIOS"
         Me.CBOCOLEGIOS.Size = New System.Drawing.Size(269, 21)
@@ -135,7 +137,7 @@ Partial Class CIENCIAS_NATURALES
         Me.Label18.AutoSize = True
         Me.Label18.BackColor = System.Drawing.Color.White
         Me.Label18.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(88, 150)
+        Me.Label18.Location = New System.Drawing.Point(62, 141)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(112, 14)
         Me.Label18.TabIndex = 178
@@ -161,12 +163,32 @@ Partial Class CIENCIAS_NATURALES
         Me.BTNCALIFICAR.TabIndex = 174
         Me.BTNCALIFICAR.UseVisualStyleBackColor = True
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.White
+        Me.Label2.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(46, 256)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(122, 14)
+        Me.Label2.TabIndex = 187
+        Me.Label2.Text = "Fecha Calificación:"
+        '
+        'FECHA
+        '
+        Me.FECHA.Location = New System.Drawing.Point(183, 251)
+        Me.FECHA.Name = "FECHA"
+        Me.FECHA.Size = New System.Drawing.Size(200, 20)
+        Me.FECHA.TabIndex = 186
+        '
         'CIENCIAS_NATURALES
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Window
         Me.ClientSize = New System.Drawing.Size(543, 375)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.FECHA)
         Me.Controls.Add(Me.CBOSIMULACRO)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.CBOTIPO)
@@ -198,4 +220,6 @@ Partial Class CIENCIAS_NATURALES
     Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents BTNSALIR As System.Windows.Forms.Button
     Friend WithEvents BTNCALIFICAR As System.Windows.Forms.Button
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents FECHA As System.Windows.Forms.DateTimePicker
 End Class

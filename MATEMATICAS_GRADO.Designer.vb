@@ -37,13 +37,18 @@ Partial Class MATEMATICAS_GRADO
         Me.Label6 = New System.Windows.Forms.Label()
         Me.CBOCOLEGIOS = New System.Windows.Forms.ComboBox()
         Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.FECHA = New System.Windows.Forms.DateTimePicker()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.DBA1 = New System.Windows.Forms.RadioButton()
+        Me.DBA = New System.Windows.Forms.RadioButton()
         Me.SuspendLayout()
         '
         'CBOSIMULACRO
         '
         Me.CBOSIMULACRO.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CBOSIMULACRO.FormattingEnabled = True
-        Me.CBOSIMULACRO.Location = New System.Drawing.Point(173, 219)
+        Me.CBOSIMULACRO.Location = New System.Drawing.Point(173, 215)
         Me.CBOSIMULACRO.Name = "CBOSIMULACRO"
         Me.CBOSIMULACRO.Size = New System.Drawing.Size(57, 21)
         Me.CBOSIMULACRO.TabIndex = 171
@@ -53,7 +58,7 @@ Partial Class MATEMATICAS_GRADO
         Me.Label10.AutoSize = True
         Me.Label10.BackColor = System.Drawing.Color.White
         Me.Label10.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(86, 226)
+        Me.Label10.Location = New System.Drawing.Point(86, 222)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(72, 14)
         Me.Label10.TabIndex = 170
@@ -83,7 +88,7 @@ Partial Class MATEMATICAS_GRADO
         '
         Me.BTNSALIR.BackgroundImage = CType(resources.GetObject("BTNSALIR.BackgroundImage"), System.Drawing.Image)
         Me.BTNSALIR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.BTNSALIR.Location = New System.Drawing.Point(273, 261)
+        Me.BTNSALIR.Location = New System.Drawing.Point(273, 298)
         Me.BTNSALIR.Name = "BTNSALIR"
         Me.BTNSALIR.Size = New System.Drawing.Size(44, 43)
         Me.BTNSALIR.TabIndex = 167
@@ -93,7 +98,7 @@ Partial Class MATEMATICAS_GRADO
         '
         Me.BTNCALIFICAR.BackgroundImage = CType(resources.GetObject("BTNCALIFICAR.BackgroundImage"), System.Drawing.Image)
         Me.BTNCALIFICAR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.BTNCALIFICAR.Location = New System.Drawing.Point(174, 261)
+        Me.BTNCALIFICAR.Location = New System.Drawing.Point(174, 298)
         Me.BTNCALIFICAR.Name = "BTNCALIFICAR"
         Me.BTNCALIFICAR.Size = New System.Drawing.Size(44, 43)
         Me.BTNCALIFICAR.TabIndex = 166
@@ -127,7 +132,7 @@ Partial Class MATEMATICAS_GRADO
         Me.CBOCODIGOGRUPO.Location = New System.Drawing.Point(173, 161)
         Me.CBOCODIGOGRUPO.MaxDropDownItems = 50
         Me.CBOCODIGOGRUPO.Name = "CBOCODIGOGRUPO"
-        Me.CBOCODIGOGRUPO.Size = New System.Drawing.Size(42, 21)
+        Me.CBOCODIGOGRUPO.Size = New System.Drawing.Size(144, 21)
         Me.CBOCODIGOGRUPO.TabIndex = 160
         '
         'Label5
@@ -184,6 +189,57 @@ Partial Class MATEMATICAS_GRADO
         Me.Label18.TabIndex = 161
         Me.Label18.Text = "Nombre Colegio:"
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.White
+        Me.Label2.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(37, 247)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(122, 14)
+        Me.Label2.TabIndex = 173
+        Me.Label2.Text = "Fecha Calificación:"
+        '
+        'FECHA
+        '
+        Me.FECHA.Location = New System.Drawing.Point(174, 242)
+        Me.FECHA.Name = "FECHA"
+        Me.FECHA.Size = New System.Drawing.Size(200, 20)
+        Me.FECHA.TabIndex = 172
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.White
+        Me.Label3.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(123, 60)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(37, 14)
+        Me.Label3.TabIndex = 181
+        Me.Label3.Text = "DBA:"
+        '
+        'DBA1
+        '
+        Me.DBA1.AutoSize = True
+        Me.DBA1.Location = New System.Drawing.Point(216, 57)
+        Me.DBA1.Name = "DBA1"
+        Me.DBA1.Size = New System.Drawing.Size(41, 17)
+        Me.DBA1.TabIndex = 180
+        Me.DBA1.TabStop = True
+        Me.DBA1.Text = "NO"
+        Me.DBA1.UseVisualStyleBackColor = False
+        '
+        'DBA
+        '
+        Me.DBA.AutoSize = True
+        Me.DBA.Location = New System.Drawing.Point(175, 57)
+        Me.DBA.Name = "DBA"
+        Me.DBA.Size = New System.Drawing.Size(35, 17)
+        Me.DBA.TabIndex = 179
+        Me.DBA.TabStop = True
+        Me.DBA.Text = "SI"
+        Me.DBA.UseVisualStyleBackColor = False
+        '
         'MATEMATICAS_GRADO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -191,6 +247,11 @@ Partial Class MATEMATICAS_GRADO
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackColor = System.Drawing.SystemColors.Window
         Me.ClientSize = New System.Drawing.Size(494, 384)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.DBA1)
+        Me.Controls.Add(Me.DBA)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.FECHA)
         Me.Controls.Add(Me.CBOSIMULACRO)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.CBOTIPO)
@@ -227,4 +288,9 @@ Partial Class MATEMATICAS_GRADO
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents CBOCOLEGIOS As System.Windows.Forms.ComboBox
     Friend WithEvents Label18 As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents FECHA As System.Windows.Forms.DateTimePicker
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents DBA1 As System.Windows.Forms.RadioButton
+    Friend WithEvents DBA As System.Windows.Forms.RadioButton
 End Class

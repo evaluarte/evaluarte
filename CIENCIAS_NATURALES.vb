@@ -17,27 +17,12 @@
         CBOCODIGOSEDE.DisplayMember = "codigo_colegio"
     End Sub
 
-    Private Sub CBOCODIGOSEDE_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-
-    End Sub
-
-    Private Sub BTNCALIFICAR_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-
-    End Sub
-
-
-    Private Sub CBOSIMULACRO_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-    End Sub
-
     Private Sub CIENCIAS_NATURALES_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         CARGAR()
     End Sub
 
     Sub CARGAR()
-        Dim DG As New OleDb.OleDbDataAdapter("SELECT  nombre_prueba  FROM Pruebas WHERE codigo_prueba='3' OR codigo_prueba='4' OR codigo_prueba='10'", CN)
+        Dim DG As New OleDb.OleDbDataAdapter("SELECT  nombre_prueba  FROM Pruebas WHERE codigo_prueba='3' OR codigo_prueba='4' OR codigo_prueba='10' OR codigo_prueba='11' ", CN)
         Dim DL As New DataSet
         DG.Fill(DL, "Pruebas")
         CBOTIPO.DataSource = DL.Tables("Pruebas")
@@ -65,36 +50,24 @@
         CBOCODIGOSEDE.DataSource = DS.Tables("colegios")
         CBOCODIGOSEDE.DisplayMember = "codigo_colegio"
     End Sub
-    Private Sub Label6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label6.Click
 
-    End Sub
-    Private Sub CBOCODIGOSEDE_SelectedIndexChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CBOCODIGOSEDE.SelectedIndexChanged
-
-    End Sub
-    Private Sub Label4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label4.Click
-
-    End Sub
-    Private Sub CBOSIMULACRO_SelectedIndexChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CBOSIMULACRO.SelectedIndexChanged
-
-    End Sub
     Private Sub BTNCALIFICAR_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BTNCALIFICAR.Click
 
+        Control = 22
+        Estudiantes_Colegio.simulacro = CBOSIMULACRO.Text
+        Estudiantes_Colegio.variable = CBOCODIGOSEDE.Text
+        Estudiantes_Colegio.grupo = " "
+        Estudiantes_Colegio.fecha = FECHA.Text
+
         If CBOTIPO.Text = "saber 3,5 y 9" Or CBOTIPO.Text = "saber 4,6,7 y 8" Then
-            Control = 22
-            Estudiantes_Colegio.simulacro = CBOSIMULACRO.Text
-            Estudiantes_Colegio.variable = CBOCODIGOSEDE.Text
             Estudiantes_Colegio.codigo_prueba = 3
-            Estudiantes_Colegio.grupo = " "
-            Estudiantes_Colegio.Show()
         ElseIf CBOTIPO.Text = "saber 10 y 11" Then
-            Control = 22
-            Estudiantes_Colegio.simulacro = CBOSIMULACRO.Text
-            Estudiantes_Colegio.variable = CBOCODIGOSEDE.Text
             Estudiantes_Colegio.codigo_prueba = 4
-            Estudiantes_Colegio.grupo = " "
-            Estudiantes_Colegio.Show()
+        ElseIf CBOTIPO.Text = "Tu saber" Then
+            Estudiantes_Colegio.codigo_prueba = 11
         End If
 
+        Estudiantes_Colegio.Show()
     End Sub
     Private Sub BTNSALIR_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BTNSALIR.Click
         Me.Hide()
@@ -124,12 +97,17 @@
             DB.Fill(DD, "Formato_Examen_Cantidad")
             CBOSIMULACRO.DataSource = DD.Tables("Formato_Examen_Cantidad")
             CBOSIMULACRO.DisplayMember = "codigo"
+        ElseIf CBOTIPO.Text = "Tu saber" Then
+
+            Dim DB As New OleDb.OleDbDataAdapter("SELECT  DISTINCT codigo  FROM Codigos_Pruebas  WHERE codigo_prueba='11'", CN)
+            Dim DD As New DataSet
+            DB.Fill(DD, "Codigos_Pruebas")
+            CBOSIMULACRO.DataSource = DD.Tables("Codigos_Pruebas")
+            CBOSIMULACRO.DisplayMember = "codigo"
         End If
 
     End Sub
-    Private Sub Label10_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label10.Click
 
-    End Sub
     Private Sub CBOCIUDADES_SelectedIndexChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CBOCIUDADES.SelectedIndexChanged
         Dim DB As New OleDb.OleDbDataAdapter("SELECT  nombre  FROM colegios WHERE ciudad='" & CBOCIUDADES.Text & "'", CN)
         Dim DF As New DataSet

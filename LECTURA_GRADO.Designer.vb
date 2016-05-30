@@ -37,13 +37,18 @@ Partial Class LECTURA_GRADO
         Me.Label6 = New System.Windows.Forms.Label()
         Me.CBOCOLEGIOS = New System.Windows.Forms.ComboBox()
         Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.FECHA = New System.Windows.Forms.DateTimePicker()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.DBA1 = New System.Windows.Forms.RadioButton()
+        Me.DBA = New System.Windows.Forms.RadioButton()
         Me.SuspendLayout()
         '
         'CBOSIMULACRO
         '
         Me.CBOSIMULACRO.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CBOSIMULACRO.FormattingEnabled = True
-        Me.CBOSIMULACRO.Location = New System.Drawing.Point(169, 249)
+        Me.CBOSIMULACRO.Location = New System.Drawing.Point(169, 215)
         Me.CBOSIMULACRO.Name = "CBOSIMULACRO"
         Me.CBOSIMULACRO.Size = New System.Drawing.Size(57, 21)
         Me.CBOSIMULACRO.TabIndex = 157
@@ -53,7 +58,7 @@ Partial Class LECTURA_GRADO
         Me.Label10.AutoSize = True
         Me.Label10.BackColor = System.Drawing.Color.White
         Me.Label10.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(82, 256)
+        Me.Label10.Location = New System.Drawing.Point(82, 222)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(72, 14)
         Me.Label10.TabIndex = 156
@@ -63,7 +68,7 @@ Partial Class LECTURA_GRADO
         '
         Me.CBOTIPO.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CBOTIPO.FormattingEnabled = True
-        Me.CBOTIPO.Location = New System.Drawing.Point(169, 218)
+        Me.CBOTIPO.Location = New System.Drawing.Point(169, 184)
         Me.CBOTIPO.Name = "CBOTIPO"
         Me.CBOTIPO.Size = New System.Drawing.Size(269, 21)
         Me.CBOTIPO.TabIndex = 154
@@ -73,7 +78,7 @@ Partial Class LECTURA_GRADO
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.White
         Me.Label1.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.Label1.Location = New System.Drawing.Point(73, 220)
+        Me.Label1.Location = New System.Drawing.Point(73, 186)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(87, 14)
         Me.Label1.TabIndex = 155
@@ -103,7 +108,7 @@ Partial Class LECTURA_GRADO
         '
         Me.CBOCIUDADES.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CBOCIUDADES.FormattingEnabled = True
-        Me.CBOCIUDADES.Location = New System.Drawing.Point(169, 110)
+        Me.CBOCIUDADES.Location = New System.Drawing.Point(169, 76)
         Me.CBOCIUDADES.MaxDropDownItems = 50
         Me.CBOCIUDADES.Name = "CBOCIUDADES"
         Me.CBOCIUDADES.Size = New System.Drawing.Size(269, 21)
@@ -114,7 +119,7 @@ Partial Class LECTURA_GRADO
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.White
         Me.Label4.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(100, 112)
+        Me.Label4.Location = New System.Drawing.Point(100, 78)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(56, 14)
         Me.Label4.TabIndex = 151
@@ -124,10 +129,10 @@ Partial Class LECTURA_GRADO
         '
         Me.CBOCODIGOGRUPO.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CBOCODIGOGRUPO.FormattingEnabled = True
-        Me.CBOCODIGOGRUPO.Location = New System.Drawing.Point(169, 191)
+        Me.CBOCODIGOGRUPO.Location = New System.Drawing.Point(169, 157)
         Me.CBOCODIGOGRUPO.MaxDropDownItems = 50
         Me.CBOCODIGOGRUPO.Name = "CBOCODIGOGRUPO"
-        Me.CBOCODIGOGRUPO.Size = New System.Drawing.Size(42, 21)
+        Me.CBOCODIGOGRUPO.Size = New System.Drawing.Size(152, 21)
         Me.CBOCODIGOGRUPO.TabIndex = 146
         '
         'Label5
@@ -135,7 +140,7 @@ Partial Class LECTURA_GRADO
         Me.Label5.AutoSize = True
         Me.Label5.BackColor = System.Drawing.Color.White
         Me.Label5.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(104, 191)
+        Me.Label5.Location = New System.Drawing.Point(104, 157)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(50, 14)
         Me.Label5.TabIndex = 149
@@ -146,7 +151,7 @@ Partial Class LECTURA_GRADO
         Me.CBOCODIGOSEDE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CBOCODIGOSEDE.Enabled = False
         Me.CBOCODIGOSEDE.FormattingEnabled = True
-        Me.CBOCODIGOSEDE.Location = New System.Drawing.Point(169, 164)
+        Me.CBOCODIGOSEDE.Location = New System.Drawing.Point(169, 130)
         Me.CBOCODIGOSEDE.MaxDropDownItems = 50
         Me.CBOCODIGOSEDE.Name = "CBOCODIGOSEDE"
         Me.CBOCODIGOSEDE.Size = New System.Drawing.Size(66, 21)
@@ -157,7 +162,7 @@ Partial Class LECTURA_GRADO
         Me.Label6.AutoSize = True
         Me.Label6.BackColor = System.Drawing.Color.White
         Me.Label6.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(53, 166)
+        Me.Label6.Location = New System.Drawing.Point(53, 132)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(107, 14)
         Me.Label6.TabIndex = 148
@@ -167,7 +172,7 @@ Partial Class LECTURA_GRADO
         '
         Me.CBOCOLEGIOS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CBOCOLEGIOS.FormattingEnabled = True
-        Me.CBOCOLEGIOS.Location = New System.Drawing.Point(169, 137)
+        Me.CBOCOLEGIOS.Location = New System.Drawing.Point(169, 103)
         Me.CBOCOLEGIOS.MaxDropDownItems = 50
         Me.CBOCOLEGIOS.Name = "CBOCOLEGIOS"
         Me.CBOCOLEGIOS.Size = New System.Drawing.Size(269, 21)
@@ -178,11 +183,62 @@ Partial Class LECTURA_GRADO
         Me.Label18.AutoSize = True
         Me.Label18.BackColor = System.Drawing.Color.White
         Me.Label18.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(48, 139)
+        Me.Label18.Location = New System.Drawing.Point(48, 105)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(112, 14)
         Me.Label18.TabIndex = 147
         Me.Label18.Text = "Nombre Colegio:"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.White
+        Me.Label2.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(32, 247)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(122, 14)
+        Me.Label2.TabIndex = 159
+        Me.Label2.Text = "Fecha Calificación:"
+        '
+        'FECHA
+        '
+        Me.FECHA.Location = New System.Drawing.Point(170, 247)
+        Me.FECHA.Name = "FECHA"
+        Me.FECHA.Size = New System.Drawing.Size(200, 20)
+        Me.FECHA.TabIndex = 158
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.White
+        Me.Label3.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(117, 53)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(37, 14)
+        Me.Label3.TabIndex = 184
+        Me.Label3.Text = "DBA:"
+        '
+        'DBA1
+        '
+        Me.DBA1.AutoSize = True
+        Me.DBA1.Location = New System.Drawing.Point(210, 53)
+        Me.DBA1.Name = "DBA1"
+        Me.DBA1.Size = New System.Drawing.Size(41, 17)
+        Me.DBA1.TabIndex = 183
+        Me.DBA1.TabStop = True
+        Me.DBA1.Text = "NO"
+        Me.DBA1.UseVisualStyleBackColor = False
+        '
+        'DBA
+        '
+        Me.DBA.AutoSize = True
+        Me.DBA.Location = New System.Drawing.Point(169, 53)
+        Me.DBA.Name = "DBA"
+        Me.DBA.Size = New System.Drawing.Size(35, 17)
+        Me.DBA.TabIndex = 182
+        Me.DBA.TabStop = True
+        Me.DBA.Text = "SI"
+        Me.DBA.UseVisualStyleBackColor = False
         '
         'LECTURA_GRADO
         '
@@ -190,6 +246,11 @@ Partial Class LECTURA_GRADO
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Window
         Me.ClientSize = New System.Drawing.Size(485, 375)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.DBA1)
+        Me.Controls.Add(Me.DBA)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.FECHA)
         Me.Controls.Add(Me.CBOSIMULACRO)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.CBOTIPO)
@@ -225,4 +286,9 @@ Partial Class LECTURA_GRADO
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents CBOCOLEGIOS As System.Windows.Forms.ComboBox
     Friend WithEvents Label18 As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents FECHA As System.Windows.Forms.DateTimePicker
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents DBA1 As System.Windows.Forms.RadioButton
+    Friend WithEvents DBA As System.Windows.Forms.RadioButton
 End Class

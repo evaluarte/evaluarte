@@ -47,6 +47,15 @@
             DB.Fill(DD, "Formato_Examen_Cantidad")
             CBOSIMULACRO.DataSource = DD.Tables("Formato_Examen_Cantidad")
             CBOSIMULACRO.DisplayMember = "codigo"
+
+        ElseIf CBOTIPO.Text = "Tu saber" Then
+
+            Dim DB As New OleDb.OleDbDataAdapter("SELECT  DISTINCT codigo  FROM Codigos_Pruebas  WHERE codigo_prueba='11'", CN)
+            Dim DD As New DataSet
+            DB.Fill(DD, "Codigos_Pruebas")
+            CBOSIMULACRO.DataSource = DD.Tables("Codigos_Pruebas")
+            CBOSIMULACRO.DisplayMember = "codigo"
+
         End If
     End Sub
 
@@ -59,22 +68,20 @@
     End Sub
 
     Private Sub BTNCALIFICAR_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BTNCALIFICAR.Click
-        If CBOTIPO.Text = "saber 3,5 y 9" Or CBOTIPO.Text = "saber 4,6,7 y 8" Then
-            Control = 26
-            Estudiantes_Colegio.simulacro = CBOSIMULACRO.Text
-            Estudiantes_Colegio.variable = CBOCODIGOSEDE.Text
-            Estudiantes_Colegio.codigo_prueba = 3
-            Estudiantes_Colegio.grupo = CBOCODIGOGRUPO.Text
-            Estudiantes_Colegio.Show()
-        ElseIf CBOTIPO.Text = "saber 10 y 11" Then
-            Control = 26
-            Estudiantes_Colegio.simulacro = CBOSIMULACRO.Text
-            Estudiantes_Colegio.variable = CBOCODIGOSEDE.Text
-            Estudiantes_Colegio.codigo_prueba = 4
-            Estudiantes_Colegio.grupo = CBOCODIGOGRUPO.Text
-            Estudiantes_Colegio.Show()
-        End If
+        Control = 26
+        Estudiantes_Colegio.simulacro = CBOSIMULACRO.Text
+        Estudiantes_Colegio.variable = CBOCODIGOSEDE.Text
+        Estudiantes_Colegio.grupo = CBOCODIGOGRUPO.Text
+        Estudiantes_Colegio.fecha = FECHA.Text
 
+        If CBOTIPO.Text = "saber 3,5 y 9" Or CBOTIPO.Text = "saber 4,6,7 y 8" Then
+            Estudiantes_Colegio.codigo_prueba = 3
+        ElseIf CBOTIPO.Text = "saber 10 y 11" Then
+            Estudiantes_Colegio.codigo_prueba = 4
+        ElseIf CBOTIPO.Text = "Tu saber" Then
+            Estudiantes_Colegio.codigo_prueba = 11
+        End If
+        Estudiantes_Colegio.Show()
     End Sub
 
     Private Sub Repote_Saber_Grado_Promedios_Generales_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -82,7 +89,8 @@
     End Sub
 
     Sub CARGAR()
-        Dim DG As New OleDb.OleDbDataAdapter("SELECT  nombre_prueba  FROM Pruebas WHERE codigo_prueba='3' OR codigo_prueba='4' OR codigo_prueba='10' ", CN)
+
+        Dim DG As New OleDb.OleDbDataAdapter("SELECT  nombre_prueba  FROM Pruebas WHERE codigo_prueba='3' OR codigo_prueba='4' OR codigo_prueba='10' OR codigo_prueba='11' ", CN)
         Dim DL As New DataSet
         DG.Fill(DL, "Pruebas")
         CBOTIPO.DataSource = DL.Tables("Pruebas")
@@ -95,4 +103,6 @@
         CBOCIUDADES.DisplayMember = "ciudad"
 
     End Sub
+
+
 End Class

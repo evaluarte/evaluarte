@@ -35,13 +35,18 @@ Partial Class LECTURA
         Me.Label6 = New System.Windows.Forms.Label()
         Me.CBOCOLEGIOS = New System.Windows.Forms.ComboBox()
         Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.FECHA = New System.Windows.Forms.DateTimePicker()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.DBA1 = New System.Windows.Forms.RadioButton()
+        Me.DBA = New System.Windows.Forms.RadioButton()
         Me.SuspendLayout()
         '
         'CBOSIMULACRO
         '
         Me.CBOSIMULACRO.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CBOSIMULACRO.FormattingEnabled = True
-        Me.CBOSIMULACRO.Location = New System.Drawing.Point(176, 255)
+        Me.CBOSIMULACRO.Location = New System.Drawing.Point(177, 244)
         Me.CBOSIMULACRO.Name = "CBOSIMULACRO"
         Me.CBOSIMULACRO.Size = New System.Drawing.Size(57, 21)
         Me.CBOSIMULACRO.TabIndex = 155
@@ -51,7 +56,7 @@ Partial Class LECTURA
         Me.Label10.AutoSize = True
         Me.Label10.BackColor = System.Drawing.Color.White
         Me.Label10.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(89, 262)
+        Me.Label10.Location = New System.Drawing.Point(90, 251)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(72, 14)
         Me.Label10.TabIndex = 154
@@ -61,7 +66,7 @@ Partial Class LECTURA
         '
         Me.CBOTIPO.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CBOTIPO.FormattingEnabled = True
-        Me.CBOTIPO.Location = New System.Drawing.Point(176, 224)
+        Me.CBOTIPO.Location = New System.Drawing.Point(177, 213)
         Me.CBOTIPO.Name = "CBOTIPO"
         Me.CBOTIPO.Size = New System.Drawing.Size(269, 21)
         Me.CBOTIPO.TabIndex = 152
@@ -71,7 +76,7 @@ Partial Class LECTURA
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.White
         Me.Label1.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.Label1.Location = New System.Drawing.Point(80, 226)
+        Me.Label1.Location = New System.Drawing.Point(81, 215)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(87, 14)
         Me.Label1.TabIndex = 153
@@ -101,7 +106,7 @@ Partial Class LECTURA
         '
         Me.CBOCIUDADES.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CBOCIUDADES.FormattingEnabled = True
-        Me.CBOCIUDADES.Location = New System.Drawing.Point(176, 143)
+        Me.CBOCIUDADES.Location = New System.Drawing.Point(177, 132)
         Me.CBOCIUDADES.MaxDropDownItems = 50
         Me.CBOCIUDADES.Name = "CBOCIUDADES"
         Me.CBOCIUDADES.Size = New System.Drawing.Size(269, 21)
@@ -112,7 +117,7 @@ Partial Class LECTURA
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.White
         Me.Label4.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(107, 145)
+        Me.Label4.Location = New System.Drawing.Point(108, 134)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(56, 14)
         Me.Label4.TabIndex = 149
@@ -123,7 +128,7 @@ Partial Class LECTURA
         Me.CBOCODIGOSEDE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CBOCODIGOSEDE.Enabled = False
         Me.CBOCODIGOSEDE.FormattingEnabled = True
-        Me.CBOCODIGOSEDE.Location = New System.Drawing.Point(176, 197)
+        Me.CBOCODIGOSEDE.Location = New System.Drawing.Point(177, 186)
         Me.CBOCODIGOSEDE.MaxDropDownItems = 50
         Me.CBOCODIGOSEDE.Name = "CBOCODIGOSEDE"
         Me.CBOCODIGOSEDE.Size = New System.Drawing.Size(66, 21)
@@ -134,7 +139,7 @@ Partial Class LECTURA
         Me.Label6.AutoSize = True
         Me.Label6.BackColor = System.Drawing.Color.White
         Me.Label6.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(60, 199)
+        Me.Label6.Location = New System.Drawing.Point(61, 188)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(107, 14)
         Me.Label6.TabIndex = 147
@@ -144,7 +149,7 @@ Partial Class LECTURA
         '
         Me.CBOCOLEGIOS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CBOCOLEGIOS.FormattingEnabled = True
-        Me.CBOCOLEGIOS.Location = New System.Drawing.Point(176, 170)
+        Me.CBOCOLEGIOS.Location = New System.Drawing.Point(177, 159)
         Me.CBOCOLEGIOS.MaxDropDownItems = 50
         Me.CBOCOLEGIOS.Name = "CBOCOLEGIOS"
         Me.CBOCOLEGIOS.Size = New System.Drawing.Size(269, 21)
@@ -155,11 +160,62 @@ Partial Class LECTURA
         Me.Label18.AutoSize = True
         Me.Label18.BackColor = System.Drawing.Color.White
         Me.Label18.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(55, 172)
+        Me.Label18.Location = New System.Drawing.Point(56, 161)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(112, 14)
         Me.Label18.TabIndex = 146
         Me.Label18.Text = "Nombre Colegio:"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.White
+        Me.Label2.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(40, 276)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(122, 14)
+        Me.Label2.TabIndex = 157
+        Me.Label2.Text = "Fecha Calificación:"
+        '
+        'FECHA
+        '
+        Me.FECHA.Location = New System.Drawing.Point(177, 271)
+        Me.FECHA.Name = "FECHA"
+        Me.FECHA.Size = New System.Drawing.Size(200, 20)
+        Me.FECHA.TabIndex = 156
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.White
+        Me.Label3.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(127, 109)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(37, 14)
+        Me.Label3.TabIndex = 181
+        Me.Label3.Text = "DBA:"
+        '
+        'DBA1
+        '
+        Me.DBA1.AutoSize = True
+        Me.DBA1.Location = New System.Drawing.Point(220, 109)
+        Me.DBA1.Name = "DBA1"
+        Me.DBA1.Size = New System.Drawing.Size(41, 17)
+        Me.DBA1.TabIndex = 180
+        Me.DBA1.TabStop = True
+        Me.DBA1.Text = "NO"
+        Me.DBA1.UseVisualStyleBackColor = False
+        '
+        'DBA
+        '
+        Me.DBA.AutoSize = True
+        Me.DBA.Location = New System.Drawing.Point(179, 109)
+        Me.DBA.Name = "DBA"
+        Me.DBA.Size = New System.Drawing.Size(35, 17)
+        Me.DBA.TabIndex = 179
+        Me.DBA.TabStop = True
+        Me.DBA.Text = "SI"
+        Me.DBA.UseVisualStyleBackColor = False
         '
         'LECTURA
         '
@@ -167,6 +223,11 @@ Partial Class LECTURA
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Window
         Me.ClientSize = New System.Drawing.Size(512, 385)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.DBA1)
+        Me.Controls.Add(Me.DBA)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.FECHA)
         Me.Controls.Add(Me.CBOSIMULACRO)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.CBOTIPO)
@@ -198,4 +259,9 @@ Partial Class LECTURA
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents CBOCOLEGIOS As System.Windows.Forms.ComboBox
     Friend WithEvents Label18 As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents FECHA As System.Windows.Forms.DateTimePicker
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents DBA1 As System.Windows.Forms.RadioButton
+    Friend WithEvents DBA As System.Windows.Forms.RadioButton
 End Class

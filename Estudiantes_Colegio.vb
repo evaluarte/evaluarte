@@ -10,6 +10,7 @@ Public Class Estudiantes_Colegio
     Public nombre_colegio As String
     Public simulacro As String
     Public materia As String
+    Public Dba As String
 
 
     Dim CONSULTA As String
@@ -27,7 +28,7 @@ Public Class Estudiantes_Colegio
         Dim ano As String
         Dim fechaFinal As String
         diames = Mid(fecha_comotal, 1, 6)
-        ano = Mid(fecha_comotal, 9, 10)
+        ano = Mid(fecha_comotal, 7, 10)
         fechaFinal = diames + ano
 
         If Control = 1 Then
@@ -518,6 +519,41 @@ Public Class Estudiantes_Colegio
                 End If
 
                 MODIFICAR_Generales()
+
+            ElseIf codigo_prueba = 11 Then
+
+                Dim DS As New DataSet
+
+                If grupo <> " " Then
+                    Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once  WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND codigo_grupo='" & grupo & "' AND fecha='" & fechaFinal & "' ORDER BY proTotal DESC", CN)
+                    DA.Fill(DS, "Resultados_Saber_Decimo_Once")
+                    Dim tipo As Integer = 0
+                    Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                    CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+                    If simulacro = "200" Or simulacro = "201" Or simulacro = "202" Then
+                        CrReport.Load("\\Sistemas3\d\reportes\tusaber\tresmaterias\Reporte_Saber_Grupo_Promedios_Generales.rpt")
+                    Else
+                        CrReport.Load("\\Sistemas3\d\reportes\tusaber\cincomaterias\Reporte_Saber_Grupo_Promedios_Generales.rpt")
+                    End If
+                    CrReport.SetDataSource(DS)
+                    CrystalReportViewer1.ReportSource = CrReport
+                ElseIf grupo = " " Then
+                    Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND fecha='" & fechaFinal & "' ORDER BY proTotal DESC", CN)
+                    DA.Fill(DS, "Resultados_Saber_Decimo_Once")
+                    Dim tipo As Integer = 0
+                    Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                    CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+                    If simulacro = "200" Or simulacro = "201" Or simulacro = "202" Then
+                        CrReport.Load("\\Sistemas3\d\reportes\tusaber\tresmaterias\Reporte_Saber_Institucion_Promedios_Generales.rpt")
+                    Else
+                        CrReport.Load("\\Sistemas3\d\reportes\tusaber\cincomaterias\Reporte_Saber_Institucion_Promedios_Generales.rpt")
+                    End If
+                    CrReport.SetDataSource(DS)
+                    CrystalReportViewer1.ReportSource = CrReport
+                End If
+
+                MODIFICAR_Generales()
+
             End If
 
         End If
@@ -995,9 +1031,87 @@ Public Class Estudiantes_Colegio
                         CrystalReportViewer1.ReportSource = CrReport
                     End If
                 End If
+
+            ElseIf codigo_prueba = 11 Then
+
+                Dim DS As New DataSet
+
+                If grupo <> " " And grado = Nothing Then
+
+                    Dim tipo As Integer = 0
+                    Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                    CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+
+                    If Dba = 0 Then
+                        Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND codigo_grupo='" & grupo & "' AND fecha='" & fechaFinal & "' ORDER BY proMat2 DESC", CN)
+                        DA.Fill(DS, "Resultados_Saber_Decimo_Once")
+                        If simulacro = "200" Or simulacro = "201" Or simulacro = "202" Then
+                            CrReport.Load("\\Sistemas3\d\reportes\tusaber\tresmaterias\Reporte_Saber_Grupo_Promedios_Generales_Lectura.rpt")
+                        Else
+                            CrReport.Load("\\Sistemas3\d\\reportes\tusaber\cincomaterias\Reporte_Saber_Grupo_Promedios_Generales_Lectura.rpt")
+                        End If
+                    Else
+                        Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once_Dba WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND codigo_grupo='" & grupo & "' AND fecha='" & fechaFinal & "' ORDER BY proMat2 DESC", CN)
+                        DA.Fill(DS, "Resultados_Saber_Decimo_Once_Dba")
+                        If simulacro = "200" Or simulacro = "201" Or simulacro = "202" Then
+                        Else
+                            CrReport.Load("\\Sistemas3\d\\reportes\tusaber\cincomaterias\Reporte_Saber_Grupo_Promedios_Generales_Lectura_Dba.rpt")
+                        End If
+                    End If
+
+                CrReport.SetDataSource(DS)
+                CrystalReportViewer1.ReportSource = CrReport
+
+                ElseIf grado <> " " And grupo = Nothing Then
+                    Dim tipo As Integer = 0
+                    Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                    CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+                    If Dba = 0 Then
+                        Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND grado='" & grado & "' AND fecha='" & fechaFinal & "' ORDER BY proMat2 DESC", CN)
+                        DA.Fill(DS, "Resultados_Saber_Decimo_Once")
+                        If grado = "PREJARDÍN" Or grado = "JARDÍN" Or grado = "TRANSICIÓN" Then
+                            CrReport.Load("\\Sistemas3\d\reportes\tusaber\tresmaterias\Reporte_Saber_Grupo_Promedios_Generales_Lectura.rpt")
+                        Else
+                            CrReport.Load("\\Sistemas3\d\\reportes\tusaber\cincomaterias\Reporte_Saber_Grupo_Promedios_Generales_Lectura.rpt")
+                        End If
+                    Else
+                        Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once_Dba WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND grado='" & grado & "' AND fecha='" & fechaFinal & "' ORDER BY proMat2 DESC", CN)
+                        DA.Fill(DS, "Resultados_Saber_Decimo_Once_Dba")
+                        If grado = "PREJARDÍN" Or grado = "JARDÍN" Or grado = "TRANSICIÓN" Then
+                        Else
+                            CrReport.Load("\\Sistemas3\d\\reportes\tusaber\cincomaterias\Reporte_Saber_Grupo_Promedios_Generales_Lectura_Dba.rpt")
+                        End If
+                    End If
+                    CrReport.SetDataSource(DS)
+                    CrystalReportViewer1.ReportSource = CrReport
+                ElseIf grupo = " " And grado = Nothing Then
+
+                    Dim tipo As Integer = 0
+                    Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                    CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+
+                    If Dba = 0 Then
+                        Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND fecha='" & fechaFinal & "'  ORDER BY proMat2 DESC", CN)
+                        DA.Fill(DS, "Resultados_Saber_Decimo_Once")
+                        If simulacro = "200" Or simulacro = "201" Or simulacro = "202" Then
+                            CrReport.Load("\\Sistemas3\d\reportes\tusaber\tresmaterias\Reporte_Saber_Institucion_Promedios_Generales_Lectura.rpt")
+                        Else
+                            CrReport.Load("\\Sistemas3\d\reportes\tusaber\cincomaterias\Reporte_Saber_Institucion_Promedios_Generales_Lectura.rpt")
+                        End If
+                    Else
+                        Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once_Dba WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND fecha='" & fechaFinal & "'  ORDER BY proMat2 DESC", CN)
+                        DA.Fill(DS, "Resultados_Saber_Decimo_Once_Dba")
+                        If simulacro = "200" Or simulacro = "201" Or simulacro = "202" Then
+                        Else
+                            CrReport.Load("\\Sistemas3\d\reportes\tusaber\cincomaterias\Reporte_Saber_Institucion_Promedios_Generales_Lectura_Dba.rpt")
+                        End If
+                    End If
+
+                    CrReport.SetDataSource(DS)
+                    CrystalReportViewer1.ReportSource = CrReport
+                End If
             End If
         End If
-
 
         If Control = 21 Then
 
@@ -1240,6 +1354,92 @@ Public Class Estudiantes_Colegio
 
                 End If
   
+            ElseIf codigo_prueba = 11 Then
+
+                Dim DS As New DataSet
+
+                If grupo <> " " And grado = Nothing Then
+
+                    Dim tipo As Integer = 0
+                    Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                    CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+
+                    If Dba = 0 Then
+                        Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND codigo_grupo='" & grupo & "' AND fecha='" & fechaFinal & "' ORDER BY proMat1 DESC", CN)
+                        DA.Fill(DS, "Resultados_Saber_Decimo_Once")
+                        If simulacro = "200" Or simulacro = "201" Or simulacro = "202" Then
+                            CrReport.Load("\\Sistemas3\d\reportes\tusaber\tresmaterias\Reporte_Saber_Grupo_Promedios_Generales_Matematicas.rpt")
+                        Else
+                            CrReport.Load("\\Sistemas3\d\\reportes\tusaber\cincomaterias\Reporte_Saber_Grupo_Promedios_Generales_Matematicas.rpt")
+                        End If
+                    Else
+                        Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once_Dba WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND codigo_grupo='" & grupo & "' AND fecha='" & fechaFinal & "' ORDER BY proMat1 DESC", CN)
+                        DA.Fill(DS, "Resultados_Saber_Decimo_Once_Dba")
+                        If simulacro = "200" Or simulacro = "201" Or simulacro = "202" Then
+                        Else
+                            CrReport.Load("\\Sistemas3\d\\reportes\tusaber\cincomaterias\Reporte_Saber_Grupo_Promedios_Generales_Matematicas_Dba.rpt")
+                        End If
+                    End If
+
+                    CrReport.SetDataSource(DS)
+                    CrystalReportViewer1.ReportSource = CrReport
+
+                ElseIf grado <> " " And grupo = Nothing Then
+
+                    Dim tipo As Integer = 0
+                    Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                    CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+
+                    If Dba = 0 Then
+                        Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND grado='" & grado & "' AND fecha='" & fechaFinal & "' ORDER BY proMat1 DESC", CN)
+                        DA.Fill(DS, "Resultados_Saber_Decimo_Once")
+
+                        If grado = "PREJARDÍN" Or grado = "JARDÍN" Or grado = "TRANSICIÓN" Then
+                            CrReport.Load("\\Sistemas3\d\reportes\tusaber\tresmaterias\Reporte_Saber_Grupo_Promedios_Generales_Matematicas.rpt")
+                        Else
+                            CrReport.Load("\\Sistemas3\d\\reportes\tusaber\cincomaterias\Reporte_Saber_Grupo_Promedios_Generales_Matematicas.rpt")
+                        End If
+                    Else
+                        Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once_Dba WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND grado='" & grado & "' AND fecha='" & fechaFinal & "' ORDER BY proMat1 DESC", CN)
+                        DA.Fill(DS, "Resultados_Saber_Decimo_Once_Dba")
+
+                        If grado = "PREJARDÍN" Or grado = "JARDÍN" Or grado = "TRANSICIÓN" Then
+                        Else
+                            CrReport.Load("\\Sistemas3\d\\reportes\tusaber\cincomaterias\Reporte_Saber_Grupo_Promedios_Generales_Matematicas_Dba.rpt")
+                        End If
+                    End If
+
+                    CrReport.SetDataSource(DS)
+                    CrystalReportViewer1.ReportSource = CrReport
+                ElseIf grupo = " " And grado = Nothing Then
+
+                    Dim tipo As Integer = 0
+                    Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                    CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+
+                    If Dba = 0 Then
+                        Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND fecha='" & fechaFinal & "'  ORDER BY proMat1 DESC", CN)
+                        DA.Fill(DS, "Resultados_Saber_Decimo_Once")
+
+                        If simulacro = "200" Or simulacro = "201" Or simulacro = "202" Then
+                            CrReport.Load("\\Sistemas3\d\reportes\tusaber\tresmaterias\Reporte_Saber_Institucion_Promedios_Generales_Matematicas.rpt")
+                        Else
+                            CrReport.Load("\\Sistemas3\d\reportes\tusaber\cincomaterias\Reporte_Saber_Institucion_Promedios_Generales_Matematicas.rpt")
+                        End If
+                    Else
+                        Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once_Dba WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND fecha='" & fechaFinal & "'  ORDER BY proMat1 DESC", CN)
+                        DA.Fill(DS, "Resultados_Saber_Decimo_Once_Dba")
+
+                        If simulacro = "200" Or simulacro = "201" Or simulacro = "202" Then
+                        Else
+                            CrReport.Load("\\Sistemas3\d\reportes\tusaber\cincomaterias\Reporte_Saber_Institucion_Promedios_Generales_Matematicas_Dba.rpt")
+                        End If
+                    End If
+
+                    CrReport.SetDataSource(DS)
+                    CrystalReportViewer1.ReportSource = CrReport
+                End If
+
             End If
 
             MODIFICAR_Generales()
@@ -1377,6 +1577,41 @@ Public Class Estudiantes_Colegio
                         CrReport.SetDataSource(DS)
                         CrystalReportViewer1.ReportSource = CrReport
                     End If
+                End If
+
+            ElseIf codigo_prueba = 11 Then
+
+                Dim DS As New DataSet
+                If grupo <> " " And grado = Nothing Then
+                    Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND codigo_grupo='" & grupo & "' AND fecha='" & fechaFinal & "' ORDER BY proMat4 DESC", CN)
+                    DA.Fill(DS, "Resultados_Saber_Decimo_Once")
+                    Dim tipo As Integer = 0
+                    Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                    CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+                    CrReport.Load("\\Sistemas3\d\\reportes\tusaber\cincomaterias\Reporte_Saber_Grupo_Promedios_Generales_Naturales.rpt")
+                    CrReport.SetDataSource(DS)
+                    CrystalReportViewer1.ReportSource = CrReport
+
+                ElseIf grado <> " " And grupo = Nothing Then
+
+                    Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND grado='" & grado & "' AND fecha='" & fechaFinal & "' ORDER BY proMat4 DESC", CN)
+                    DA.Fill(DS, "Resultados_Saber_Decimo_Once")
+                    Dim tipo As Integer = 0
+                    Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                    CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+                    CrReport.Load("\\Sistemas3\d\\reportes\tusaber\cincomaterias\Reporte_Saber_Grupo_Promedios_Generales_Naturales.rpt")
+                    CrReport.SetDataSource(DS)
+                    CrystalReportViewer1.ReportSource = CrReport
+                ElseIf grupo = " " And grado = Nothing Then
+
+                    Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND fecha='" & fechaFinal & "'  ORDER BY proMat4 DESC", CN)
+                    DA.Fill(DS, "Resultados_Saber_Decimo_Once")
+                    Dim tipo As Integer = 0
+                    Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                    CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+                    CrReport.Load("\\Sistemas3\d\reportes\tusaber\cincomaterias\Reporte_Saber_Institucion_Promedios_Generales_Naturales.rpt")
+                    CrReport.SetDataSource(DS)
+                    CrystalReportViewer1.ReportSource = CrReport
                 End If
 
             End If
@@ -1521,6 +1756,56 @@ Public Class Estudiantes_Colegio
                         CrystalReportViewer1.ReportSource = CrReport
                     End If
                 End If
+
+            ElseIf codigo_prueba = 11 Then
+
+                Dim DS As New DataSet
+                If grupo <> " " And grado = Nothing Then
+                    Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND codigo_grupo='" & grupo & "' AND fecha='" & fechaFinal & "' ORDER BY proMat3 DESC", CN)
+                    DA.Fill(DS, "Resultados_Saber_Decimo_Once")
+                    Dim tipo As Integer = 0
+                    Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                    CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+
+                    If simulacro = "200" Or simulacro = "201" Or simulacro = "202" Then
+                        CrReport.Load("\\Sistemas3\d\reportes\tusaber\tresmaterias\Reporte_Saber_Grupo_Promedios_Generales_Sociales.rpt")
+                    Else
+                        CrReport.Load("\\Sistemas3\d\\reportes\tusaber\cincomaterias\Reporte_Saber_Grupo_Promedios_Generales_Sociales.rpt")
+                    End If
+
+                    CrReport.SetDataSource(DS)
+                    CrystalReportViewer1.ReportSource = CrReport
+
+                ElseIf grado <> " " And grupo = Nothing Then
+
+                    Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND grado='" & grado & "' AND fecha='" & fechaFinal & "' ORDER BY proMat3 DESC", CN)
+                    DA.Fill(DS, "Resultados_Saber_Decimo_Once")
+                    Dim tipo As Integer = 0
+                    Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                    CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+                    If grado = "PREJARDÍN" Or grado = "JARDÍN" Or grado = "TRANSICIÓN" Then
+                        CrReport.Load("\\Sistemas3\d\reportes\tusaber\tresmaterias\Reporte_Saber_Grupo_Promedios_Generales_Sociales.rpt")
+                    Else
+                        CrReport.Load("\\Sistemas3\d\\reportes\tusaber\cincomaterias\Reporte_Saber_Grupo_Promedios_Generales_Sociales.rpt")
+                    End If
+                    CrReport.SetDataSource(DS)
+                    CrystalReportViewer1.ReportSource = CrReport
+                ElseIf grupo = " " And grado = Nothing Then
+
+                    Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND fecha='" & fechaFinal & "'  ORDER BY proMat3 DESC", CN)
+                    DA.Fill(DS, "Resultados_Saber_Decimo_Once")
+                    Dim tipo As Integer = 0
+                    Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                    CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+                    If simulacro = "200" Or simulacro = "201" Or simulacro = "202" Then
+                        CrReport.Load("\\Sistemas3\d\reportes\tusaber\tresmaterias\Reporte_Saber_Institucion_Promedios_Generales_Sociales.rpt")
+                    Else
+                        CrReport.Load("\\Sistemas3\d\reportes\tusaber\cincomaterias\Reporte_Saber_Institucion_Promedios_Generales_Sociales.rpt")
+                    End If
+                    CrReport.SetDataSource(DS)
+                    CrystalReportViewer1.ReportSource = CrReport
+                End If
+
             End If
 
             MODIFICAR_Generales()
@@ -1628,6 +1913,42 @@ Public Class Estudiantes_Colegio
                         CrystalReportViewer1.ReportSource = CrReport
                     End If
                 End If
+
+            ElseIf codigo_prueba = 11 Then
+
+                Dim DS As New DataSet
+                If grupo <> " " And grado = Nothing Then
+                    Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND codigo_grupo='" & grupo & "' AND fecha='" & fechaFinal & "' ORDER BY proMat5 DESC", CN)
+                    DA.Fill(DS, "Resultados_Saber_Decimo_Once")
+                    Dim tipo As Integer = 0
+                    Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                    CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+                    CrReport.Load("\\Sistemas3\d\\reportes\tusaber\cincomaterias\Reporte_Saber_Grupo_Promedios_Generales_Ingles.rpt")
+                    CrReport.SetDataSource(DS)
+                    CrystalReportViewer1.ReportSource = CrReport
+
+                ElseIf grado <> " " And grupo = Nothing Then
+
+                    Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND grado='" & grado & "' AND fecha='" & fechaFinal & "' ORDER BY proMat5 DESC", CN)
+                    DA.Fill(DS, "Resultados_Saber_Decimo_Once")
+                    Dim tipo As Integer = 0
+                    Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                    CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+                    CrReport.Load("\\Sistemas3\d\\reportes\tusaber\cincomaterias\Reporte_Saber_Grupo_Promedios_Generales_Ingles.rpt")
+                    CrReport.SetDataSource(DS)
+                    CrystalReportViewer1.ReportSource = CrReport
+                ElseIf grupo = " " And grado = Nothing Then
+
+                    Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND fecha='" & fechaFinal & "'  ORDER BY proMat5 DESC", CN)
+                    DA.Fill(DS, "Resultados_Saber_Decimo_Once")
+                    Dim tipo As Integer = 0
+                    Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                    CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+                    CrReport.Load("\\Sistemas3\d\reportes\tusaber\cincomaterias\Reporte_Saber_Institucion_Promedios_Generales_Ingles.rpt")
+                    CrReport.SetDataSource(DS)
+                    CrystalReportViewer1.ReportSource = CrReport
+                End If
+
             End If
 
         End If
@@ -1859,13 +2180,36 @@ Public Class Estudiantes_Colegio
                 'REPORTE SABER "LOS DOS" ( 10 y 11)
                 Dim DS As New DataSet
                 If grupo <> " " Then
-                    Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND grado='" & grupo & "' ORDER BY proTotal DESC", CN)
+                    Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND grado='" & grupo & "'   ORDER BY proTotal DESC", CN)
                     DA.Fill(DS, "Resultados_Saber_Decimo_Once")
                     Dim tipo As Integer = 0
 
                     Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
                     CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
                     CrReport.Load("\\Sistemas3\d\reportes\Reporte_Saber_Grado_Promedios_Generales.rpt")
+                    CrReport.SetDataSource(DS)
+                    CrystalReportViewer1.ReportSource = CrReport
+
+                    MODIFICAR_Generales()
+                End If
+
+            ElseIf codigo_prueba = 11 Then
+
+                Dim DS As New DataSet
+                If grupo <> " " Then
+                    Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Resultados_Saber_Decimo_Once WHERE Identificacion_Prueba='" & simulacro & "' AND  codigo_colegio='" & variable & "' AND grado='" & grupo & "' AND fecha='" & fechaFinal & "' ORDER BY proTotal DESC", CN)
+                    DA.Fill(DS, "Resultados_Saber_Decimo_Once")
+                    Dim tipo As Integer = 0
+
+                    Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                    CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+
+                    If grupo = "PREJARDÍN" Or grupo = "JARDÍN" Or grupo = "TRANSICIÓN" Then
+                        CrReport.Load("\\Sistemas3\d\reportes\tusaber\tresmaterias\Reporte_Saber_Grado_Promedios_Generales.rpt")
+                    Else
+                        CrReport.Load("\\Sistemas3\d\reportes\tusaber\cincomaterias\Reporte_Saber_Grado_Promedios_Generales.rpt")
+                    End If
+
                     CrReport.SetDataSource(DS)
                     CrystalReportViewer1.ReportSource = CrReport
 

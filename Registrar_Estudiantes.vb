@@ -5,7 +5,7 @@ Public Class Registrar_Estudiantes
 
     Public pepe1 As String
 
-    Dim CN As New OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\sistemaevaluarte.accdb")
+    Dim CN As New OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\Sistemas3\d\sistemaevaluarte.accdb")
     Dim b As Integer
     Public cantidad As String
     Public CONTROL As Boolean = False

@@ -1,7 +1,7 @@
 ﻿Imports System.Data.OleDb
 Public Class Asertividad_Materias
 
-    Dim CN As New OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\sistemaevaluarte.accdb")
+    Dim CN As New OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\Sistemas3\d\sistemaevaluarte.accdb")
     Public codigoestudiante As Integer
     Public TIPO As Double
     Dim grado_simulacro As String

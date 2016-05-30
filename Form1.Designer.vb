@@ -63,6 +63,12 @@ Partial Class Niveles_pensamiento
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.CBOSIMULACRO = New System.Windows.Forms.ComboBox()
+        Me.CBOCODIGOSEDE = New System.Windows.Forms.ComboBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.CBOCOLEGIOS = New System.Windows.Forms.ComboBox()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.CBOCIUDADES = New System.Windows.Forms.ComboBox()
+        Me.Label13 = New System.Windows.Forms.Label()
         CType(Me.HOLA, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -177,7 +183,7 @@ Partial Class Niveles_pensamiento
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.White
         Me.Label2.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(173, 198)
+        Me.Label2.Location = New System.Drawing.Point(176, 222)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(91, 14)
         Me.Label2.TabIndex = 55
@@ -188,7 +194,7 @@ Partial Class Niveles_pensamiento
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.White
         Me.Label3.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(123, 144)
+        Me.Label3.Location = New System.Drawing.Point(126, 171)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(141, 14)
         Me.Label3.TabIndex = 56
@@ -199,7 +205,7 @@ Partial Class Niveles_pensamiento
         Me.TXTNUMEROEXAMENES.AutoSize = True
         Me.TXTNUMEROEXAMENES.BackColor = System.Drawing.Color.White
         Me.TXTNUMEROEXAMENES.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTNUMEROEXAMENES.Location = New System.Drawing.Point(281, 144)
+        Me.TXTNUMEROEXAMENES.Location = New System.Drawing.Point(284, 171)
         Me.TXTNUMEROEXAMENES.Name = "TXTNUMEROEXAMENES"
         Me.TXTNUMEROEXAMENES.Size = New System.Drawing.Size(0, 14)
         Me.TXTNUMEROEXAMENES.TabIndex = 57
@@ -230,7 +236,7 @@ Partial Class Niveles_pensamiento
         Me.Label5.AutoSize = True
         Me.Label5.BackColor = System.Drawing.Color.White
         Me.Label5.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(142, 84)
+        Me.Label5.Location = New System.Drawing.Point(93, 33)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(122, 14)
         Me.Label5.TabIndex = 61
@@ -242,7 +248,7 @@ Partial Class Niveles_pensamiento
         Me.Label6.AutoSize = True
         Me.Label6.BackColor = System.Drawing.Color.White
         Me.Label6.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(133, 170)
+        Me.Label6.Location = New System.Drawing.Point(136, 195)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(131, 14)
         Me.Label6.TabIndex = 62
@@ -251,7 +257,7 @@ Partial Class Niveles_pensamiento
         'DateTimePicker1
         '
         Me.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePicker1.Location = New System.Drawing.Point(284, 79)
+        Me.DateTimePicker1.Location = New System.Drawing.Point(215, 28)
         Me.DateTimePicker1.Name = "DateTimePicker1"
         Me.DateTimePicker1.Size = New System.Drawing.Size(160, 20)
         Me.DateTimePicker1.TabIndex = 63
@@ -261,7 +267,7 @@ Partial Class Niveles_pensamiento
         '
         Me.DateTimePicker2.Enabled = False
         Me.DateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePicker2.Location = New System.Drawing.Point(284, 170)
+        Me.DateTimePicker2.Location = New System.Drawing.Point(287, 192)
         Me.DateTimePicker2.Name = "DateTimePicker2"
         Me.DateTimePicker2.Size = New System.Drawing.Size(160, 20)
         Me.DateTimePicker2.TabIndex = 64
@@ -270,7 +276,7 @@ Partial Class Niveles_pensamiento
         '
         Me.CBOTIPO.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CBOTIPO.FormattingEnabled = True
-        Me.CBOTIPO.Location = New System.Drawing.Point(284, 196)
+        Me.CBOTIPO.Location = New System.Drawing.Point(287, 217)
         Me.CBOTIPO.Name = "CBOTIPO"
         Me.CBOTIPO.Size = New System.Drawing.Size(266, 21)
         Me.CBOTIPO.TabIndex = 65
@@ -363,7 +369,7 @@ Partial Class Niveles_pensamiento
         '
         Me.numero3.AutoSize = True
         Me.numero3.BackColor = System.Drawing.Color.White
-        Me.numero3.Location = New System.Drawing.Point(9, 204)
+        Me.numero3.Location = New System.Drawing.Point(12, 219)
         Me.numero3.Name = "numero3"
         Me.numero3.Size = New System.Drawing.Size(87, 13)
         Me.numero3.TabIndex = 99
@@ -396,7 +402,7 @@ Partial Class Niveles_pensamiento
         Me.Label10.AutoSize = True
         Me.Label10.BackColor = System.Drawing.Color.White
         Me.Label10.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(186, 237)
+        Me.Label10.Location = New System.Drawing.Point(189, 252)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(78, 14)
         Me.Label10.TabIndex = 102
@@ -408,7 +414,7 @@ Partial Class Niveles_pensamiento
         Me.Panel1.BackColor = System.Drawing.Color.White
         Me.Panel1.Controls.Add(Me.RadioButton2)
         Me.Panel1.Controls.Add(Me.RadioButton1)
-        Me.Panel1.Location = New System.Drawing.Point(517, 232)
+        Me.Panel1.Location = New System.Drawing.Point(520, 247)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(139, 25)
         Me.Panel1.TabIndex = 104
@@ -442,7 +448,7 @@ Partial Class Niveles_pensamiento
         Me.Label11.AutoSize = True
         Me.Label11.BackColor = System.Drawing.Color.White
         Me.Label11.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(366, 238)
+        Me.Label11.Location = New System.Drawing.Point(369, 253)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(150, 14)
         Me.Label11.TabIndex = 105
@@ -453,11 +459,75 @@ Partial Class Niveles_pensamiento
         '
         Me.CBOSIMULACRO.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CBOSIMULACRO.FormattingEnabled = True
-        Me.CBOSIMULACRO.Location = New System.Drawing.Point(284, 231)
+        Me.CBOSIMULACRO.Location = New System.Drawing.Point(287, 246)
         Me.CBOSIMULACRO.Name = "CBOSIMULACRO"
         Me.CBOSIMULACRO.Size = New System.Drawing.Size(57, 21)
         Me.CBOSIMULACRO.TabIndex = 107
         Me.CBOSIMULACRO.Visible = False
+        '
+        'CBOCODIGOSEDE
+        '
+        Me.CBOCODIGOSEDE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CBOCODIGOSEDE.Enabled = False
+        Me.CBOCODIGOSEDE.FormattingEnabled = True
+        Me.CBOCODIGOSEDE.Location = New System.Drawing.Point(284, 144)
+        Me.CBOCODIGOSEDE.MaxDropDownItems = 50
+        Me.CBOCODIGOSEDE.Name = "CBOCODIGOSEDE"
+        Me.CBOCODIGOSEDE.Size = New System.Drawing.Size(66, 21)
+        Me.CBOCODIGOSEDE.TabIndex = 149
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.BackColor = System.Drawing.Color.White
+        Me.Label12.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Location = New System.Drawing.Point(160, 146)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(107, 14)
+        Me.Label12.TabIndex = 151
+        Me.Label12.Text = "Código Colegio:"
+        '
+        'CBOCOLEGIOS
+        '
+        Me.CBOCOLEGIOS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CBOCOLEGIOS.FormattingEnabled = True
+        Me.CBOCOLEGIOS.Location = New System.Drawing.Point(284, 117)
+        Me.CBOCOLEGIOS.MaxDropDownItems = 50
+        Me.CBOCOLEGIOS.Name = "CBOCOLEGIOS"
+        Me.CBOCOLEGIOS.Size = New System.Drawing.Size(269, 21)
+        Me.CBOCOLEGIOS.TabIndex = 148
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.BackColor = System.Drawing.Color.White
+        Me.Label18.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.Location = New System.Drawing.Point(155, 124)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(112, 14)
+        Me.Label18.TabIndex = 150
+        Me.Label18.Text = "Nombre Colegio:"
+        '
+        'CBOCIUDADES
+        '
+        Me.CBOCIUDADES.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CBOCIUDADES.FormattingEnabled = True
+        Me.CBOCIUDADES.Location = New System.Drawing.Point(283, 92)
+        Me.CBOCIUDADES.MaxDropDownItems = 50
+        Me.CBOCIUDADES.Name = "CBOCIUDADES"
+        Me.CBOCIUDADES.Size = New System.Drawing.Size(269, 21)
+        Me.CBOCIUDADES.TabIndex = 152
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.BackColor = System.Drawing.Color.White
+        Me.Label13.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Location = New System.Drawing.Point(211, 94)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(56, 14)
+        Me.Label13.TabIndex = 153
+        Me.Label13.Text = "Ciudad:"
         '
         'Niveles_pensamiento
         '
@@ -467,6 +537,12 @@ Partial Class Niveles_pensamiento
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(680, 394)
+        Me.Controls.Add(Me.CBOCIUDADES)
+        Me.Controls.Add(Me.Label13)
+        Me.Controls.Add(Me.CBOCODIGOSEDE)
+        Me.Controls.Add(Me.Label12)
+        Me.Controls.Add(Me.CBOCOLEGIOS)
+        Me.Controls.Add(Me.Label18)
         Me.Controls.Add(Me.CBOSIMULACRO)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label11)
@@ -552,4 +628,10 @@ Partial Class Niveles_pensamiento
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents CBOSIMULACRO As System.Windows.Forms.ComboBox
+    Friend WithEvents CBOCODIGOSEDE As System.Windows.Forms.ComboBox
+    Friend WithEvents Label12 As System.Windows.Forms.Label
+    Friend WithEvents CBOCOLEGIOS As System.Windows.Forms.ComboBox
+    Friend WithEvents Label18 As System.Windows.Forms.Label
+    Friend WithEvents CBOCIUDADES As System.Windows.Forms.ComboBox
+    Friend WithEvents Label13 As System.Windows.Forms.Label
 End Class
