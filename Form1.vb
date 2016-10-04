@@ -321,10 +321,10 @@ Public Class Niveles_pensamiento
         DA.Fill(DS, "Preguntas_Saber_Sesion2")
         TXTNUMEROEXAMENES.Text = DS.Tables(0).Rows.Count
 
-        Dim DB As New OleDb.OleDbDataAdapter("SELECT DISTINCT codigo  FROM Formato_Examen_Cantidad WHERE codigo='200' OR codigo='201' OR codigo='202' OR codigo='203' OR codigo='204' OR codigo='205' OR codigo='206' OR codigo='207' OR codigo='208' OR codigo='209' OR codigo='210' OR codigo='211' OR codigo='212' OR codigo='213'", CN)
+        Dim DB As New OleDb.OleDbDataAdapter("SELECT DISTINCT codigo  FROM Pruebas_Codigos WHERE codigo_prueba='11'", CN)
         Dim DD As New DataSet
-        DB.Fill(DD, "Formato_Examen_Cantidad")
-        CBOSIMULACRO.DataSource = DD.Tables("Formato_Examen_Cantidad")
+        DB.Fill(DD, "Pruebas_Codigos")
+        CBOSIMULACRO.DataSource = DD.Tables("Pruebas_Codigos")
         CBOSIMULACRO.DisplayMember = "codigo"
 
     End Sub
@@ -470,6 +470,7 @@ Public Class Niveles_pensamiento
                 Timer1.Start()
                 'Me.Hide()
                 'CARGARCNBSIMULACRO()
+
             ElseIf TIPO = 9 Then
                 'saber 10 y 11 cuatro abiertas
                 Dim calificacion As Date
@@ -483,6 +484,7 @@ Public Class Niveles_pensamiento
                 Timer1.Start()
                 'Me.Hide()
                 'CARGARCNBSIMULACRO()
+
             ElseIf TIPO = 10 Then
                 'saber 4,6,7 y 8
                 Dim calificacion As Date
@@ -502,6 +504,20 @@ Public Class Niveles_pensamiento
                 calificacion = DateTimePicker2.Value
                 calificacion = Format(calificacion, "dd/MM/yyyy")
                 CALIFICAR_TUSABER()
+                Dim CMD1 As New OleDb.OleDbCommand("UPDATE  Reportar_Ingresos SET Fecha_Calificar='" & calificacion & "'  WHERE Codigo_Colegio='" & CBOCODIGO.Text & "'AND Grupo='" & CBOGRUPO.Text & "'AND Codigo_Simulacro='" & TIPO & "'", CN)
+                CN.Open()
+                CMD1.ExecuteNonQuery()
+                CN.Close()
+                Timer1.Start()
+                'Me.Hide()
+                'CARGARCNBSIMULACRO()
+
+            ElseIf TIPO = 12 Then
+                'saber 4,6,7 y 8
+                Dim calificacion As Date
+                calificacion = DateTimePicker2.Value
+                calificacion = Format(calificacion, "dd/MM/yyyy")
+                CALIFICAR_TUSABER_ESPECIAL()
                 Dim CMD1 As New OleDb.OleDbCommand("UPDATE  Reportar_Ingresos SET Fecha_Calificar='" & calificacion & "'  WHERE Codigo_Colegio='" & CBOCODIGO.Text & "'AND Grupo='" & CBOGRUPO.Text & "'AND Codigo_Simulacro='" & TIPO & "'", CN)
                 CN.Open()
                 CMD1.ExecuteNonQuery()
@@ -4746,7 +4762,13 @@ Public Class Niveles_pensamiento
                                               ciudad & "','" &
                                               fechaAplico & "','" &
                                               " " & "','" &
-                                              simulacro & "')", CN)
+                                                simulacro & "','" &
+                                                0 & "','" &
+                                                0 & "','" &
+                                                0 & "','" &
+                                                0 & "','" &
+                                                0 & "')", CN)
+
                     CN.Open()
                     CMD2.ExecuteNonQuery()
                     CN.Close()
@@ -5656,7 +5678,12 @@ Public Class Niveles_pensamiento
                               ciudad & "','" &
                               fechaAplico & "','" &
                               " " & "','" &
-                              simulacro & "')", CN)
+                            simulacro & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "')", CN)
 
                     CN.Open()
                     CMD2.ExecuteNonQuery()
@@ -5682,7 +5709,12 @@ Public Class Niveles_pensamiento
                               ciudad & "','" &
                               fechaAplico & "','" &
                               " " & "','" &
-                              simulacro & "')", CN)
+                            simulacro & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "')", CN)
 
                     CN.Open()
                     CMD2.ExecuteNonQuery()
@@ -7628,7 +7660,12 @@ Public Class Niveles_pensamiento
                                                   ciudad & "','" &
                                                   fechaAplico & "','" &
                                                   nivelIngles & "','" &
-                                                  simulacro & "')", CN)
+                                                simulacro & "','" &
+                                                0 & "','" &
+                                                0 & "','" &
+                                                0 & "','" &
+                                                0 & "','" &
+                                                0 & "')", CN)
 
                     CN.Open()
                     CMD2.ExecuteNonQuery()
@@ -7652,7 +7689,12 @@ Public Class Niveles_pensamiento
                               ciudad & "','" &
                               fechaAplico & "','" &
                               nivelIngles & "','" &
-                              simulacro & "')", CN)
+                                simulacro & "','" &
+                                0 & "','" &
+                                0 & "','" &
+                                0 & "','" &
+                                0 & "','" &
+                                0 & "')", CN)
 
                     CN.Open()
                     CMD2.ExecuteNonQuery()
@@ -7726,7 +7768,12 @@ Public Class Niveles_pensamiento
                       ciudad & "','" &
                       fechaAplico & "','" &
                       nivelIngles & "','" &
-                      simulacro & "')", CN)
+                        simulacro & "','" &
+                        0 & "','" &
+                        0 & "','" &
+                        0 & "','" &
+                        0 & "','" &
+                        0 & "')", CN)
 
                     CN.Open()
                     CMD2.ExecuteNonQuery()
@@ -9745,7 +9792,13 @@ Public Class Niveles_pensamiento
                               ciudad & "','" &
                               fechaAplico & "','" &
                               nivelIngles & "','" &
-                              simulacro & "')", CN)
+                            simulacro & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "')", CN)
+
                     CN.Open()
                     CMD2.ExecuteNonQuery()
                     CN.Close()
@@ -9768,7 +9821,12 @@ Public Class Niveles_pensamiento
                               ciudad & "','" &
                               fechaAplico & "','" &
                               nivelIngles & "','" &
-                              simulacro & "')", CN)
+                                simulacro & "','" &
+                                0 & "','" &
+                                0 & "','" &
+                                0 & "','" &
+                                0 & "','" &
+                                0 & "')", CN)
 
                     CN.Open()
                     CMD2.ExecuteNonQuery()
@@ -9846,7 +9904,12 @@ Public Class Niveles_pensamiento
                                         ciudad & "','" &
                                         fechaAplico & "','" &
                                         nivelIngles & "','" &
-                                        simulacro & "')", CN)
+                                        simulacro & "','" &
+                                        0 & "','" &
+                                        0 & "','" &
+                                        0 & "','" &
+                                        0 & "','" &
+                                        0 & "')", CN)
 
                     CN.Open()
                     CMD2.ExecuteNonQuery()
@@ -11528,7 +11591,12 @@ Public Class Niveles_pensamiento
                           ciudad & "','" &
                           fechaAplico & "','" &
                           nivelIngles & "','" &
-                          simulacro & "')", CN)
+                          simulacro & "','" &
+                          0 & "','" &
+                          0 & "','" &
+                          0 & "','" &
+                          0 & "','" &
+                          0 & "')", CN)
 
                     CN.Open()
                     CMD2.ExecuteNonQuery()
@@ -13329,7 +13397,18 @@ Public Class Niveles_pensamiento
                                                            Cantidad_Componentes_Materias_Sesion1(21, 4) & "','" &
                                                            Cantidad_Componentes_Materias_Sesion1(22, 4) & "','" &
                                                            0 & "','" &
-                                                           acumulador_competencias_ciudadanas & "')", CN)
+                                                           acumulador_competencias_ciudadanas & "','" &
+                                                            nombreEstudiante & "','" &
+                                                            colegio & "','" &
+                                                            ciudad & "','" &
+                                                            fechaAplico & "','" &
+                                                            " " & "','" &
+                                                            simulacro & "','" &
+                                                            0 & "','" &
+                                                            0 & "','" &
+                                                            0 & "','" &
+                                                            0 & "','" &
+                                                            0 & "')", CN)
 
                         CN.Open()
                         CMD2.ExecuteNonQuery()
@@ -13354,13 +13433,18 @@ Public Class Niveles_pensamiento
 
                     Try
                         Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados VALUES ( '" & codigoestudiante & "','" & CBOSIMULACRO.Text & "','" & Cantidad_Componentes_Materias_Sesion1(23, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 1) & "','" & "" & "','" & 0 & "','" & "" & "','" & 0 & "','" & "" & "','" & 0 & "','" & puntajepromedio & "','" & Cantidad_Componentes_Materias_Sesion1(16, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 1) & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" & 0 & "','" &
-                                             0 & "','" &
-                                             nombreEstudiante & "','" &
+                        0 & "','" &
+                        nombreEstudiante & "','" &
                         colegio & "','" &
                         ciudad & "','" &
                         fechaAplico & "','" &
                         " " & "','" &
-                        simulacro & "')", CN)
+                        simulacro & "','" &
+                        0 & "','" &
+                        0 & "','" &
+                        0 & "','" &
+                        0 & "','" &
+                        0 & "')", CN)
 
                         CN.Open()
                         CMD2.ExecuteNonQuery()
@@ -13384,7 +13468,21 @@ Public Class Niveles_pensamiento
                     End Try
 
                     Try
-                        Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados VALUES ( '" & codigoestudiante & "','" & CBOSIMULACRO.Text & "','" & Cantidad_Componentes_Materias_Sesion1(23, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 4) & "','" & puntajepromedio & "','" & Cantidad_Componentes_Materias_Sesion1(16, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 4) & "','" & 0 & "','" & acumulador_competencias_ciudadanas & "')", CN)
+                        Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados VALUES ( '" & codigoestudiante & "','" & CBOSIMULACRO.Text & "','" & Cantidad_Componentes_Materias_Sesion1(23, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 4) & "','" & puntajepromedio & "','" & Cantidad_Componentes_Materias_Sesion1(16, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 4) & "','" &
+                                                           0 & "','" &
+                                                           acumulador_competencias_ciudadanas & "','" &
+                                                            nombreEstudiante & "','" &
+                                                            colegio & "','" &
+                                                            ciudad & "','" &
+                                                            fechaAplico & "','" &
+                                                            " " & "','" &
+                                                            simulacro & "','" &
+                                                            0 & "','" &
+                                                            0 & "','" &
+                                                            0 & "','" &
+                                                            0 & "','" &
+                                                            0 & "')", CN)
+
                         CN.Open()
                         CMD2.ExecuteNonQuery()
                         CN.Close()
@@ -13407,7 +13505,21 @@ Public Class Niveles_pensamiento
                     End Try
 
                     Try
-                        Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados VALUES ( '" & codigoestudiante & "','" & CBOSIMULACRO.Text & "','" & Cantidad_Componentes_Materias_Sesion1(23, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 4) & "','" & puntajepromedio & "','" & Cantidad_Componentes_Materias_Sesion1(16, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 4) & "','" & 0 & "','" & acumulador_competencias_ciudadanas & "')", CN)
+                        Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados VALUES ( '" & codigoestudiante & "','" & CBOSIMULACRO.Text & "','" & Cantidad_Componentes_Materias_Sesion1(23, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 4) & "','" & puntajepromedio & "','" & Cantidad_Componentes_Materias_Sesion1(16, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 4) & "','" &
+                                                           0 & "','" &
+                                                           acumulador_competencias_ciudadanas & "','" &
+                                                            nombreEstudiante & "','" &
+                                                            colegio & "','" &
+                                                            ciudad & "','" &
+                                                            fechaAplico & "','" &
+                                                            " " & "','" &
+                                                            simulacro & "','" &
+                                                            0 & "','" &
+                                                            0 & "','" &
+                                                            0 & "','" &
+                                                            0 & "','" &
+                                                            0 & "')", CN)
+
                         CN.Open()
                         CMD2.ExecuteNonQuery()
                         CN.Close()
@@ -13434,7 +13546,21 @@ Public Class Niveles_pensamiento
                     End Try
 
                     Try
-                        Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados VALUES ( '" & codigoestudiante & "','" & CBOSIMULACRO.Text & "','" & Cantidad_Componentes_Materias_Sesion1(23, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 4) & "','" & puntajepromedio & "','" & Cantidad_Componentes_Materias_Sesion1(16, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 4) & "','" & 0 & "','" & acumulador_competencias_ciudadanas & "')", CN)
+                        Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados VALUES ( '" & codigoestudiante & "','" & CBOSIMULACRO.Text & "','" & Cantidad_Componentes_Materias_Sesion1(23, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 4) & "','" & puntajepromedio & "','" & Cantidad_Componentes_Materias_Sesion1(16, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 4) & "','" &
+                                                           0 & "','" &
+                                                           acumulador_competencias_ciudadanas & "','" &
+                                                            nombreEstudiante & "','" &
+                                                            colegio & "','" &
+                                                            ciudad & "','" &
+                                                            fechaAplico & "','" &
+                                                            " " & "','" &
+                                                            simulacro & "','" &
+                                                            0 & "','" &
+                                                            0 & "','" &
+                                                            0 & "','" &
+                                                            0 & "','" &
+                                                            0 & "')", CN)
+
                         CN.Open()
                         CMD2.ExecuteNonQuery()
                         CN.Close()
@@ -13457,7 +13583,21 @@ Public Class Niveles_pensamiento
                     End Try
 
                     Try
-                        Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados VALUES ( '" & codigoestudiante & "','" & CBOSIMULACRO.Text & "','" & Cantidad_Componentes_Materias_Sesion1(23, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 4) & "','" & puntajepromedio & "','" & Cantidad_Componentes_Materias_Sesion1(16, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 4) & "','" & 0 & "','" & acumulador_competencias_ciudadanas & "')", CN)
+                        Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados VALUES ( '" & codigoestudiante & "','" & CBOSIMULACRO.Text & "','" & Cantidad_Componentes_Materias_Sesion1(23, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 4) & "','" & puntajepromedio & "','" & Cantidad_Componentes_Materias_Sesion1(16, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 4) & "','" &
+                                                           0 & "','" &
+                                                           acumulador_competencias_ciudadanas & "','" &
+                                                            nombreEstudiante & "','" &
+                                                            colegio & "','" &
+                                                            ciudad & "','" &
+                                                            fechaAplico & "','" &
+                                                            " " & "','" &
+                                                            simulacro & "','" &
+                                                            0 & "','" &
+                                                            0 & "','" &
+                                                            0 & "','" &
+                                                            0 & "','" &
+                                                            0 & "')", CN)
+
                         CN.Open()
                         CMD2.ExecuteNonQuery()
                         CN.Close()
@@ -13480,7 +13620,21 @@ Public Class Niveles_pensamiento
                     End Try
 
                     Try
-                        Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados VALUES ( '" & codigoestudiante & "','" & CBOSIMULACRO.Text & "','" & Cantidad_Componentes_Materias_Sesion1(23, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 4) & "','" & puntajepromedio & "','" & Cantidad_Componentes_Materias_Sesion1(16, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 4) & "','" & 0 & "','" & acumulador_competencias_ciudadanas & "')", CN)
+                        Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados VALUES ( '" & codigoestudiante & "','" & CBOSIMULACRO.Text & "','" & Cantidad_Componentes_Materias_Sesion1(23, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 4) & "','" & puntajepromedio & "','" & Cantidad_Componentes_Materias_Sesion1(16, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 4) & "','" &
+                                                           0 & "','" &
+                                                           acumulador_competencias_ciudadanas & "','" &
+                                                            nombreEstudiante & "','" &
+                                                            colegio & "','" &
+                                                            ciudad & "','" &
+                                                            fechaAplico & "','" &
+                                                            " " & "','" &
+                                                            simulacro & "','" &
+                                                            0 & "','" &
+                                                            0 & "','" &
+                                                            0 & "','" &
+                                                            0 & "','" &
+                                                            0 & "')", CN)
+
                         CN.Open()
                         CMD2.ExecuteNonQuery()
                         CN.Close()
@@ -13502,7 +13656,20 @@ Public Class Niveles_pensamiento
                     End Try
 
                     Try
-                        Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados VALUES ( '" & codigoestudiante & "','" & CBOSIMULACRO.Text & "','" & Cantidad_Componentes_Materias_Sesion1(23, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 4) & "','" & puntajepromedio & "','" & Cantidad_Componentes_Materias_Sesion1(16, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 4) & "','" & 0 & "','" & acumulador_competencias_ciudadanas & "')", CN)
+                        Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados VALUES ( '" & codigoestudiante & "','" & CBOSIMULACRO.Text & "','" & Cantidad_Componentes_Materias_Sesion1(23, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(23, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(8, 4) & "','" & puntajepromedio & "','" & Cantidad_Componentes_Materias_Sesion1(16, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 0) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 1) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 2) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 3) & "','" & Cantidad_Componentes_Materias_Sesion1(16, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(17, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(18, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(19, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(20, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(21, 4) & "','" & Cantidad_Componentes_Materias_Sesion1(22, 4) & "','" &
+                                                           0 & "','" &
+                                                           acumulador_competencias_ciudadanas & "','" &
+                                                            nombreEstudiante & "','" &
+                                                            colegio & "','" &
+                                                            ciudad & "','" &
+                                                            fechaAplico & "','" &
+                                                            " " & "','" &
+                                                            simulacro & "','" &
+                                                            0 & "','" &
+                                                            0 & "','" &
+                                                            0 & "','" &
+                                                            0 & "','" &
+                                                            0 & "')", CN)
                         CN.Open()
                         CMD2.ExecuteNonQuery()
                         CN.Close()
@@ -13580,7 +13747,12 @@ Public Class Niveles_pensamiento
                                                   ciudad & "','" &
                                                   fechaAplico & "','" &
                                                   " " & "','" &
-                                                  simulacro & "')", CN)
+                                                  simulacro & "','" &
+                                                  0 & "','" &
+                                                  0 & "','" &
+                                                  0 & "','" &
+                                                  0 & "','" &
+                                                  0 & "')", CN)
 
                         CN.Open()
                         CMD2.ExecuteNonQuery()
@@ -13686,7 +13858,7 @@ Public Class Niveles_pensamiento
         'Try
         '%%%%%%%%%%%%%%%%%%%%%% PARA SACAR LAS RESPUESTAS CONTESTADAS EN EL SIMULACRO DE 4,6,7 Y 8  1 sesion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         'Dim DA As New OleDb.OleDbDataAdapter("SELECT  codigo_estudiante FROM Preguntas_Saber_Sesion2 ORDER BY codigo_estudiante ASC", CN)
-        Dim DA As New OleDb.OleDbDataAdapter("SELECT  codigo_estudiante FROM Preguntas_Saber_Sesion3 WHERE codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+        Dim DA As New OleDb.OleDbDataAdapter("SELECT  codigo_estudiante FROM Preguntas_Saber_Sesion3 WHERE codigo_colegio='" & CBOCODIGOSEDE.Text & "' AND Identificacion_Prueba='" & CBOSIMULACRO.Text & "' ORDER BY codigo_estudiante ASC", CN)
         Dim DQ As New DataSet
         DA.Fill(DQ, "Preguntas_Saber_Sesion3")
         NUMERO2.Text = DQ.Tables(0).Rows.Count
@@ -13733,18 +13905,17 @@ Public Class Niveles_pensamiento
 
             '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% OBTENER EL SIMULACRO CREADO PREDERTMINADAMENTE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    TODAS LAS MATERIAS  "Formato_Examen_Cantidad" %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            ReDim Materia_Cantidad_Componentes_Competencias_Sesion1(8, cantidad_materias_1 - 1)
+            ReDim Materia_Cantidad_Componentes_Competencias_Sesion1(13, cantidad_materias_1 - 1)
             ' Materia_Cantidad_Componentes_Competencias_Sesion1 
 
-            Dim DC As New OleDb.OleDbDataAdapter("SELECT  materia,cantidad_preguntas,cantidad_componente1,cantidad_componente2,cantidad_componente3,cantidad_componente4,cantidad_competencias1,cantidad_competencias2,cantidad_competencias3 FROM Formato_Examen_Cantidad WHERE sesion='1' AND codigo='" & CBOSIMULACRO.Text & "' ORDER BY orden ASC", CN)
+            Dim DC As New OleDb.OleDbDataAdapter("SELECT  materia,cantidad_preguntas,cantidad_componente1,cantidad_componente2,cantidad_componente3,cantidad_componente4,cantidad_competencias1,cantidad_competencias2,cantidad_competencias3,cantidad_competencias4,cantidad_competencias5,cantidad_competencias6,cantidad_competencias7,cantidad_competencias8 FROM Formato_Examen_Cantidad WHERE sesion='1' AND codigo='" & CBOSIMULACRO.Text & "' ORDER BY orden ASC", CN)
             Dim DL As New DataSet
             DC.Fill(DL, "Formato_Examen_Cantidad")
             For p = 0 To cantidad_materias_1 - 1
-                For i = 0 To 8
+                For i = 0 To 13
                     Materia_Cantidad_Componentes_Competencias_Sesion1(i, p) = DL.Tables(0).Rows(p).Item(i).ToString
                 Next
             Next
-
 
             '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
             Dim CMATERIA_FORMATO1 As New OleDb.OleDbDataAdapter("SELECT materia,pregunta,Respuesta,Componente,competencia FROM Formato_Examen WHERE codigo='" & CBOSIMULACRO.Text & "' AND sesion='1' ORDER BY pregunta ASC", CN)
@@ -13771,9 +13942,17 @@ Public Class Niveles_pensamiento
             'grado_simulacro
             If grado_simulacro = "PREJARDÍN" Then
 
-                Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber_Prejardin WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                 Dim DV As New DataSet
-                DB.Fill(DV, "Preguntas_Tusaber_Prejardin")
+
+                If CBOSIMULACRO.Text = "600" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber_Prejardin_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber_Prejardin_Simulacro3")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber_Prejardin WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber_Prejardin")
+                End If
+
+
 
                 'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
                 Dim columnas As Integer
@@ -13797,9 +13976,17 @@ Public Class Niveles_pensamiento
 
             ElseIf grado_simulacro = "JARDÍN" Then
 
-                Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber_Jardin WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                 Dim DV As New DataSet
-                DB.Fill(DV, "Preguntas_Tusaber_Jardin")
+                If CBOSIMULACRO.Text = "301" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber_Jardin_Simulacro2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber_Jardin_Simulacro2")
+                ElseIf CBOSIMULACRO.Text = "601" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber_Jardin_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber_Jardin_Simulacro3")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber_Jardin WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber_Jardin")
+                End If
 
                 'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
                 Dim columnas As Integer
@@ -13847,11 +14034,27 @@ Public Class Niveles_pensamiento
 
             ElseIf grado_simulacro = "1°" Then
 
-                Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber1 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                 Dim DV As New DataSet
-                DB.Fill(DV, "Preguntas_Tusaber1")
+                If CBOSIMULACRO.Text = "303" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber1_Simulacro2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber1_Simulacro2")
+                ElseIf CBOSIMULACRO.Text = "403" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber1_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber1_Simulacro3")
+                ElseIf CBOSIMULACRO.Text = "503" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber1_Simulacro4 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber1_Simulacro4")
+                ElseIf CBOSIMULACRO.Text = "603" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber1_Simulacro5 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber1_Simulacro5")
+                ElseIf CBOSIMULACRO.Text = "703" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber1_Simulacro6 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber1_Simulacro6")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber1 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber1")
+                End If
 
-                'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
                 Dim columnas As Integer
                 columnas = DV.Tables(0).Columns.Count
 
@@ -13872,9 +14075,24 @@ Public Class Niveles_pensamiento
 
             ElseIf grado_simulacro = "2°" Then
 
-                Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                 Dim DV As New DataSet
-                DB.Fill(DV, "Preguntas_Tusaber2")
+
+                If CBOSIMULACRO.Text = "304" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber2_Simulacro2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber2_Simulacro2")
+                ElseIf CBOSIMULACRO.Text = "404" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber2_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber2_Simulacro3")
+                ElseIf CBOSIMULACRO.Text = "504" Or CBOSIMULACRO.Text = "604" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber2_Simulacro4 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber2_Simulacro4")
+                ElseIf CBOSIMULACRO.Text = "704" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber2_Simulacro6 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber2_Simulacro6")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber2")
+                End If
 
                 'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
                 Dim columnas As Integer
@@ -13897,9 +14115,23 @@ Public Class Niveles_pensamiento
 
             ElseIf grado_simulacro = "3°" Then
 
-                Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                 Dim DV As New DataSet
-                DB.Fill(DV, "Preguntas_Tusaber3")
+                If CBOSIMULACRO.Text = "305" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber3_Simulacro2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber3_Simulacro2")
+                ElseIf CBOSIMULACRO.Text = "405" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber3_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber3_Simulacro3")
+                ElseIf CBOSIMULACRO.Text = "505" Or CBOSIMULACRO.Text = "605" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber3_Simulacro4 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber3_Simulacro4")
+                ElseIf CBOSIMULACRO.Text = "705" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber3_Simulacro6 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber3_Simulacro6")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber3")
+                End If
 
                 'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
                 Dim columnas As Integer
@@ -13921,10 +14153,18 @@ Public Class Niveles_pensamiento
                 Next
 
             ElseIf grado_simulacro = "4°" Then
-
-                Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber4 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                 Dim DV As New DataSet
-                DB.Fill(DV, "Preguntas_Tusaber4")
+
+                If CBOSIMULACRO.Text = "306" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber4_Simulacro2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber4_Simulacro2")
+                ElseIf CBOSIMULACRO.Text = "406" Or CBOSIMULACRO.Text = "506" Or CBOSIMULACRO.Text = "606" Or CBOSIMULACRO.Text = "706" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber4_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber4_Simulacro3")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber4 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber4")
+                End If
 
                 'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
                 Dim columnas As Integer
@@ -13947,9 +14187,18 @@ Public Class Niveles_pensamiento
 
             ElseIf grado_simulacro = "5°" Then
 
-                Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber5 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                 Dim DV As New DataSet
-                DB.Fill(DV, "Preguntas_Tusaber5")
+
+                If CBOSIMULACRO.Text = "307" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber5_Simulacro2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber5_Simulacro2")
+                ElseIf CBOSIMULACRO.Text = "407" Or CBOSIMULACRO.Text = "507" Or CBOSIMULACRO.Text = "607" Or CBOSIMULACRO.Text = "707" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber5_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber5_Simulacro3")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber5 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber5")
+                End If
 
                 'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
                 Dim columnas As Integer
@@ -13972,9 +14221,14 @@ Public Class Niveles_pensamiento
 
             ElseIf grado_simulacro = "6°" Then
 
-                Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber6 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                 Dim DV As New DataSet
-                DB.Fill(DV, "Preguntas_Tusaber6")
+                If CBOSIMULACRO.Text = "408" Or CBOSIMULACRO.Text = "508" Or CBOSIMULACRO.Text = "608" Or CBOSIMULACRO.Text = "708" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber6_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber6_Simulacro3")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber6 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber6")
+                End If
 
                 'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
                 Dim columnas As Integer
@@ -13997,9 +14251,14 @@ Public Class Niveles_pensamiento
 
             ElseIf grado_simulacro = "7°" Then
 
-                Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber7 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                 Dim DV As New DataSet
-                DB.Fill(DV, "Preguntas_Tusaber7")
+                If CBOSIMULACRO.Text = "409" Or CBOSIMULACRO.Text = "509" Or CBOSIMULACRO.Text = "609" Or CBOSIMULACRO.Text = "709" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber7_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber7_Simulacro3")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber7 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber7")
+                End If
 
                 'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
                 Dim columnas As Integer
@@ -14022,9 +14281,15 @@ Public Class Niveles_pensamiento
 
             ElseIf grado_simulacro = "8°" Then
 
-                Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber8 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                 Dim DV As New DataSet
-                DB.Fill(DV, "Preguntas_Tusaber8")
+
+                If CBOSIMULACRO.Text = "410" Or CBOSIMULACRO.Text = "510" Or CBOSIMULACRO.Text = "610" Or CBOSIMULACRO.Text = "710" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber8_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber8_Simulacro3")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber8 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber8")
+                End If
 
                 'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
                 Dim columnas As Integer
@@ -14047,9 +14312,15 @@ Public Class Niveles_pensamiento
 
             ElseIf grado_simulacro = "9°" Then
 
-                Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber9 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                 Dim DV As New DataSet
-                DB.Fill(DV, "Preguntas_Tusaber9")
+                If CBOSIMULACRO.Text = "411" Or CBOSIMULACRO.Text = "511" Or CBOSIMULACRO.Text = "611" Or CBOSIMULACRO.Text = "711" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber9_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber9_Simulacro3")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber9 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber9")
+                End If
+                
                 'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
                 Dim columnas As Integer
                 columnas = DV.Tables(0).Columns.Count
@@ -14070,9 +14341,18 @@ Public Class Niveles_pensamiento
 
             ElseIf grado_simulacro = "10°" Then
 
-                Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber10 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                 Dim DV As New DataSet
-                DB.Fill(DV, "Preguntas_Tusaber10")
+                If CBOSIMULACRO.Text = "312" Or CBOSIMULACRO.Text = "512" Or CBOSIMULACRO.Text = "612" Or CBOSIMULACRO.Text = "712" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber10_Simulacro2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber10_Simulacro2")
+                ElseIf CBOSIMULACRO.Text = "412" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber10_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber10_Simulacro3")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber10 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber10")
+                End If
+
                 'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
                 Dim columnas As Integer
                 columnas = DV.Tables(0).Columns.Count
@@ -14093,9 +14373,18 @@ Public Class Niveles_pensamiento
 
             ElseIf grado_simulacro = "11°" Then
 
-                Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber11 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                 Dim DV As New DataSet
-                DB.Fill(DV, "Preguntas_Tusaber11")
+                If CBOSIMULACRO.Text = "313" Or CBOSIMULACRO.Text = "513" Or CBOSIMULACRO.Text = "613" Or CBOSIMULACRO.Text = "713" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber11_Simulacro2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber11_Simulacro2")
+                ElseIf CBOSIMULACRO.Text = "413" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber11_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber11_Simulacro3")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber11 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber11")
+                End If
+
                 'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
                 Dim columnas As Integer
                 columnas = DV.Tables(0).Columns.Count
@@ -14118,14 +14407,21 @@ Public Class Niveles_pensamiento
 
             '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             ' ###########################   COMPONENTES Y COMPETENCIAS DE LA SESION 1 ####################################################
-            ReDim Cantidad_Componentes_Materias_Sesion1(23, cantidad_materias_1 - 1)
+            ReDim Cantidad_Componentes_Materias_Sesion1(38, cantidad_materias_1 - 1)
             Dim contador_competencia1 As Integer = 0
             Dim contador_competencia2 As Integer = 0
             Dim contador_competencia3 As Integer = 0
+            Dim contador_competencia4 As Integer = 0
+            Dim contador_competencia5 As Integer = 0
+            Dim contador_competencia6 As Integer = 0
+            Dim contador_competencia7 As Integer = 0
+            Dim contador_competencia8 As Integer = 0
+
             Dim contador_componente1 As Integer = 0
             Dim contador_componente2 As Integer = 0
             Dim contador_componente3 As Integer = 0
             Dim contador_componente4 As Integer = 0
+
             Dim contador_competencias_ciudadanas As Integer = 0
             Dim porcentaje_competencias_ciudadanas As Double = 0
             Dim acumulador_competencias_ciudadanas As Double = 0
@@ -14135,6 +14431,12 @@ Public Class Niveles_pensamiento
                 contador_competencia1 = 0
                 contador_competencia2 = 0
                 contador_competencia3 = 0
+                contador_competencia4 = 0
+                contador_competencia5 = 0
+                contador_competencia6 = 0
+                contador_competencia7 = 0
+                contador_competencia8 = 0
+
                 contador_componente1 = 0
                 contador_componente2 = 0
                 contador_componente3 = 0
@@ -14186,6 +14488,7 @@ Public Class Niveles_pensamiento
                                 Else
                                     f = 0
                                 End If
+                                'contar las que son iguales con las competencias 2
                             ElseIf Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 4) = 2 Then
                                 contador_competencia2 = contador_competencia2 + 1
                                 If f < cantidad_materias_1 Then
@@ -14193,6 +14496,7 @@ Public Class Niveles_pensamiento
                                 Else
                                     f = 0
                                 End If
+                                'contar las que son iguales con las competencias 3
                             ElseIf Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 4) = 3 Then
                                 contador_competencia3 = contador_competencia3 + 1
                                 If f < cantidad_materias_1 Then
@@ -14200,16 +14504,63 @@ Public Class Niveles_pensamiento
                                 Else
                                     f = 0
                                 End If
+                                'contar las que son iguales con las competencias 4
+                            ElseIf Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 4) = 4 Then
+                                contador_competencia4 = contador_competencia4 + 1
+                                If f < cantidad_materias_1 Then
+                                    Cantidad_Componentes_Materias_Sesion1(7, f) = contador_competencia4
+                                Else
+                                    f = 0
+                                End If
+                                'contar las que son iguales con las competencias 5
+                            ElseIf Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 4) = 5 Then
+                                contador_competencia5 = contador_competencia5 + 1
+                                If f < cantidad_materias_1 Then
+                                    Cantidad_Componentes_Materias_Sesion1(8, f) = contador_competencia5
+                                Else
+                                    f = 0
+                                End If
+                                'contar las que son iguales con las competencias 6
+                            ElseIf Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 4) = 6 Then
+                                contador_competencia6 = contador_competencia6 + 1
+                                If f < cantidad_materias_1 Then
+                                    Cantidad_Componentes_Materias_Sesion1(9, f) = contador_competencia6
+                                Else
+                                    f = 0
+                                End If
+                                'contar las que son iguales con las competencias 7
+                            ElseIf Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 4) = 7 Then
+                                contador_competencia7 = contador_competencia7 + 1
+                                If f < cantidad_materias_1 Then
+                                    Cantidad_Componentes_Materias_Sesion1(10, f) = contador_competencia7
+                                Else
+                                    f = 0
+                                End If
+                                'contar las que son iguales con las competencias 8
+                            ElseIf Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 4) = 8 Then
+                                contador_competencia8 = contador_competencia8 + 1
+                                If f < cantidad_materias_1 Then
+                                    Cantidad_Componentes_Materias_Sesion1(11, f) = contador_competencia8
+                                Else
+                                    f = 0
+                                End If
                             End If
+
                             contador_correctas_cada_materia = contador_correctas_cada_materia + 1
-                            Cantidad_Componentes_Materias_Sesion1(7, f) = contador_correctas_cada_materia
-                            Cantidad_Componentes_Materias_Sesion1(8, f) = (100 / Materia_Cantidad_Componentes_Competencias_Sesion1(1, f)) * contador_correctas_cada_materia
+                            'Cantidad_Componentes_Materias_Sesion1(7, f) = contador_correctas_cada_materia
+                            'Cantidad_Componentes_Materias_Sesion1(8, f) = (100 / Materia_Cantidad_Componentes_Competencias_Sesion1(1, f)) * contador_correctas_cada_materia
+
+                            Cantidad_Componentes_Materias_Sesion1(12, f) = contador_correctas_cada_materia
+                            Cantidad_Componentes_Materias_Sesion1(13, f) = (100 / Materia_Cantidad_Componentes_Competencias_Sesion1(1, f)) * contador_correctas_cada_materia
 
                         Else
                             'PREGUNTAS FUERON INCORRECTAS DE CADA MATERIA
                             contador_correctas_cada_materia = contador_correctas_cada_materia
-                            Cantidad_Componentes_Materias_Sesion1(7, f) = contador_correctas_cada_materia
-                            Cantidad_Componentes_Materias_Sesion1(8, f) = (100 / Materia_Cantidad_Componentes_Competencias_Sesion1(1, f)) * contador_correctas_cada_materia
+                            'Cantidad_Componentes_Materias_Sesion1(7, f) = contador_correctas_cada_materia
+                            'Cantidad_Componentes_Materias_Sesion1(8, f) = (100 / Materia_Cantidad_Componentes_Competencias_Sesion1(1, f)) * contador_correctas_cada_materia
+
+                            Cantidad_Componentes_Materias_Sesion1(12, f) = contador_correctas_cada_materia
+                            Cantidad_Componentes_Materias_Sesion1(13, f) = (100 / Materia_Cantidad_Componentes_Competencias_Sesion1(1, f)) * contador_correctas_cada_materia
                         End If
                         ' DE CADA MATERIA MIRAR CUANTAS INCORRECTAS HAY DE CADA PREGUNTA Y GUARDARLAS EN LA TABLA Resultados_Materias_Simulacros
                         ' Esta es la Respuesta correcta  "Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 2)"
@@ -14219,62 +14570,120 @@ Public Class Niveles_pensamiento
                 ' SESION 1
                 'COMPONENTE 1
                 If Cantidad_Componentes_Materias_Sesion1(0, f) = Nothing Then
-                    Cantidad_Componentes_Materias_Sesion1(9, f) = 0
+                    Cantidad_Componentes_Materias_Sesion1(0, f) = 0
+                    Cantidad_Componentes_Materias_Sesion1(14, f) = 0
                 Else
-                    Cantidad_Componentes_Materias_Sesion1(9, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(2, f)
+                    'Cantidad_Componentes_Materias_Sesion1(9, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(2, f)
+                    Cantidad_Componentes_Materias_Sesion1(14, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(2, f)
                 End If
                 'COMPONENTE 2
                 If Cantidad_Componentes_Materias_Sesion1(1, f) = Nothing Then
-                    Cantidad_Componentes_Materias_Sesion1(10, f) = 0
+                    Cantidad_Componentes_Materias_Sesion1(1, f) = 0
+                    Cantidad_Componentes_Materias_Sesion1(15, f) = 0
                 Else
-                    Cantidad_Componentes_Materias_Sesion1(10, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(3, f)
+                    'Cantidad_Componentes_Materias_Sesion1(10, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(3, f)
+                    Cantidad_Componentes_Materias_Sesion1(15, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(3, f)
                 End If
                 'COMPONENTE 3
                 If Cantidad_Componentes_Materias_Sesion1(2, f) = Nothing Then
-                    Cantidad_Componentes_Materias_Sesion1(11, f) = 0
+                    Cantidad_Componentes_Materias_Sesion1(2, f) = 0
+                    Cantidad_Componentes_Materias_Sesion1(16, f) = 0
                 Else
-                    Cantidad_Componentes_Materias_Sesion1(11, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(4, f)
+                    'Cantidad_Componentes_Materias_Sesion1(11, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(4, f)
+                    Cantidad_Componentes_Materias_Sesion1(16, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(4, f)
                 End If
                 'COMPONENTE 4
                 If Cantidad_Componentes_Materias_Sesion1(3, f) = Nothing Then
-                    Cantidad_Componentes_Materias_Sesion1(12, f) = 0
+                    Cantidad_Componentes_Materias_Sesion1(3, f) = 0
+                    Cantidad_Componentes_Materias_Sesion1(17, f) = 0
                 Else
-                    Cantidad_Componentes_Materias_Sesion1(12, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(5, f)
+                    'Cantidad_Componentes_Materias_Sesion1(12, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(5, f)
+                    Cantidad_Componentes_Materias_Sesion1(17, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(5, f)
                 End If
                 'COMPETENCIA 1
                 If Cantidad_Componentes_Materias_Sesion1(4, f) = Nothing Then
-                    Cantidad_Componentes_Materias_Sesion1(13, f) = 0
+                    Cantidad_Componentes_Materias_Sesion1(4, f) = 0
+                    Cantidad_Componentes_Materias_Sesion1(18, f) = 0
                 Else
-                    Cantidad_Componentes_Materias_Sesion1(13, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(6, f)
+                    'Cantidad_Componentes_Materias_Sesion1(13, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(6, f)
+                    Cantidad_Componentes_Materias_Sesion1(18, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(6, f)
                 End If
                 'COMPETENCIA 2
                 If Cantidad_Componentes_Materias_Sesion1(5, f) = Nothing Then
-                    Cantidad_Componentes_Materias_Sesion1(14, f) = 0
+                    Cantidad_Componentes_Materias_Sesion1(5, f) = 0
+                    Cantidad_Componentes_Materias_Sesion1(19, f) = 0
                 Else
-                    Cantidad_Componentes_Materias_Sesion1(14, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(7, f)
+                    'Cantidad_Componentes_Materias_Sesion1(14, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(7, f)
+                    Cantidad_Componentes_Materias_Sesion1(19, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(7, f)
                 End If
                 'COMPETENCIA 3
                 If Cantidad_Componentes_Materias_Sesion1(6, f) = Nothing Then
-                    Cantidad_Componentes_Materias_Sesion1(15, f) = 0
+                    Cantidad_Componentes_Materias_Sesion1(6, f) = 0
+                    Cantidad_Componentes_Materias_Sesion1(20, f) = 0
                 Else
-                    Cantidad_Componentes_Materias_Sesion1(15, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(8, f)
+                    'Cantidad_Componentes_Materias_Sesion1(15, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(8, f)
+                    Cantidad_Componentes_Materias_Sesion1(20, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(8, f)
                 End If
 
-                Cantidad_Componentes_Materias_Sesion1(16, f) = Cantidad_Componentes_Materias_Sesion1(9, f) * Cantidad_Componentes_Materias_Sesion1(0, f)
-                Cantidad_Componentes_Materias_Sesion1(17, f) = Cantidad_Componentes_Materias_Sesion1(10, f) * Cantidad_Componentes_Materias_Sesion1(1, f)
-                Cantidad_Componentes_Materias_Sesion1(18, f) = Cantidad_Componentes_Materias_Sesion1(11, f) * Cantidad_Componentes_Materias_Sesion1(2, f)
-                Cantidad_Componentes_Materias_Sesion1(19, f) = Cantidad_Componentes_Materias_Sesion1(12, f) * Cantidad_Componentes_Materias_Sesion1(3, f)
-                Cantidad_Componentes_Materias_Sesion1(20, f) = Cantidad_Componentes_Materias_Sesion1(13, f) * Cantidad_Componentes_Materias_Sesion1(4, f)
-                Cantidad_Componentes_Materias_Sesion1(21, f) = Cantidad_Componentes_Materias_Sesion1(14, f) * Cantidad_Componentes_Materias_Sesion1(5, f)
-                Cantidad_Componentes_Materias_Sesion1(22, f) = Cantidad_Componentes_Materias_Sesion1(15, f) * Cantidad_Componentes_Materias_Sesion1(6, f)
-                Cantidad_Componentes_Materias_Sesion1(23, f) = Materia_Cantidad_Componentes_Competencias_Sesion1(0, f)
+
+                'COMPETENCIA 4
+                If Cantidad_Componentes_Materias_Sesion1(7, f) = Nothing Then
+                    Cantidad_Componentes_Materias_Sesion1(7, f) = 0
+                    Cantidad_Componentes_Materias_Sesion1(21, f) = 0
+                Else
+                    Cantidad_Componentes_Materias_Sesion1(21, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(9, f)
+                End If
+                'COMPETENCIA 5
+                If Cantidad_Componentes_Materias_Sesion1(8, f) = Nothing Then
+                    Cantidad_Componentes_Materias_Sesion1(8, f) = 0
+                    Cantidad_Componentes_Materias_Sesion1(22, f) = 0
+                Else
+                    Cantidad_Componentes_Materias_Sesion1(22, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(10, f)
+                End If
+                'COMPETENCIA 6
+                If Cantidad_Componentes_Materias_Sesion1(9, f) = Nothing Then
+                    Cantidad_Componentes_Materias_Sesion1(9, f) = 0
+                    Cantidad_Componentes_Materias_Sesion1(23, f) = 0
+                Else
+                    Cantidad_Componentes_Materias_Sesion1(23, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(11, f)
+                End If
+                'COMPETENCIA 7
+                If Cantidad_Componentes_Materias_Sesion1(10, f) = Nothing Then
+                    Cantidad_Componentes_Materias_Sesion1(10, f) = 0
+                    Cantidad_Componentes_Materias_Sesion1(24, f) = 0
+                Else
+                    Cantidad_Componentes_Materias_Sesion1(24, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(12, f)
+                End If
+                'COMPETENCIA 8
+                If Cantidad_Componentes_Materias_Sesion1(11, f) = Nothing Then
+                    Cantidad_Componentes_Materias_Sesion1(11, f) = 0
+                    Cantidad_Componentes_Materias_Sesion1(25, f) = 0
+                Else
+                    Cantidad_Componentes_Materias_Sesion1(25, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(13, f)
+                End If
+
+                Cantidad_Componentes_Materias_Sesion1(26, f) = Cantidad_Componentes_Materias_Sesion1(14, f) * Cantidad_Componentes_Materias_Sesion1(0, f) 'cantidad coponente 1
+                Cantidad_Componentes_Materias_Sesion1(27, f) = Cantidad_Componentes_Materias_Sesion1(15, f) * Cantidad_Componentes_Materias_Sesion1(1, f) 'cantidad coponente 2
+                Cantidad_Componentes_Materias_Sesion1(28, f) = Cantidad_Componentes_Materias_Sesion1(16, f) * Cantidad_Componentes_Materias_Sesion1(2, f) 'cantidad coponente 3
+                Cantidad_Componentes_Materias_Sesion1(29, f) = Cantidad_Componentes_Materias_Sesion1(17, f) * Cantidad_Componentes_Materias_Sesion1(3, f) 'cantidad coponente 4
+
+                Cantidad_Componentes_Materias_Sesion1(30, f) = Cantidad_Componentes_Materias_Sesion1(18, f) * Cantidad_Componentes_Materias_Sesion1(4, f) 'cantidad copetencia 1
+                Cantidad_Componentes_Materias_Sesion1(31, f) = Cantidad_Componentes_Materias_Sesion1(19, f) * Cantidad_Componentes_Materias_Sesion1(5, f) 'cantidad copetencia 2
+                Cantidad_Componentes_Materias_Sesion1(32, f) = Cantidad_Componentes_Materias_Sesion1(20, f) * Cantidad_Componentes_Materias_Sesion1(6, f) 'cantidad copetencia 3
+                Cantidad_Componentes_Materias_Sesion1(33, f) = Cantidad_Componentes_Materias_Sesion1(21, f) * Cantidad_Componentes_Materias_Sesion1(7, f) 'cantidad copetencia 4
+                Cantidad_Componentes_Materias_Sesion1(34, f) = Cantidad_Componentes_Materias_Sesion1(22, f) * Cantidad_Componentes_Materias_Sesion1(8, f) 'cantidad copetencia 5
+                Cantidad_Componentes_Materias_Sesion1(35, f) = Cantidad_Componentes_Materias_Sesion1(23, f) * Cantidad_Componentes_Materias_Sesion1(9, f) 'cantidad copetencia 6
+                Cantidad_Componentes_Materias_Sesion1(36, f) = Cantidad_Componentes_Materias_Sesion1(24, f) * Cantidad_Componentes_Materias_Sesion1(10, f) 'cantidad copetencia 7
+                Cantidad_Componentes_Materias_Sesion1(37, f) = Cantidad_Componentes_Materias_Sesion1(25, f) * Cantidad_Componentes_Materias_Sesion1(11, f) 'cantidad copetencia 8
+
+                Cantidad_Componentes_Materias_Sesion1(38, f) = Materia_Cantidad_Componentes_Competencias_Sesion1(0, f)
 
             Next
 
             Dim suma_puntajes_materias_sesion1 As Double = 0
             Dim suma_puntajes_materias_sesion2 As Double = 0
             For i = 0 To cantidad_materias_1 - 1
-                suma_puntajes_materias_sesion1 = suma_puntajes_materias_sesion1 + Cantidad_Componentes_Materias_Sesion1(8, i)
+                suma_puntajes_materias_sesion1 = suma_puntajes_materias_sesion1 + Cantidad_Componentes_Materias_Sesion1(13, i)
             Next
 
             '################################## PUNTAJE PROMEDIO DE TODAS LAS MATERIAS  ########################################################
@@ -14326,12 +14735,12 @@ Public Class Niveles_pensamiento
                     Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados VALUES ( '" &
                         codigoestudiante & "','" &
                         CBOSIMULACRO.Text & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(23, 0) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(8, 0) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(23, 1) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(8, 1) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(23, 2) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(8, 2) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(38, 0) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(13, 0) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(38, 1) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(13, 1) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(38, 2) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(13, 2) & "','" &
                         "" & "','" &
                         0 & "','" &
                         "" & "','" &
@@ -14379,7 +14788,13 @@ Public Class Niveles_pensamiento
                         ciudad & "','" &
                         fechaAplico & "','" &
                         nivelIngles & "','" &
-                        simulacro & "')", CN)
+                        simulacro & "','" &
+                        0 & "','" &
+                        0 & "','" &
+                        0 & "','" &
+                        0 & "','" &
+                        0 & "')", CN)
+
                     CN.Open()
                     CMD2.ExecuteNonQuery()
                     CN.Close()
@@ -14622,52 +15037,52 @@ Public Class Niveles_pensamiento
                     Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados VALUES ( '" &
                         codigoestudiante & "','" &
                         CBOSIMULACRO.Text & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(23, 0) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(8, 0) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(23, 1) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(8, 1) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(23, 2) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(8, 2) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(23, 3) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(8, 3) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(23, 4) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(8, 4) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(38, 0) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(13, 0) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(38, 1) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(13, 1) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(38, 2) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(13, 2) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(38, 3) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(13, 3) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(38, 4) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(13, 4) & "','" &
                         puntajepromedio & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(16, 0) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(17, 0) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(18, 0) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(19, 0) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(20, 0) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(21, 0) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(22, 0) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(16, 1) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(17, 1) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(18, 1) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(19, 1) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(20, 1) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(21, 1) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(22, 1) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(16, 2) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(17, 2) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(18, 2) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(19, 2) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(20, 2) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(21, 2) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(22, 2) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(16, 3) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(17, 3) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(18, 3) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(19, 3) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(20, 3) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(21, 3) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(22, 3) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(16, 4) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(17, 4) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(18, 4) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(19, 4) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(20, 4) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(21, 4) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(22, 4) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(26, 0) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(27, 0) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(28, 0) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(29, 0) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(30, 0) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(31, 0) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(32, 0) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(26, 1) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(27, 1) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(28, 1) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(29, 1) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(30, 1) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(31, 1) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(32, 1) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(26, 2) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(27, 2) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(28, 2) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(29, 2) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(30, 2) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(31, 2) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(32, 2) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(26, 3) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(27, 3) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(28, 3) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(29, 3) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(30, 3) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(31, 3) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(32, 3) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(26, 4) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(27, 4) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(28, 4) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(29, 4) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(30, 4) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(31, 4) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(32, 4) & "','" &
                         0 & "','" &
                         0 & "','" &
                         nombreEstudiante & "','" &
@@ -14675,7 +15090,12 @@ Public Class Niveles_pensamiento
                         ciudad & "','" &
                         fechaAplico & "','" &
                         nivelIngles & "','" &
-                        simulacro & "')", CN)
+                        simulacro & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(33, 2) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(34, 2) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(35, 2) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(36, 2) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(37, 2) & "')", CN)
                     CN.Open()
                     CMD2.ExecuteNonQuery()
                     CN.Close()
@@ -14684,14 +15104,15 @@ Public Class Niveles_pensamiento
                     Me.Hide()
                 End Try
 
+                'DESCOMENTAR
                 Try
                     Dim CMD23 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados_Dba VALUES ( '" &
                         codigoestudiante & "','" &
                         CBOSIMULACRO.Text & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(23, 0) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(8, 0) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(23, 1) & "','" &
-                        Cantidad_Componentes_Materias_Sesion1(8, 1) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(38, 0) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(13, 0) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(38, 1) & "','" &
+                        Cantidad_Componentes_Materias_Sesion1(13, 1) & "','" &
                         Cantidad_DBA_Materias(22, 0) & "','" &
                         Cantidad_DBA_Materias(23, 0) & "','" &
                         Cantidad_DBA_Materias(24, 0) & "','" &
@@ -14718,13 +15139,16 @@ Public Class Niveles_pensamiento
                         fechaAplico & "','" &
                         nivelIngles & "','" &
                         simulacro & "')", CN)
+
                     CN.Open()
                     CMD23.ExecuteNonQuery()
                     CN.Close()
+
                 Catch ex As Exception
                     MsgBox("OCURRIO UN PROBLEMA AL INSERTAR EN LA TABLA Informe_Resultados_Dba", 16, "ERROR")
                     Me.Hide()
                 End Try
+
             End If
 
             '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ESTO ES CUANDO TERMINA DE CALIFICAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -14804,6 +15228,1401 @@ Public Class Niveles_pensamiento
             End If
         Next
     End Sub
+
+    'PRUEBAS PARA CALIFICAR LOS SIMULACROS TU SABER ESPECIAL
+    Sub CALIFICAR_TUSABER_ESPECIAL()
+
+        'Try
+        '%%%%%%%%%%%%%%%%%%%%%% PARA SACAR LAS RESPUESTAS CONTESTADAS EN EL SIMULACRO DE 4,6,7 Y 8  1 sesion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        'Dim DA As New OleDb.OleDbDataAdapter("SELECT  codigo_estudiante FROM Preguntas_Saber_Sesion2 ORDER BY codigo_estudiante ASC", CN)
+        Dim DA As New OleDb.OleDbDataAdapter("SELECT  codigo_estudiante FROM Preguntas_Saber_Sesion3 WHERE codigo_colegio='" & CBOCODIGOSEDE.Text & "' AND Identificacion_Prueba='" & CBOSIMULACRO.Text & "' ORDER BY codigo_estudiante ASC", CN)
+        Dim DQ As New DataSet
+        DA.Fill(DQ, "Preguntas_Saber_Sesion3")
+        NUMERO2.Text = DQ.Tables(0).Rows.Count
+        cant_registros = NUMERO2.Text
+
+        For n = 0 To cant_registros - 1
+
+            TXTCODIGOEXAMEN1.Text = DQ.Tables(0).Rows(n).Item(0).ToString
+            codigoestudiante = TXTCODIGOEXAMEN1.Text
+
+            '%%%%%%%%%%%%%%%%%%%% CONSULTAR DATOS PRINCIPALES DEL ESTUDIANTE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            Dim DA_NOMBRE As New OleDb.OleDbDataAdapter("SELECT  nombre_estudiante,colegio,ciudad,fecha FROM Datos_Principales_Estudiantes WHERE  Codigo='" & codigoestudiante & "' AND Identificacion_Prueba='" & CBOSIMULACRO.Text & "'", CN)
+            Dim DQ_NOMBRE As New DataSet
+            DA_NOMBRE.Fill(DQ_NOMBRE, "Datos_Principales_Estudiantes")
+
+            Dim nombreEstudiante As String
+            Dim ciudad As String
+            Dim colegio As String
+            Dim fechaAplico As String
+            Dim simulacro As String
+            simulacro = CBOTIPO.Text
+            nombreEstudiante = DQ_NOMBRE.Tables(0).Rows(0).Item(0).ToString
+            colegio = DQ_NOMBRE.Tables(0).Rows(0).Item(1).ToString
+            ciudad = DQ_NOMBRE.Tables(0).Rows(0).Item(2).ToString
+            fechaAplico = Mid(DQ_NOMBRE.Tables(0).Rows(0).Item(3).ToString, 1, 10)
+
+            '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% OBTENER NÚMERO DE PREGUNTAS DE CADA SESION CREADAS EN Formato_Examen_Cantidad %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            Dim DB2 As New OleDb.OleDbDataAdapter("SELECT  orden FROM Formato_Examen_Cantidad WHERE sesion='1' AND codigo='" & CBOSIMULACRO.Text & "' ORDER BY orden ASC", CN)
+            Dim DV2 As New DataSet
+            DB2.Fill(DV2, "Formato_Examen_Cantidad")
+            cantidad_materias_1 = DV2.Tables(0).Rows.Count
+
+            ' CONSULTAR EL TIPO DE GRADO DEL SIMULACRO 
+            Dim CMD As New OleDb.OleDbCommand("SELECT DISTINCT grado FROM Formato_Examen_Cantidad WHERE sesion='1' AND codigo='" & CBOSIMULACRO.Text & "'", CN)
+            Dim DR As OleDb.OleDbDataReader
+            CN.Open()
+            DR = CMD.ExecuteReader
+            If DR.Read Then
+                grado_simulacro = DR(0)
+            Else
+                MsgBox("ERROR. NO SE ENCONTRO EL REGISTRO, EL GRADO NO EXISTE")
+            End If
+            CN.Close()
+
+            '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% OBTENER EL SIMULACRO CREADO PREDERTMINADAMENTE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    TODAS LAS MATERIAS  "Formato_Examen_Cantidad" %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            ReDim Materia_Cantidad_Componentes_Competencias_Sesion1(13, cantidad_materias_1 - 1)
+            ' Materia_Cantidad_Componentes_Competencias_Sesion1 
+
+            Dim DC As New OleDb.OleDbDataAdapter("SELECT  materia,cantidad_preguntas,cantidad_componente1,cantidad_componente2,cantidad_componente3,cantidad_componente4,cantidad_competencias1,cantidad_competencias2,cantidad_competencias3,cantidad_competencias4,cantidad_competencias5,cantidad_competencias6,cantidad_competencias7,cantidad_competencias8 FROM Formato_Examen_Cantidad WHERE sesion='1' AND codigo='" & CBOSIMULACRO.Text & "' ORDER BY orden ASC", CN)
+            Dim DL As New DataSet
+            DC.Fill(DL, "Formato_Examen_Cantidad")
+            For p = 0 To cantidad_materias_1 - 1
+                For i = 0 To 13
+                    Materia_Cantidad_Componentes_Competencias_Sesion1(i, p) = DL.Tables(0).Rows(p).Item(i).ToString
+                Next
+            Next
+
+            '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+            Dim CMATERIA_FORMATO1 As New OleDb.OleDbDataAdapter("SELECT materia,pregunta,Respuesta,Componente,competencia FROM Formato_Examen WHERE codigo='" & CBOSIMULACRO.Text & "' AND sesion='1' ORDER BY pregunta ASC", CN)
+            Dim DATA_FORMATO1 As New DataSet
+            CMATERIA_FORMATO1.Fill(DATA_FORMATO1, "Formato_Examen")
+            Dim cantidad_preguntas_sesion1 As String
+            cantidad_preguntas_sesion1 = DATA_FORMATO1.Tables(0).Rows.Count
+
+            ' PARA GUARDAR Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1
+            ReDim Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(cantidad_preguntas_sesion1 - 1, 4)
+
+            For x = 0 To cantidad_preguntas_sesion1 - 1
+                'Dim CMATERIA_FORMATO1 As New OleDb.OleDbDataAdapter("SELECT materia,pregunta,Respuesta,Componente,competencia FROM Formato_Examen WHERE codigo='" & CBOSIMULACRO.Text & "' AND materia='" & Materia_Cantidad_Componentes_Competencias_Sesion1(0, x) & "' AND sesion='1' AND tipo_Materia=' '", CN)
+                'Dim DATA_FORMATO1 As New DataSet
+                'CMATERIA_FORMATO1.Fill(DATA_FORMATO1, "Formato_Examen")
+                For y = 0 To 4
+                    Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(x, y) = DATA_FORMATO1.Tables(0).Rows(x).Item(y).ToString
+                Next
+            Next
+
+            '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  LAS RESPUESTAS DISEÑADAS EN EL FORMATO LISTAS PARA VERIFICARLAS %%%%%%%%%%%%%%%%%%%%%%%%%%
+
+            'TRAER TODOS LAS PREGUNTAS LAS RESPUESTAS 
+            'grado_simulacro
+            If grado_simulacro = "PREJARDÍN" Then
+
+                Dim DV As New DataSet
+
+                If CBOSIMULACRO.Text = "600" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber_Prejardin_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber_Prejardin_Simulacro3")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber_Prejardin WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber_Prejardin")
+                End If
+
+
+
+                'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
+                Dim columnas As Integer
+                columnas = DV.Tables(0).Columns.Count
+
+                'Para guardar las respuestas
+                ReDim Respuestas_Sesion1(columnas - 1)
+
+                For j = 0 To 0
+                    For i = 0 To columnas - 1
+                        NUMERO2.Text = DV.Tables(0).Rows(j).Item(i).ToString
+                        If NUMERO2.Text = "" Then
+                            NUMERO2.Text = "0"
+                        End If
+                        sesion1(i) = NUMERO2.Text.ToString
+                        Respuestas_Sesion1(i) = NUMERO2.Text.ToString
+                        'AQUI ESTAN TODAS LAS RESPUESTAS DE LA PRIMER SESION DEL SIMULACRO ESCANEADO. INCLUYENDO EL CODIGO.
+                    Next
+                Next
+
+
+            ElseIf grado_simulacro = "JARDÍN" Then
+
+                Dim DV As New DataSet
+                If CBOSIMULACRO.Text = "301" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber_Jardin_Simulacro2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber_Jardin_Simulacro2")
+                ElseIf CBOSIMULACRO.Text = "601" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber_Jardin_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber_Jardin_Simulacro3")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber_Jardin WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber_Jardin")
+                End If
+
+                'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
+                Dim columnas As Integer
+                columnas = DV.Tables(0).Columns.Count
+
+                'Para guardar las respuestas
+                ReDim Respuestas_Sesion1(columnas - 1)
+
+                For j = 0 To 0
+                    For i = 0 To columnas - 1
+                        NUMERO2.Text = DV.Tables(0).Rows(j).Item(i).ToString
+                        If NUMERO2.Text = "" Then
+                            NUMERO2.Text = "0"
+                        End If
+                        sesion1(i) = NUMERO2.Text.ToString
+                        Respuestas_Sesion1(i) = NUMERO2.Text.ToString
+                        'AQUI ESTAN TODAS LAS RESPUESTAS DE LA PRIMER SESION DEL SIMULACRO ESCANEADO. INCLUYENDO EL CODIGO.
+                    Next
+                Next
+
+            ElseIf grado_simulacro = "TRANSICIÓN" Then
+
+                Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber_Transicion WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                Dim DV As New DataSet
+                DB.Fill(DV, "Preguntas_Tusaber_Transicion")
+
+                'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
+                Dim columnas As Integer
+                columnas = DV.Tables(0).Columns.Count
+
+                'Para guardar las respuestas
+                ReDim Respuestas_Sesion1(columnas - 1)
+
+                For j = 0 To 0
+                    For i = 0 To columnas - 1
+                        NUMERO2.Text = DV.Tables(0).Rows(j).Item(i).ToString
+                        If NUMERO2.Text = "" Then
+                            NUMERO2.Text = "0"
+                        End If
+                        sesion1(i) = NUMERO2.Text.ToString
+                        Respuestas_Sesion1(i) = NUMERO2.Text.ToString
+                        'AQUI ESTAN TODAS LAS RESPUESTAS DE LA PRIMER SESION DEL SIMULACRO ESCANEADO. INCLUYENDO EL CODIGO.
+                    Next
+                Next
+
+            ElseIf grado_simulacro = "1°" Then
+
+                Dim DV As New DataSet
+                If CBOSIMULACRO.Text = "303" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber1_Simulacro2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber1_Simulacro2")
+                ElseIf CBOSIMULACRO.Text = "403" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber1_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber1_Simulacro3")
+                ElseIf CBOSIMULACRO.Text = "503" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber1_Simulacro4 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber1_Simulacro4")
+                ElseIf CBOSIMULACRO.Text = "603" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber1_Simulacro5 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber1_Simulacro5")
+                ElseIf CBOSIMULACRO.Text = "703" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber1_Simulacro5 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber1_Simulacro6")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber1 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber1")
+                End If
+
+                Dim columnas As Integer
+                columnas = DV.Tables(0).Columns.Count
+
+                'Para guardar las respuestas
+                ReDim Respuestas_Sesion1(columnas - 1)
+
+                For j = 0 To 0
+                    For i = 0 To columnas - 1
+                        NUMERO2.Text = DV.Tables(0).Rows(j).Item(i).ToString
+                        If NUMERO2.Text = "" Then
+                            NUMERO2.Text = "0"
+                        End If
+                        sesion1(i) = NUMERO2.Text.ToString
+                        Respuestas_Sesion1(i) = NUMERO2.Text.ToString
+                        'AQUI ESTAN TODAS LAS RESPUESTAS DE LA PRIMER SESION DEL SIMULACRO ESCANEADO. INCLUYENDO EL CODIGO.
+                    Next
+                Next
+
+            ElseIf grado_simulacro = "2°" Then
+
+                Dim DV As New DataSet
+
+                If CBOSIMULACRO.Text = "304" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber2_Simulacro2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber2_Simulacro2")
+                ElseIf CBOSIMULACRO.Text = "404" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber2_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber2_Simulacro3")
+                ElseIf CBOSIMULACRO.Text = "504" Or CBOSIMULACRO.Text = "604" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber2_Simulacro4 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber2_Simulacro4")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber2")
+                End If
+
+                'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
+                Dim columnas As Integer
+                columnas = DV.Tables(0).Columns.Count
+
+                'Para guardar las respuestas
+                ReDim Respuestas_Sesion1(columnas - 1)
+
+                For j = 0 To 0
+                    For i = 0 To columnas - 1
+                        NUMERO2.Text = DV.Tables(0).Rows(j).Item(i).ToString
+                        If NUMERO2.Text = "" Then
+                            NUMERO2.Text = "0"
+                        End If
+                        sesion1(i) = NUMERO2.Text.ToString
+                        Respuestas_Sesion1(i) = NUMERO2.Text.ToString
+                        'AQUI ESTAN TODAS LAS RESPUESTAS DE LA PRIMER SESION DEL SIMULACRO ESCANEADO. INCLUYENDO EL CODIGO.
+                    Next
+                Next
+
+            ElseIf grado_simulacro = "3°" Then
+
+                Dim DV As New DataSet
+                If CBOSIMULACRO.Text = "305" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber3_Simulacro2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber3_Simulacro2")
+                ElseIf CBOSIMULACRO.Text = "405" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber3_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber3_Simulacro3")
+                ElseIf CBOSIMULACRO.Text = "505" Or CBOSIMULACRO.Text = "605" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber3_Simulacro4 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber3_Simulacro4")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber3")
+                End If
+
+                'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
+                Dim columnas As Integer
+                columnas = DV.Tables(0).Columns.Count
+
+                'Para guardar las respuestas
+                ReDim Respuestas_Sesion1(columnas - 1)
+
+                For j = 0 To 0
+                    For i = 0 To columnas - 1
+                        NUMERO2.Text = DV.Tables(0).Rows(j).Item(i).ToString
+                        If NUMERO2.Text = "" Then
+                            NUMERO2.Text = "0"
+                        End If
+                        sesion1(i) = NUMERO2.Text.ToString
+                        Respuestas_Sesion1(i) = NUMERO2.Text.ToString
+                        'AQUI ESTAN TODAS LAS RESPUESTAS DE LA PRIMER SESION DEL SIMULACRO ESCANEADO. INCLUYENDO EL CODIGO.
+                    Next
+                Next
+
+            ElseIf grado_simulacro = "4°" Then
+                Dim DV As New DataSet
+
+                If CBOSIMULACRO.Text = "306" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber4_Simulacro2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber4_Simulacro2")
+                ElseIf CBOSIMULACRO.Text = "406" Or CBOSIMULACRO.Text = "506" Or CBOSIMULACRO.Text = "606" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber4_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber4_Simulacro3")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber4 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber4")
+                End If
+
+                'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
+                Dim columnas As Integer
+                columnas = DV.Tables(0).Columns.Count
+
+                'Para guardar las respuestas
+                ReDim Respuestas_Sesion1(columnas - 1)
+
+                For j = 0 To 0
+                    For i = 0 To columnas - 1
+                        NUMERO2.Text = DV.Tables(0).Rows(j).Item(i).ToString
+                        If NUMERO2.Text = "" Then
+                            NUMERO2.Text = "0"
+                        End If
+                        sesion1(i) = NUMERO2.Text.ToString
+                        Respuestas_Sesion1(i) = NUMERO2.Text.ToString
+                        'AQUI ESTAN TODAS LAS RESPUESTAS DE LA PRIMER SESION DEL SIMULACRO ESCANEADO. INCLUYENDO EL CODIGO.
+                    Next
+                Next
+
+            ElseIf grado_simulacro = "5°" Then
+
+                Dim DV As New DataSet
+
+                If CBOSIMULACRO.Text = "307" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber5_Simulacro2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber5_Simulacro2")
+                ElseIf CBOSIMULACRO.Text = "407" Or CBOSIMULACRO.Text = "507" Or CBOSIMULACRO.Text = "607" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber5_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber5_Simulacro3")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber5 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber5")
+                End If
+
+                'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
+                Dim columnas As Integer
+                columnas = DV.Tables(0).Columns.Count
+
+                'Para guardar las respuestas
+                ReDim Respuestas_Sesion1(columnas - 1)
+
+                For j = 0 To 0
+                    For i = 0 To columnas - 1
+                        NUMERO2.Text = DV.Tables(0).Rows(j).Item(i).ToString
+                        If NUMERO2.Text = "" Then
+                            NUMERO2.Text = "0"
+                        End If
+                        sesion1(i) = NUMERO2.Text.ToString
+                        Respuestas_Sesion1(i) = NUMERO2.Text.ToString
+                        'AQUI ESTAN TODAS LAS RESPUESTAS DE LA PRIMER SESION DEL SIMULACRO ESCANEADO. INCLUYENDO EL CODIGO.
+                    Next
+                Next
+
+            ElseIf grado_simulacro = "6°" Then
+
+                Dim DV As New DataSet
+                If CBOSIMULACRO.Text = "408" Or CBOSIMULACRO.Text = "508" Or CBOSIMULACRO.Text = "608" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber6_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber6_Simulacro3")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber6 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber6")
+                End If
+
+                'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
+                Dim columnas As Integer
+                columnas = DV.Tables(0).Columns.Count
+
+                'Para guardar las respuestas
+                ReDim Respuestas_Sesion1(columnas - 1)
+
+                For j = 0 To 0
+                    For i = 0 To columnas - 1
+                        NUMERO2.Text = DV.Tables(0).Rows(j).Item(i).ToString
+                        If NUMERO2.Text = "" Then
+                            NUMERO2.Text = "0"
+                        End If
+                        sesion1(i) = NUMERO2.Text.ToString
+                        Respuestas_Sesion1(i) = NUMERO2.Text.ToString
+                        'AQUI ESTAN TODAS LAS RESPUESTAS DE LA PRIMER SESION DEL SIMULACRO ESCANEADO. INCLUYENDO EL CODIGO.
+                    Next
+                Next
+
+            ElseIf grado_simulacro = "7°" Then
+
+                Dim DV As New DataSet
+                If CBOSIMULACRO.Text = "409" Or CBOSIMULACRO.Text = "509" Or CBOSIMULACRO.Text = "609" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber7_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber7_Simulacro3")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber7 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber7")
+                End If
+
+                'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
+                Dim columnas As Integer
+                columnas = DV.Tables(0).Columns.Count
+
+                'Para guardar las respuestas
+                ReDim Respuestas_Sesion1(columnas - 1)
+
+                For j = 0 To 0
+                    For i = 0 To columnas - 1
+                        NUMERO2.Text = DV.Tables(0).Rows(j).Item(i).ToString
+                        If NUMERO2.Text = "" Then
+                            NUMERO2.Text = "0"
+                        End If
+                        sesion1(i) = NUMERO2.Text.ToString
+                        Respuestas_Sesion1(i) = NUMERO2.Text.ToString
+                        'AQUI ESTAN TODAS LAS RESPUESTAS DE LA PRIMER SESION DEL SIMULACRO ESCANEADO. INCLUYENDO EL CODIGO.
+                    Next
+                Next
+
+            ElseIf grado_simulacro = "8°" Then
+
+                Dim DV As New DataSet
+
+                If CBOSIMULACRO.Text = "410" Or CBOSIMULACRO.Text = "510" Or CBOSIMULACRO.Text = "610" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber8_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber8_Simulacro3")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber8 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber8")
+                End If
+
+                'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
+                Dim columnas As Integer
+                columnas = DV.Tables(0).Columns.Count
+
+                'Para guardar las respuestas
+                ReDim Respuestas_Sesion1(columnas - 1)
+
+                For j = 0 To 0
+                    For i = 0 To columnas - 1
+                        NUMERO2.Text = DV.Tables(0).Rows(j).Item(i).ToString
+                        If NUMERO2.Text = "" Then
+                            NUMERO2.Text = "0"
+                        End If
+                        sesion1(i) = NUMERO2.Text.ToString
+                        Respuestas_Sesion1(i) = NUMERO2.Text.ToString
+                        'AQUI ESTAN TODAS LAS RESPUESTAS DE LA PRIMER SESION DEL SIMULACRO ESCANEADO. INCLUYENDO EL CODIGO.
+                    Next
+                Next
+
+            ElseIf grado_simulacro = "9°" Then
+
+                Dim DV As New DataSet
+                If CBOSIMULACRO.Text = "411" Or CBOSIMULACRO.Text = "511" Or CBOSIMULACRO.Text = "611" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber9_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber9_Simulacro3")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber9 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber9")
+                End If
+
+                'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
+                Dim columnas As Integer
+                columnas = DV.Tables(0).Columns.Count
+                'Para guardar las respuestas
+                ReDim Respuestas_Sesion1(columnas - 1)
+
+                For j = 0 To 0
+                    For i = 0 To columnas - 1
+                        NUMERO2.Text = DV.Tables(0).Rows(j).Item(i).ToString
+                        If NUMERO2.Text = "" Then
+                            NUMERO2.Text = "0"
+                        End If
+                        sesion1(i) = NUMERO2.Text.ToString
+                        Respuestas_Sesion1(i) = NUMERO2.Text.ToString
+                        'AQUI ESTAN TODAS LAS RESPUESTAS DE LA PRIMER SESION DEL SIMULACRO ESCANEADO. INCLUYENDO EL CODIGO.
+                    Next
+                Next
+
+            ElseIf grado_simulacro = "10°" Then
+
+                Dim DV As New DataSet
+                If CBOSIMULACRO.Text = "312" Or CBOSIMULACRO.Text = "512" Or CBOSIMULACRO.Text = "612" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber10_Simulacro2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber10_Simulacro2")
+                ElseIf CBOSIMULACRO.Text = "412" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber10_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber10_Simulacro3")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber10 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber10")
+                End If
+
+                'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
+                Dim columnas As Integer
+                columnas = DV.Tables(0).Columns.Count
+                'Para guardar las respuestas
+                ReDim Respuestas_Sesion1(columnas - 1)
+
+                For j = 0 To 0
+                    For i = 0 To columnas - 1
+                        NUMERO2.Text = DV.Tables(0).Rows(j).Item(i).ToString
+                        If NUMERO2.Text = "" Then
+                            NUMERO2.Text = "0"
+                        End If
+                        sesion1(i) = NUMERO2.Text.ToString
+                        Respuestas_Sesion1(i) = NUMERO2.Text.ToString
+                        'AQUI ESTAN TODAS LAS RESPUESTAS DE LA PRIMER SESION DEL SIMULACRO ESCANEADO. INCLUYENDO EL CODIGO.
+                    Next
+                Next
+
+            ElseIf grado_simulacro = "11°" Then
+
+                Dim DV As New DataSet
+
+                If CBOSIMULACRO.Text = "313" Or CBOSIMULACRO.Text = "513" Or CBOSIMULACRO.Text = "613" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber11_Simulacro2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber11_Simulacro2")
+                ElseIf CBOSIMULACRO.Text = "413" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber11_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber11_Simulacro3")
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber11 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber11")
+                End If
+
+                'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
+                Dim columnas As Integer
+                columnas = DV.Tables(0).Columns.Count
+                'Para guardar las respuestas
+                ReDim Respuestas_Sesion1(columnas - 1)
+
+                For j = 0 To 0
+                    For i = 0 To columnas - 1
+                        NUMERO2.Text = DV.Tables(0).Rows(j).Item(i).ToString
+                        If NUMERO2.Text = "" Then
+                            NUMERO2.Text = "0"
+                        End If
+                        sesion1(i) = NUMERO2.Text.ToString
+                        Respuestas_Sesion1(i) = NUMERO2.Text.ToString
+                        'AQUI ESTAN TODAS LAS RESPUESTAS DE LA PRIMER SESION DEL SIMULACRO ESCANEADO. INCLUYENDO EL CODIGO.
+                    Next
+                Next
+                End If
+                '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EMPEZAR A CALIFICAR EXAMENES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+                '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                ' ###########################   COMPONENTES Y COMPETENCIAS DE LA SESION 1 ####################################################
+                ReDim Cantidad_Componentes_Materias_Sesion1(38, cantidad_materias_1 - 1)
+                Dim contador_competencia1 As Integer = 0
+                Dim contador_competencia2 As Integer = 0
+                Dim contador_competencia3 As Integer = 0
+                Dim contador_competencia4 As Integer = 0
+                Dim contador_competencia5 As Integer = 0
+                Dim contador_competencia6 As Integer = 0
+                Dim contador_competencia7 As Integer = 0
+                Dim contador_competencia8 As Integer = 0
+
+                Dim contador_componente1 As Integer = 0
+                Dim contador_componente2 As Integer = 0
+                Dim contador_componente3 As Integer = 0
+                Dim contador_componente4 As Integer = 0
+
+                Dim contador_competencias_ciudadanas As Integer = 0
+                Dim porcentaje_competencias_ciudadanas As Double = 0
+                Dim acumulador_competencias_ciudadanas As Double = 0
+                Dim contador_correctas_cada_materia As Integer = 0
+
+                For f = 0 To cantidad_materias_1 - 1   ' cantidad de materias 
+                    contador_competencia1 = 0
+                    contador_competencia2 = 0
+                    contador_competencia3 = 0
+                    contador_competencia4 = 0
+                    contador_competencia5 = 0
+                    contador_competencia6 = 0
+                    contador_competencia7 = 0
+                    contador_competencia8 = 0
+
+                    contador_componente1 = 0
+                    contador_componente2 = 0
+                    contador_componente3 = 0
+                    contador_componente4 = 0
+                    contador_correctas_cada_materia = 0
+
+                    For i = 0 To (cantidad_preguntas_sesion1 - 1) ' cantidad de preguntas
+                        ' AQUI ESTAN EL TOTAL DE CADA COMPONENTE Y COMPETENCIA ADEMAS EL TOTAL DE MATERIAS Materia_Cantidad_Componentes_Competencias_Sesion1(0, f)
+
+                        If Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 0) = Materia_Cantidad_Componentes_Competencias_Sesion1(0, f) Then  ' MISMA MATERIA
+
+                            If Respuestas_Sesion1(i + 4) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 2) Then
+                                ' SABER SI SE LE SUMA A UN DETERMIDATO COMPONENTE O NO
+                                If Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 3) = 1 Then
+                                    contador_componente1 = contador_componente1 + 1
+                                    If f < cantidad_materias_1 Then
+                                        Cantidad_Componentes_Materias_Sesion1(0, f) = contador_componente1
+                                    Else
+                                        f = 0
+                                    End If
+                                ElseIf Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 3) = 2 Then
+                                    contador_componente2 = contador_componente2 + 1
+                                    If f < cantidad_materias_1 Then
+                                        Cantidad_Componentes_Materias_Sesion1(1, f) = contador_componente2
+                                    Else
+                                        f = 0
+                                    End If
+                                ElseIf Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 3) = 3 Then
+                                    contador_componente3 = contador_componente3 + 1
+                                    If f < cantidad_materias_1 Then
+                                        Cantidad_Componentes_Materias_Sesion1(2, f) = contador_componente3
+                                    Else
+                                        f = 0
+                                    End If
+                                ElseIf Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 3) = 4 Then
+                                    contador_componente4 = contador_componente4 + 1
+                                    If f < cantidad_materias_1 Then
+                                        Cantidad_Componentes_Materias_Sesion1(3, f) = contador_componente4
+                                    Else
+                                        f = 0
+                                    End If
+                                End If
+
+                                ' SABER SI SE LE SUMA A UNA DETERMINADA COMPETENCIA O NO
+                                If Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 4) = 1 Then
+                                    contador_competencia1 = contador_competencia1 + 1
+                                    If f < cantidad_materias_1 Then
+                                        Cantidad_Componentes_Materias_Sesion1(4, f) = contador_competencia1
+                                    Else
+                                        f = 0
+                                    End If
+                                    'contar las que son iguales con las competencias 2
+                                ElseIf Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 4) = 2 Then
+                                    contador_competencia2 = contador_competencia2 + 1
+                                    If f < cantidad_materias_1 Then
+                                        Cantidad_Componentes_Materias_Sesion1(5, f) = contador_competencia2
+                                    Else
+                                        f = 0
+                                    End If
+                                    'contar las que son iguales con las competencias 3
+                                ElseIf Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 4) = 3 Then
+                                    contador_competencia3 = contador_competencia3 + 1
+                                    If f < cantidad_materias_1 Then
+                                        Cantidad_Componentes_Materias_Sesion1(6, f) = contador_competencia3
+                                    Else
+                                        f = 0
+                                    End If
+                                    'contar las que son iguales con las competencias 4
+                                ElseIf Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 4) = 4 Then
+                                    contador_competencia4 = contador_competencia4 + 1
+                                    If f < cantidad_materias_1 Then
+                                        Cantidad_Componentes_Materias_Sesion1(7, f) = contador_competencia4
+                                    Else
+                                        f = 0
+                                    End If
+                                    'contar las que son iguales con las competencias 5
+                                ElseIf Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 4) = 5 Then
+                                    contador_competencia5 = contador_competencia5 + 1
+                                    If f < cantidad_materias_1 Then
+                                        Cantidad_Componentes_Materias_Sesion1(8, f) = contador_competencia5
+                                    Else
+                                        f = 0
+                                    End If
+                                    'contar las que son iguales con las competencias 6
+                                ElseIf Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 4) = 6 Then
+                                    contador_competencia6 = contador_competencia6 + 1
+                                    If f < cantidad_materias_1 Then
+                                        Cantidad_Componentes_Materias_Sesion1(9, f) = contador_competencia6
+                                    Else
+                                        f = 0
+                                    End If
+                                    'contar las que son iguales con las competencias 7
+                                ElseIf Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 4) = 7 Then
+                                    contador_competencia7 = contador_competencia7 + 1
+                                    If f < cantidad_materias_1 Then
+                                        Cantidad_Componentes_Materias_Sesion1(10, f) = contador_competencia7
+                                    Else
+                                        f = 0
+                                    End If
+                                    'contar las que son iguales con las competencias 8
+                                ElseIf Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 4) = 8 Then
+                                    contador_competencia8 = contador_competencia8 + 1
+                                    If f < cantidad_materias_1 Then
+                                        Cantidad_Componentes_Materias_Sesion1(11, f) = contador_competencia8
+                                    Else
+                                        f = 0
+                                    End If
+                                End If
+
+                                contador_correctas_cada_materia = contador_correctas_cada_materia + 1
+                                'Cantidad_Componentes_Materias_Sesion1(7, f) = contador_correctas_cada_materia
+                                'Cantidad_Componentes_Materias_Sesion1(8, f) = (100 / Materia_Cantidad_Componentes_Competencias_Sesion1(1, f)) * contador_correctas_cada_materia
+
+                                Cantidad_Componentes_Materias_Sesion1(12, f) = contador_correctas_cada_materia
+                                Cantidad_Componentes_Materias_Sesion1(13, f) = (100 / Materia_Cantidad_Componentes_Competencias_Sesion1(1, f)) * contador_correctas_cada_materia
+
+                            Else
+                                'PREGUNTAS FUERON INCORRECTAS DE CADA MATERIA
+                                contador_correctas_cada_materia = contador_correctas_cada_materia
+                                'Cantidad_Componentes_Materias_Sesion1(7, f) = contador_correctas_cada_materia
+                                'Cantidad_Componentes_Materias_Sesion1(8, f) = (100 / Materia_Cantidad_Componentes_Competencias_Sesion1(1, f)) * contador_correctas_cada_materia
+
+                                Cantidad_Componentes_Materias_Sesion1(12, f) = contador_correctas_cada_materia
+                                Cantidad_Componentes_Materias_Sesion1(13, f) = (100 / Materia_Cantidad_Componentes_Competencias_Sesion1(1, f)) * contador_correctas_cada_materia
+                            End If
+                            ' DE CADA MATERIA MIRAR CUANTAS INCORRECTAS HAY DE CADA PREGUNTA Y GUARDARLAS EN LA TABLA Resultados_Materias_Simulacros
+                            ' Esta es la Respuesta correcta  "Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1(i, 2)"
+                        Else
+                        End If
+                    Next
+                    ' SESION 1
+                    'COMPONENTE 1
+                    If Cantidad_Componentes_Materias_Sesion1(0, f) = Nothing Then
+                        Cantidad_Componentes_Materias_Sesion1(0, f) = 0
+                        Cantidad_Componentes_Materias_Sesion1(14, f) = 0
+                    Else
+                        'Cantidad_Componentes_Materias_Sesion1(9, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(2, f)
+                        Cantidad_Componentes_Materias_Sesion1(14, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(2, f)
+                    End If
+                    'COMPONENTE 2
+                    If Cantidad_Componentes_Materias_Sesion1(1, f) = Nothing Then
+                        Cantidad_Componentes_Materias_Sesion1(1, f) = 0
+                        Cantidad_Componentes_Materias_Sesion1(15, f) = 0
+                    Else
+                        'Cantidad_Componentes_Materias_Sesion1(10, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(3, f)
+                        Cantidad_Componentes_Materias_Sesion1(15, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(3, f)
+                    End If
+                    'COMPONENTE 3
+                    If Cantidad_Componentes_Materias_Sesion1(2, f) = Nothing Then
+                        Cantidad_Componentes_Materias_Sesion1(2, f) = 0
+                        Cantidad_Componentes_Materias_Sesion1(16, f) = 0
+                    Else
+                        'Cantidad_Componentes_Materias_Sesion1(11, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(4, f)
+                        Cantidad_Componentes_Materias_Sesion1(16, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(4, f)
+                    End If
+                    'COMPONENTE 4
+                    If Cantidad_Componentes_Materias_Sesion1(3, f) = Nothing Then
+                        Cantidad_Componentes_Materias_Sesion1(3, f) = 0
+                        Cantidad_Componentes_Materias_Sesion1(17, f) = 0
+                    Else
+                        'Cantidad_Componentes_Materias_Sesion1(12, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(5, f)
+                        Cantidad_Componentes_Materias_Sesion1(17, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(5, f)
+                    End If
+                    'COMPETENCIA 1
+                    If Cantidad_Componentes_Materias_Sesion1(4, f) = Nothing Then
+                        Cantidad_Componentes_Materias_Sesion1(4, f) = 0
+                        Cantidad_Componentes_Materias_Sesion1(18, f) = 0
+                    Else
+                        'Cantidad_Componentes_Materias_Sesion1(13, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(6, f)
+                        Cantidad_Componentes_Materias_Sesion1(18, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(6, f)
+                    End If
+                    'COMPETENCIA 2
+                    If Cantidad_Componentes_Materias_Sesion1(5, f) = Nothing Then
+                        Cantidad_Componentes_Materias_Sesion1(5, f) = 0
+                        Cantidad_Componentes_Materias_Sesion1(19, f) = 0
+                    Else
+                        'Cantidad_Componentes_Materias_Sesion1(14, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(7, f)
+                        Cantidad_Componentes_Materias_Sesion1(19, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(7, f)
+                    End If
+                    'COMPETENCIA 3
+                    If Cantidad_Componentes_Materias_Sesion1(6, f) = Nothing Then
+                        Cantidad_Componentes_Materias_Sesion1(6, f) = 0
+                        Cantidad_Componentes_Materias_Sesion1(20, f) = 0
+                    Else
+                        'Cantidad_Componentes_Materias_Sesion1(15, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(8, f)
+                        Cantidad_Componentes_Materias_Sesion1(20, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(8, f)
+                    End If
+
+
+                    'COMPETENCIA 4
+                    If Cantidad_Componentes_Materias_Sesion1(7, f) = Nothing Then
+                        Cantidad_Componentes_Materias_Sesion1(7, f) = 0
+                        Cantidad_Componentes_Materias_Sesion1(21, f) = 0
+                    Else
+                        Cantidad_Componentes_Materias_Sesion1(21, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(9, f)
+                    End If
+                    'COMPETENCIA 5
+                    If Cantidad_Componentes_Materias_Sesion1(8, f) = Nothing Then
+                        Cantidad_Componentes_Materias_Sesion1(8, f) = 0
+                        Cantidad_Componentes_Materias_Sesion1(22, f) = 0
+                    Else
+                        Cantidad_Componentes_Materias_Sesion1(22, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(10, f)
+                    End If
+                    'COMPETENCIA 6
+                    If Cantidad_Componentes_Materias_Sesion1(9, f) = Nothing Then
+                        Cantidad_Componentes_Materias_Sesion1(9, f) = 0
+                        Cantidad_Componentes_Materias_Sesion1(23, f) = 0
+                    Else
+                        Cantidad_Componentes_Materias_Sesion1(23, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(11, f)
+                    End If
+                    'COMPETENCIA 7
+                    If Cantidad_Componentes_Materias_Sesion1(10, f) = Nothing Then
+                        Cantidad_Componentes_Materias_Sesion1(10, f) = 0
+                        Cantidad_Componentes_Materias_Sesion1(24, f) = 0
+                    Else
+                        Cantidad_Componentes_Materias_Sesion1(24, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(12, f)
+                    End If
+                    'COMPETENCIA 8
+                    If Cantidad_Componentes_Materias_Sesion1(11, f) = Nothing Then
+                        Cantidad_Componentes_Materias_Sesion1(11, f) = 0
+                        Cantidad_Componentes_Materias_Sesion1(25, f) = 0
+                    Else
+                        Cantidad_Componentes_Materias_Sesion1(25, f) = 10 / Materia_Cantidad_Componentes_Competencias_Sesion1(13, f)
+                    End If
+
+                    Cantidad_Componentes_Materias_Sesion1(26, f) = Cantidad_Componentes_Materias_Sesion1(14, f) * Cantidad_Componentes_Materias_Sesion1(0, f) 'cantidad coponente 1
+                    Cantidad_Componentes_Materias_Sesion1(27, f) = Cantidad_Componentes_Materias_Sesion1(15, f) * Cantidad_Componentes_Materias_Sesion1(1, f) 'cantidad coponente 2
+                    Cantidad_Componentes_Materias_Sesion1(28, f) = Cantidad_Componentes_Materias_Sesion1(16, f) * Cantidad_Componentes_Materias_Sesion1(2, f) 'cantidad coponente 3
+                    Cantidad_Componentes_Materias_Sesion1(29, f) = Cantidad_Componentes_Materias_Sesion1(17, f) * Cantidad_Componentes_Materias_Sesion1(3, f) 'cantidad coponente 4
+
+                    Cantidad_Componentes_Materias_Sesion1(30, f) = Cantidad_Componentes_Materias_Sesion1(18, f) * Cantidad_Componentes_Materias_Sesion1(4, f) 'cantidad copetencia 1
+                    Cantidad_Componentes_Materias_Sesion1(31, f) = Cantidad_Componentes_Materias_Sesion1(19, f) * Cantidad_Componentes_Materias_Sesion1(5, f) 'cantidad copetencia 2
+                    Cantidad_Componentes_Materias_Sesion1(32, f) = Cantidad_Componentes_Materias_Sesion1(20, f) * Cantidad_Componentes_Materias_Sesion1(6, f) 'cantidad copetencia 3
+                    Cantidad_Componentes_Materias_Sesion1(33, f) = Cantidad_Componentes_Materias_Sesion1(21, f) * Cantidad_Componentes_Materias_Sesion1(7, f) 'cantidad copetencia 4
+                    Cantidad_Componentes_Materias_Sesion1(34, f) = Cantidad_Componentes_Materias_Sesion1(22, f) * Cantidad_Componentes_Materias_Sesion1(8, f) 'cantidad copetencia 5
+                    Cantidad_Componentes_Materias_Sesion1(35, f) = Cantidad_Componentes_Materias_Sesion1(23, f) * Cantidad_Componentes_Materias_Sesion1(9, f) 'cantidad copetencia 6
+                    Cantidad_Componentes_Materias_Sesion1(36, f) = Cantidad_Componentes_Materias_Sesion1(24, f) * Cantidad_Componentes_Materias_Sesion1(10, f) 'cantidad copetencia 7
+                    Cantidad_Componentes_Materias_Sesion1(37, f) = Cantidad_Componentes_Materias_Sesion1(25, f) * Cantidad_Componentes_Materias_Sesion1(11, f) 'cantidad copetencia 8
+
+                    Cantidad_Componentes_Materias_Sesion1(38, f) = Materia_Cantidad_Componentes_Competencias_Sesion1(0, f)
+
+                Next
+
+                Dim suma_puntajes_materias_sesion1 As Double = 0
+                Dim suma_puntajes_materias_sesion2 As Double = 0
+
+
+                If CBOSIMULACRO.Text = "505" Or CBOSIMULACRO.Text = "605" Then
+
+                    '################################## PUNTAJE PROMEDIO DE TODAS LAS MATERIAS  ########################################################
+                    For i = 0 To cantidad_materias_1 - 4
+                        suma_puntajes_materias_sesion1 = suma_puntajes_materias_sesion1 + Cantidad_Componentes_Materias_Sesion1(13, i)
+                    Next
+                    puntajepromedio = (suma_puntajes_materias_sesion1) / (cantidad_materias_1 - 3)
+
+                ElseIf CBOSIMULACRO.Text = "507" Or CBOSIMULACRO.Text = "607" Or CBOSIMULACRO.Text = "511" Or CBOSIMULACRO.Text = "611" Then
+
+                    '################################## PUNTAJE PROMEDIO DE TODAS LAS MATERIAS  ########################################################
+                    For i = 0 To cantidad_materias_1 - 2
+                        suma_puntajes_materias_sesion1 = suma_puntajes_materias_sesion1 + Cantidad_Componentes_Materias_Sesion1(13, i)
+                    Next
+                    puntajepromedio = (suma_puntajes_materias_sesion1) / (cantidad_materias_1 - 1)
+
+                Else
+                    '################################## PUNTAJE PROMEDIO DE TODAS LAS MATERIAS  ########################################################
+                    For i = 0 To cantidad_materias_1 - 1
+                        suma_puntajes_materias_sesion1 = suma_puntajes_materias_sesion1 + Cantidad_Componentes_Materias_Sesion1(13, i)
+                    Next
+                    puntajepromedio = (suma_puntajes_materias_sesion1) / (cantidad_materias_1)
+                End If
+
+
+
+                'CALCULAR LA VARIANZA
+                'Dim suma_puntajes_materias As Double = 0
+                'Dim vec(0 To (cantidad_materias_1) - 1) As Double
+                'Dim Varianza As Double
+                'Dim DesviacionTipica As Double
+                'Dim Suma As Double = 0
+                'For i = 0 To (cantidad_materias_1 - 1)
+                '    vec(i) = Cantidad_Componentes_Materias_Sesion1(8, i)
+                'Next
+
+                'For i = 0 To (cantidad_materias_1) - 1
+                '    Suma = Suma + Math.Pow((vec(i) - puntajepromedio), 2)
+                'Next i
+
+                'Varianza = Suma / (cantidad_materias_1 - 1)
+                'DesviacionTipica = Math.Sqrt(Varianza)
+
+                '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ESTO ES PARA GUARDAR EN EL PROMEDIO DE CADA MATERIA  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                'COMPROBAR QUE EL EXAMEN NO ESTE REPETIDO EN "Informe_Resultados"
+                Dim CVERIFICAR As New OleDb.OleDbDataAdapter("SELECT codigo FROM Informe_Resultados WHERE codigo='" & codigoestudiante & "'AND codigo_simulacro='" & CBOSIMULACRO.Text & "' AND FechaAplico='" & fechaAplico & "'", CN)
+                Dim DW As New DataSet
+                CVERIFICAR.Fill(DW, "Informe_Resultados")
+                CBOAUX.DataSource = DW.Tables("Informe_Resultados")
+                CBOAUX.DisplayMember = "codigo"
+
+                If CBOAUX.Text.ToString = codigoestudiante.ToString Then
+                    Dim CMD2 As New OleDb.OleDbCommand("DELETE FROM Informe_Resultados WHERE codigo='" & codigoestudiante & "'AND codigo_simulacro='" & CBOSIMULACRO.Text & "' AND FechaAplico='" & fechaAplico & "'", CN)
+                    CN.Open()
+                    CMD2.ExecuteNonQuery()
+                    CN.Close()
+
+
+                    Dim CMD3 As New OleDb.OleDbCommand("DELETE FROM Informe_Resultados_Dba WHERE codigo='" & codigoestudiante & "'AND codigo_simulacro='" & CBOSIMULACRO.Text & "' AND FechaAplico='" & fechaAplico & "'", CN)
+                    CN.Open()
+                    CMD3.ExecuteNonQuery()
+                    CN.Close()
+                End If
+
+                '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EMPEZAR A INGRESAR EL RESULTADO A LA TABLA Total_Promedio_Materias_Saber_3_5_9 %%%%%%%%%%%%%%%%%%%%%%%
+                Dim nivelIngles As String = ""
+
+                If grado_simulacro = "PREJARDÍN" Or grado_simulacro = "JARDÍN" Or grado_simulacro = "TRANSICIÓN" Then
+
+                    Try
+                        Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados VALUES ( '" &
+                            codigoestudiante & "','" &
+                            CBOSIMULACRO.Text & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(38, 0) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(13, 0) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(38, 1) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(13, 1) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(38, 2) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(13, 2) & "','" &
+                            "" & "','" &
+                            0 & "','" &
+                            "" & "','" &
+                            0 & "','" &
+                            puntajepromedio & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            nombreEstudiante & "','" &
+                            colegio & "','" &
+                            ciudad & "','" &
+                            fechaAplico & "','" &
+                            nivelIngles & "','" &
+                            simulacro & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            0 & "')", CN)
+
+                        CN.Open()
+                        CMD2.ExecuteNonQuery()
+                        CN.Close()
+                    Catch ex As Exception
+                        MsgBox("OCURRIO UN PROBLEMA AL INSERTAR EN LA TABLA Informe_Resultados", 16, "ERROR")
+                        Me.Hide()
+                    End Try
+
+                Else
+
+                    If Cantidad_Componentes_Materias_Sesion1(8, 4) >= 0 And Cantidad_Componentes_Materias_Sesion1(8, 4) <= 42 Then
+                        nivelIngles = "A-"
+                    ElseIf Cantidad_Componentes_Materias_Sesion1(8, 4) > 42 And Cantidad_Componentes_Materias_Sesion1(8, 4) <= 52 Then
+                        nivelIngles = "A1"
+                    ElseIf Cantidad_Componentes_Materias_Sesion1(8, 4) > 52 And Cantidad_Componentes_Materias_Sesion1(8, 4) <= 61 Then
+                        nivelIngles = "A2"
+                    ElseIf Cantidad_Componentes_Materias_Sesion1(8, 4) > 61 And Cantidad_Componentes_Materias_Sesion1(8, 4) <= 81 Then
+                        nivelIngles = "B1"
+                    ElseIf Cantidad_Componentes_Materias_Sesion1(8, 4) > 81 And Cantidad_Componentes_Materias_Sesion1(8, 4) <= 100 Then
+                        nivelIngles = "B+"
+                    End If
+
+                    '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  FORMATO DBA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                    ReDim Materia_Cantidad_Dba(11, 1)
+                    Dim DCDBA As New OleDb.OleDbDataAdapter("SELECT materia,cantidad_preguntas,dba1,dba2,dba3,dba4,dba5,dba6,dba7,dba8,dba9,dba10  FROM Formato_Examen_Cantidad_Dba WHERE sesion='1' AND codigo='" & CBOSIMULACRO.Text & "' ORDER BY orden ASC", CN)
+                    Dim DLDBA As New DataSet
+                    DCDBA.Fill(DLDBA, "Formato_Examen_Cantidad_Dba")
+                    For p = 0 To 1
+                        For i = 0 To 11
+                            Materia_Cantidad_Dba(i, p) = DLDBA.Tables(0).Rows(p).Item(i).ToString
+                        Next
+                    Next
+
+                    '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                    Dim CMATERIA_FORMATODBA As New OleDb.OleDbDataAdapter("SELECT materia,pregunta,Respuesta,Pregunta_abierta FROM Formato_Examen WHERE codigo='" & CBOSIMULACRO.Text & "' AND sesion='1' AND Pregunta_abierta<>''  ORDER BY pregunta ASC", CN)
+                    Dim DATA_FORMATODBA As New DataSet
+                    CMATERIA_FORMATODBA.Fill(DATA_FORMATODBA, "Formato_Examen")
+                    Dim cantidad_preguntas_sesionDBA As String
+                    cantidad_preguntas_sesionDBA = DATA_FORMATODBA.Tables(0).Rows.Count
+
+                    ReDim Materia_Preguntas_Respuesta_Dba(cantidad_preguntas_sesionDBA - 1, 3)
+
+                    For x = 0 To cantidad_preguntas_sesionDBA - 1
+                        For y = 0 To 3
+                            Materia_Preguntas_Respuesta_Dba(x, y) = DATA_FORMATODBA.Tables(0).Rows(x).Item(y).ToString
+                        Next
+                    Next
+                    '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+                    '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CALIFICAR DBA &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+                    ReDim Cantidad_DBA_Materias(31, cantidad_preguntas_sesionDBA - 1)  '%% GUARDAR LOS RESULTADOS
+                    Dim contador_dba1 As Integer = 0
+                    Dim contador_dba2 As Integer = 0
+                    Dim contador_dba3 As Integer = 0
+                    Dim contador_dba4 As Integer = 0
+                    Dim contador_dba5 As Integer = 0
+                    Dim contador_dba6 As Integer = 0
+                    Dim contador_dba7 As Integer = 0
+                    Dim contador_dba8 As Integer = 0
+                    Dim contador_dba9 As Double = 0
+                    Dim contador_dba10 As Double = 0
+                    Dim contador_materias_correctas As Integer = 0
+
+                    For f = 0 To 1   ' cantidad de materias 
+                        contador_dba1 = 0
+                        contador_dba2 = 0
+                        contador_dba3 = 0
+                        contador_dba4 = 0
+                        contador_dba5 = 0
+                        contador_dba6 = 0
+                        contador_dba7 = 0
+                        contador_dba8 = 0
+                        contador_dba9 = 0
+                        contador_dba10 = 0
+
+                        For i = 0 To (cantidad_preguntas_sesionDBA - 1) ' cantidad de preguntas
+                            ' VERIFICAR LA MATERIA
+                            If Materia_Preguntas_Respuesta_Dba(i, 0) = Materia_Cantidad_Dba(0, f) Then  ' MISMA MATERIA
+                                If Respuestas_Sesion1(i + 4) = Materia_Preguntas_Respuesta_Dba(i, 2) Then
+                                    ' SABER SI SE LE SUMA A UN DETERMIDATO DBA O NO
+                                    If Materia_Preguntas_Respuesta_Dba(i, 3) = 1 Then
+                                        contador_dba1 = contador_dba1 + 1
+                                        If f < cantidad_preguntas_sesionDBA Then
+                                            Cantidad_DBA_Materias(0, f) = contador_dba1
+                                        Else
+                                            f = 0
+                                        End If
+                                    ElseIf Materia_Preguntas_Respuesta_Dba(i, 3) = 2 Then
+                                        contador_dba2 = contador_dba2 + 1
+                                        If f < cantidad_preguntas_sesionDBA Then
+                                            Cantidad_DBA_Materias(1, f) = contador_dba2
+                                        Else
+                                            f = 0
+                                        End If
+                                    ElseIf Materia_Preguntas_Respuesta_Dba(i, 3) = 3 Then
+                                        contador_dba3 = contador_dba3 + 1
+                                        If f < cantidad_preguntas_sesionDBA Then
+                                            Cantidad_DBA_Materias(2, f) = contador_dba3
+                                        Else
+                                            f = 0
+                                        End If
+                                    ElseIf Materia_Preguntas_Respuesta_Dba(i, 3) = 4 Then
+                                        contador_dba4 = contador_dba4 + 1
+                                        If f < cantidad_preguntas_sesionDBA Then
+                                            Cantidad_DBA_Materias(3, f) = contador_dba4
+                                        Else
+                                            f = 0
+                                        End If
+                                    ElseIf Materia_Preguntas_Respuesta_Dba(i, 3) = 5 Then
+                                        contador_dba5 = contador_dba5 + 1
+                                        If f < cantidad_preguntas_sesionDBA Then
+                                            Cantidad_DBA_Materias(4, f) = contador_dba5
+                                        Else
+                                            f = 0
+                                        End If
+                                    ElseIf Materia_Preguntas_Respuesta_Dba(i, 3) = 6 Then
+                                        contador_dba6 = contador_dba6 + 1
+                                        If f < cantidad_preguntas_sesionDBA Then
+                                            Cantidad_DBA_Materias(5, f) = contador_dba6
+                                        Else
+                                            f = 0
+                                        End If
+                                    ElseIf Materia_Preguntas_Respuesta_Dba(i, 3) = 7 Then
+                                        contador_dba7 = contador_dba7 + 1
+                                        If f < cantidad_preguntas_sesionDBA Then
+                                            Cantidad_DBA_Materias(6, f) = contador_dba7
+                                        Else
+                                            f = 0
+                                        End If
+                                    ElseIf Materia_Preguntas_Respuesta_Dba(i, 3) = 8 Then
+                                        contador_dba8 = contador_dba8 + 1
+                                        If f < cantidad_preguntas_sesionDBA Then
+                                            Cantidad_DBA_Materias(7, f) = contador_dba8
+                                        Else
+                                            f = 0
+                                        End If
+                                    ElseIf Materia_Preguntas_Respuesta_Dba(i, 3) = 9 Then
+                                        contador_dba9 = contador_dba9 + 1
+                                        If f < cantidad_preguntas_sesionDBA Then
+                                            Cantidad_DBA_Materias(8, f) = contador_dba9
+                                        Else
+                                            f = 0
+                                        End If
+                                    ElseIf Materia_Preguntas_Respuesta_Dba(i, 3) = 10 Then
+                                        contador_dba10 = contador_dba10 + 1
+                                        If f < cantidad_preguntas_sesionDBA Then
+                                            Cantidad_DBA_Materias(9, f) = contador_dba10
+                                        Else
+                                            f = 0
+                                        End If
+                                    End If
+                                    contador_materias_correctas = contador_materias_correctas + 1
+                                    Cantidad_DBA_Materias(10, f) = contador_materias_correctas
+                                    Cantidad_DBA_Materias(11, f) = (100 / Materia_Cantidad_Dba(1, f)) * contador_materias_correctas
+                                Else
+                                    'PREGUNTAS FUERON INCORRECTAS DE CADA MATERIA
+                                    contador_materias_correctas = contador_materias_correctas
+                                    Cantidad_DBA_Materias(10, f) = contador_materias_correctas
+                                    Cantidad_DBA_Materias(11, f) = (100 / Materia_Cantidad_Dba(1, f)) * contador_materias_correctas
+                                End If
+                            Else
+                            End If
+                        Next
+                        'DBA 1
+                        If Cantidad_DBA_Materias(0, f) = Nothing Then
+                            Cantidad_DBA_Materias(12, f) = 0
+                        Else
+                            Cantidad_DBA_Materias(12, f) = 10 / Materia_Cantidad_Dba(2, f)
+                        End If
+                        'DBA 2
+                        If Cantidad_DBA_Materias(1, f) = Nothing Then
+                            Cantidad_DBA_Materias(13, f) = 0
+                        Else
+                            Cantidad_DBA_Materias(13, f) = 10 / Materia_Cantidad_Dba(3, f)
+                        End If
+                        'DBA 3
+                        If Cantidad_DBA_Materias(2, f) = Nothing Then
+                            Cantidad_DBA_Materias(14, f) = 0
+                        Else
+                            Cantidad_DBA_Materias(14, f) = 10 / Materia_Cantidad_Dba(4, f)
+                        End If
+                        'DBA 4
+                        If Cantidad_DBA_Materias(3, f) = Nothing Then
+                            Cantidad_DBA_Materias(15, f) = 0
+                        Else
+                            Cantidad_DBA_Materias(15, f) = 10 / Materia_Cantidad_Dba(5, f)
+                        End If
+                        'DBA 5
+                        If Cantidad_DBA_Materias(4, f) = Nothing Then
+                            Cantidad_DBA_Materias(16, f) = 0
+                        Else
+                            Cantidad_DBA_Materias(16, f) = 10 / Materia_Cantidad_Dba(6, f)
+                        End If
+                        'DBA 6
+                        If Cantidad_DBA_Materias(5, f) = Nothing Then
+                            Cantidad_DBA_Materias(17, f) = 0
+                        Else
+                            Cantidad_DBA_Materias(17, f) = 10 / Materia_Cantidad_Dba(7, f)
+                        End If
+                        'DBA 7
+                        If Cantidad_DBA_Materias(6, f) = Nothing Then
+                            Cantidad_DBA_Materias(18, f) = 0
+                        Else
+                            Cantidad_DBA_Materias(18, f) = 10 / Materia_Cantidad_Dba(8, f)
+                        End If
+                        'DBA 8
+                        If Cantidad_DBA_Materias(7, f) = Nothing Then
+                            Cantidad_DBA_Materias(19, f) = 0
+                        Else
+                            Cantidad_DBA_Materias(19, f) = 10 / Materia_Cantidad_Dba(9, f)
+                        End If
+                        'DBA 9
+                        If Cantidad_DBA_Materias(8, f) = Nothing Then
+                            Cantidad_DBA_Materias(20, f) = 0
+                        Else
+                            Cantidad_DBA_Materias(20, f) = 10 / Materia_Cantidad_Dba(10, f)
+                        End If
+                        'DBA 10
+                        If Cantidad_DBA_Materias(9, f) = Nothing Then
+                            Cantidad_DBA_Materias(21, f) = 0
+                        Else
+                            Cantidad_DBA_Materias(21, f) = 10 / Materia_Cantidad_Dba(11, f)
+                        End If
+
+                        Cantidad_DBA_Materias(22, f) = Cantidad_DBA_Materias(12, f) * Cantidad_DBA_Materias(0, f)   'DBA1
+                        Cantidad_DBA_Materias(23, f) = Cantidad_DBA_Materias(13, f) * Cantidad_DBA_Materias(1, f)   'DBA2
+                        Cantidad_DBA_Materias(24, f) = Cantidad_DBA_Materias(14, f) * Cantidad_DBA_Materias(2, f)   'DBA3
+                        Cantidad_DBA_Materias(25, f) = Cantidad_DBA_Materias(15, f) * Cantidad_DBA_Materias(3, f)   'DBA4
+                        Cantidad_DBA_Materias(26, f) = Cantidad_DBA_Materias(16, f) * Cantidad_DBA_Materias(4, f)   'DBA5
+                        Cantidad_DBA_Materias(27, f) = Cantidad_DBA_Materias(17, f) * Cantidad_DBA_Materias(5, f)   'DBA6
+                        Cantidad_DBA_Materias(28, f) = Cantidad_DBA_Materias(18, f) * Cantidad_DBA_Materias(6, f)   'DBA7
+                        Cantidad_DBA_Materias(29, f) = Cantidad_DBA_Materias(19, f) * Cantidad_DBA_Materias(7, f)   'DBA8
+                        Cantidad_DBA_Materias(30, f) = Cantidad_DBA_Materias(20, f) * Cantidad_DBA_Materias(8, f)   'DBA9
+                        Cantidad_DBA_Materias(31, f) = Cantidad_DBA_Materias(21, f) * Cantidad_DBA_Materias(9, f)   'DBA10
+                    Next
+
+                    '%%%%%%%%%%%%%%%%%%%%%%%%  INSERTAR RESULTADOS DE LAS PRUEBAS TU SABER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+                    Try
+                        Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados VALUES ( '" &
+                            codigoestudiante & "','" &
+                            CBOSIMULACRO.Text & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(38, 0) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(13, 0) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(38, 1) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(13, 1) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(38, 2) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(13, 2) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(38, 3) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(13, 3) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(38, 4) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(13, 4) & "','" &
+                            puntajepromedio & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(26, 0) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(27, 0) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(28, 0) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(29, 0) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(30, 0) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(31, 0) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(32, 0) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(26, 1) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(27, 1) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(28, 1) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(29, 1) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(30, 1) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(31, 1) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(32, 1) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(26, 2) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(27, 2) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(28, 2) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(29, 2) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(30, 2) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(31, 2) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(32, 2) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(26, 3) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(27, 3) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(28, 3) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(29, 3) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(30, 3) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(31, 3) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(32, 3) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(26, 4) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(27, 4) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(28, 4) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(29, 4) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(30, 4) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(31, 4) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(32, 4) & "','" &
+                            0 & "','" &
+                            0 & "','" &
+                            nombreEstudiante & "','" &
+                            colegio & "','" &
+                            ciudad & "','" &
+                            fechaAplico & "','" &
+                            nivelIngles & "','" &
+                            simulacro & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(33, 2) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(34, 2) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(35, 2) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(36, 2) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(37, 2) & "')", CN)
+                        CN.Open()
+                        CMD2.ExecuteNonQuery()
+                        CN.Close()
+                    Catch ex As Exception
+                        MsgBox("OCURRIO UN PROBLEMA AL INSERTAR EN LA TABLA Informe_Resultados", 16, "ERROR")
+                        Me.Hide()
+                    End Try
+
+                    'DESCOMENTAR
+                    Try
+                        Dim CMD23 As New OleDb.OleDbCommand("INSERT INTO Informe_Resultados_Dba VALUES ( '" &
+                            codigoestudiante & "','" &
+                            CBOSIMULACRO.Text & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(38, 0) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(13, 0) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(38, 1) & "','" &
+                            Cantidad_Componentes_Materias_Sesion1(13, 1) & "','" &
+                            Cantidad_DBA_Materias(22, 0) & "','" &
+                            Cantidad_DBA_Materias(23, 0) & "','" &
+                            Cantidad_DBA_Materias(24, 0) & "','" &
+                            Cantidad_DBA_Materias(25, 0) & "','" &
+                            Cantidad_DBA_Materias(26, 0) & "','" &
+                            Cantidad_DBA_Materias(27, 0) & "','" &
+                            Cantidad_DBA_Materias(28, 0) & "','" &
+                            Cantidad_DBA_Materias(29, 0) & "','" &
+                            Cantidad_DBA_Materias(30, 0) & "','" &
+                            Cantidad_DBA_Materias(31, 0) & "','" &
+                            Cantidad_DBA_Materias(22, 1) & "','" &
+                            Cantidad_DBA_Materias(23, 1) & "','" &
+                            Cantidad_DBA_Materias(24, 1) & "','" &
+                            Cantidad_DBA_Materias(25, 1) & "','" &
+                            Cantidad_DBA_Materias(26, 1) & "','" &
+                            Cantidad_DBA_Materias(27, 1) & "','" &
+                            Cantidad_DBA_Materias(28, 1) & "','" &
+                            Cantidad_DBA_Materias(29, 1) & "','" &
+                            Cantidad_DBA_Materias(30, 1) & "','" &
+                            Cantidad_DBA_Materias(31, 1) & "','" &
+                            nombreEstudiante & "','" &
+                            colegio & "','" &
+                            ciudad & "','" &
+                            fechaAplico & "','" &
+                            nivelIngles & "','" &
+                            simulacro & "')", CN)
+
+                        CN.Open()
+                        CMD23.ExecuteNonQuery()
+                        CN.Close()
+
+                    Catch ex As Exception
+                        MsgBox("OCURRIO UN PROBLEMA AL INSERTAR EN LA TABLA Informe_Resultados_Dba", 16, "ERROR")
+                        Me.Hide()
+                    End Try
+
+                End If
+
+                '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ESTO ES CUANDO TERMINA DE CALIFICAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                '%%%%%%%%%%%%%%%%%%   PREGUNTAR SI ESTA EN Todas_Preguntas_Saber_Sesion2 ESTE ESTUDIANTE O EXAMEN   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                Dim DA1 As New OleDb.OleDbDataAdapter("SELECT  COUNT(codigo_estudiante) as PEPE  FROM Todas_Preguntas_Saber_Sesion2 WHERE codigo_estudiante='" & codigoestudiante & "' AND Identificacion_Prueba='" & CBOSIMULACRO.Text & "'", CN)
+                Dim DQ1 As New DataSet
+                DA1.Fill(DQ1, "Todas_Preguntas_Saber_Sesion2")
+                CBOCODIGO.DataSource = DQ1.Tables("Todas_Preguntas_Saber_Sesion2")
+                CBOCODIGO.DisplayMember = "PEPE"
+                If CInt(CBOCODIGO.Text) = 0 Then
+                    Dim CMD6 As New OleDb.OleDbCommand("DELETE FROM Copia_Preguntas_Saber_Sesion2 WHERE codigo_estudiante='" & codigoestudiante & "' AND Identificacion_Prueba='" & CBOSIMULACRO.Text & "'", CN)
+                    CN.Open()
+                    CMD6.ExecuteNonQuery()
+                    CN.Close()
+                    '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ESTO ES PARA HACER UNA COPIA DE UN REGISTRO EN LA TABLA Copia_Preguntas_Saber_Sesion2 %%%%%%%%%%%%%%%%%%
+                    Try
+                        Dim CMD1 As New OleDb.OleDbCommand("INSERT INTO Copia_Preguntas_Saber_Sesion2 SELECT * FROM Preguntas_Saber_Sesion2 WHERE codigo_estudiante='" & codigoestudiante & "'AND Identificacion_Prueba='" & CBOSIMULACRO.Text & "'", CN)
+                        CN.Open()
+                        CMD1.ExecuteNonQuery()
+                        CN.Close()
+                    Catch ex As Exception
+                        MsgBox("OCURRIO UN PROBLEMA AL INSERTAR EN LA TABLA Copia_Preguntas_Saber_Sesion2", 16, "ERROR")
+                        Me.Hide()
+                    End Try
+
+                    Try
+                        Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Todas_Preguntas_Saber_Sesion2 SELECT * FROM Preguntas_Saber_Sesion2 WHERE codigo_estudiante='" & codigoestudiante & "'AND Identificacion_Prueba='" & CBOSIMULACRO.Text & "'", CN)
+                        CN.Open()
+                        CMD2.ExecuteNonQuery()
+                        CN.Close()
+                    Catch ex As Exception
+                        MsgBox("OCURRIO UN PROBLEMA AL INSERTAR EN LA TABLA Todas_Preguntas_Saber_Sesion2", 16, "ERROR")
+                        Me.Hide()
+                    End Try
+                    'BORRAR DE LA TABLA DE LAS PREGUNTAS AUN SIN CALIFICAR... 
+                    Dim CMD4 As New OleDb.OleDbCommand("DELETE FROM Preguntas_Saber_Sesion2 WHERE codigo_estudiante='" & codigoestudiante & "'AND Identificacion_Prueba='" & CBOSIMULACRO.Text & "'", CN)
+                    CN.Open()
+                    CMD4.ExecuteNonQuery()
+                    CN.Close()
+                    'MsgBox("El Examen ha sido Calificado Correctamente", 8, "Confirmación")
+                Else
+                    '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BORRAR EL REGISTRO DE LAS TABLAS Todas_Preguntas_Saber_Sesion2 Y Copia_Preguntas_Saber_Sesion2
+                    Dim CMD5 As New OleDb.OleDbCommand("DELETE FROM Todas_Preguntas_Saber_Sesion2 WHERE codigo_estudiante='" & codigoestudiante & "'AND Identificacion_Prueba='" & CBOSIMULACRO.Text & "'", CN)
+                    CN.Open()
+                    CMD5.ExecuteNonQuery()
+                    CN.Close()
+
+                    Dim CMD6 As New OleDb.OleDbCommand("DELETE FROM Copia_Preguntas_Saber_Sesion2 WHERE codigo_estudiante='" & codigoestudiante & "'AND Identificacion_Prueba='" & CBOSIMULACRO.Text & "'", CN)
+                    CN.Open()
+                    CMD6.ExecuteNonQuery()
+                    CN.Close()
+                    '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ESTO ES PARA HACER UNA COPIA DE UN REGISTRO EN LA TABLA Todas_Preguntas_Saber_Sesion2 %%%%%%%%%%%%%%
+                    Try
+                        Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO Todas_Preguntas_Saber_Sesion2 SELECT * FROM Preguntas_Saber_Sesion2 WHERE codigo_estudiante='" & codigoestudiante & "'AND Identificacion_Prueba='" & CBOSIMULACRO.Text & "'", CN)
+                        CN.Open()
+                        CMD2.ExecuteNonQuery()
+                        CN.Close()
+                    Catch ex As Exception
+                        MsgBox("OCURRIO UN PROBLEMA AL INSERTAR EN LA TABLA Todas_Preguntas_Saber_Sesion2", 16, "ERROR")
+                        Me.Hide()
+                    End Try
+                    '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ESTO ES PARA HACER UNA COPIA DE UN REGISTRO EN LA TABLA Copia_Preguntas_Saber_Sesion2 %%%%%%%%%%%%%%%%%%
+                    Try
+                        Dim CMD1 As New OleDb.OleDbCommand("INSERT INTO Copia_Preguntas_Saber_Sesion2 SELECT * FROM Preguntas_Saber_Sesion2 WHERE codigo_estudiante='" & codigoestudiante & "'AND Identificacion_Prueba='" & CBOSIMULACRO.Text & "'", CN)
+                        CN.Open()
+                        CMD1.ExecuteNonQuery()
+                        CN.Close()
+                    Catch ex As Exception
+                        MsgBox("OCURRIO UN PROBLEMA AL INSERTAR EN LA TABLA Copia_Preguntas_Saber_Sesion2", 16, "ERROR")
+                        Me.Hide()
+                    End Try
+                    'BORRAR DE LA TABLA DE LAS PREGUNTAS AUN SIN CALIFICAR... 
+                    Dim CMD4 As New OleDb.OleDbCommand("DELETE FROM Preguntas_Saber_Sesion2 WHERE codigo_estudiante='" & codigoestudiante & "'AND Identificacion_Prueba='" & CBOSIMULACRO.Text & "'", CN)
+                    CN.Open()
+                    CMD4.ExecuteNonQuery()
+                    CN.Close()
+                End If
+        Next
+    End Sub
+
 
     ' Visualizar la bara cargando
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
@@ -15040,6 +16859,12 @@ Public Class Niveles_pensamiento
             'Panel1.Visible = True
             CBOSIMULACRO.Visible = True
         ElseIf TIPO = 11 Then
+            CARGAR_TUSABER()
+            Label10.Visible = True
+            'Label11.Visible = True
+            'Panel1.Visible = True
+            CBOSIMULACRO.Visible = True
+        ElseIf TIPO = 12 Then
             CARGAR_TUSABER()
             Label10.Visible = True
             'Label11.Visible = True
