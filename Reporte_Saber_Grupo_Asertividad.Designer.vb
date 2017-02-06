@@ -211,7 +211,7 @@ Partial Class Reporte_Saber_Grupo_Asertividad
         '
         Me.NUMERO2.AutoSize = True
         Me.NUMERO2.BackColor = System.Drawing.Color.White
-        Me.NUMERO2.Location = New System.Drawing.Point(126, 22)
+        Me.NUMERO2.Location = New System.Drawing.Point(261, 18)
         Me.NUMERO2.Name = "NUMERO2"
         Me.NUMERO2.Size = New System.Drawing.Size(92, 13)
         Me.NUMERO2.TabIndex = 162

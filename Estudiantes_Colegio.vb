@@ -600,9 +600,6 @@ Public Class Estudiantes_Colegio
 
             If codigo_prueba = 3 Then
 
-                'REPORTE SABER "LOS DOS" (3 5 Y 9, 10 y 11) Reporte_Saber_Institucion_Asertividad   
-                ' VALIDAR CUANDO SEA UNO O EL OTRO
-
                 Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM Reporte_Asertividad_Saber WHERE codigo_simulacro='" & simulacro & "' AND  colegio='" & variable & "' AND  grupo='" & grupo & "' AND materia='" & materia & "'  ORDER BY Procentaje_Asertivida ASC", CN)
                 Dim DS As New DataSet
                 DA.Fill(DS, "Reporte_Asertividad_Saber")

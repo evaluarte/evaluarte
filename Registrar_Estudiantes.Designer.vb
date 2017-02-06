@@ -405,7 +405,7 @@ Partial Class Registrar_Estudiantes
         Me.Label12.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.Location = New System.Drawing.Point(18, 414)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(66, 14)
+        Me.Label12.Size = New System.Drawing.Size(65, 14)
         Me.Label12.TabIndex = 50
         Me.Label12.Text = "Teléfono:"
         '

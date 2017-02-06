@@ -531,7 +531,7 @@ Public Class Niveles_pensamiento
         End If
     End Sub
 
-    'PRUEBAS PARA CALIFICAR LOS SIMULACROS
+    'PRUEBAS PARA CALIFICAR LOS SIMULACROS DE PERFIL PROFESIONAL
     Sub CALIFICAR_PERFIL_PROFESIONAL()
 
         Try
@@ -5424,8 +5424,6 @@ Public Class Niveles_pensamiento
 
             '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% AQUI TERMINA MATEMATICAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
             contador_correctas_cada_materia = 0
             contador_componente1 = 0
             contador_componente2 = 0
@@ -8137,6 +8135,7 @@ Public Class Niveles_pensamiento
 
     End Sub
 
+    ' DECIMO Y ONCE NUEVO
     Sub CALIFICAR_SABER1011_NUEVO()
 
         'Try
@@ -10283,6 +10282,7 @@ Public Class Niveles_pensamiento
 
     End Sub
 
+    ' DECIMO Y ONCE 4 ABIERTAS
     Sub CALIFICAR_SABER1011_4ABIERTAS()
 
         'Try
@@ -11963,6 +11963,7 @@ Public Class Niveles_pensamiento
  
     End Sub
 
+    'NIVELES DE PENSAMIENTO ESTILOS DE APRENDIZAJE
     Sub CALIFICAR()
 
         Try
@@ -12968,9 +12969,7 @@ Public Class Niveles_pensamiento
 
     End Sub
 
-    ' DECIMO Y ONCE
-    ' CUARTO, SEXTO, SEPTIMO Y OCTAVO
-
+    'PRUEBAS PARA CALIFICAR LOS SIMULACROS 4678
     Sub CALIFICAR_SABER4678()
         'Try
         '%%%%%%%%%%%%%%%%%%%%%% PARA SACAR LAS RESPUESTAS CONTESTADAS EN EL SIMULACRO DE 4,6,7 Y 8  1 sesion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -13851,8 +13850,8 @@ Public Class Niveles_pensamiento
         Next
 
     End Sub
-    'PRUEBAS PARA CALIFICAR LOS SIMULACROS
 
+    'PRUEBAS PARA CALIFICAR LOS SIMULACROS TU SABER
     Sub CALIFICAR_TUSABER()
 
         'Try
@@ -13947,12 +13946,13 @@ Public Class Niveles_pensamiento
                 If CBOSIMULACRO.Text = "600" Then
                     Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber_Prejardin_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                     DB.Fill(DV, "Preguntas_Tusaber_Prejardin_Simulacro3")
+                ElseIf CBOSIMULACRO.Text = "900" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber_Prejardin_Simulacro8 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber_Prejardin_Simulacro8")
                 Else
                     Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber_Prejardin WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                     DB.Fill(DV, "Preguntas_Tusaber_Prejardin")
                 End If
-
-
 
                 'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
                 Dim columnas As Integer
@@ -13983,6 +13983,9 @@ Public Class Niveles_pensamiento
                 ElseIf CBOSIMULACRO.Text = "601" Then
                     Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber_Jardin_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                     DB.Fill(DV, "Preguntas_Tusaber_Jardin_Simulacro3")
+                ElseIf CBOSIMULACRO.Text = "901" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber_Jardin_Simulacro8 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber_Jardin_Simulacro8")
                 Else
                     Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber_Jardin WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                     DB.Fill(DV, "Preguntas_Tusaber_Jardin")
@@ -14009,9 +14012,18 @@ Public Class Niveles_pensamiento
 
             ElseIf grado_simulacro = "TRANSICIÓN" Then
 
-                Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber_Transicion WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                 Dim DV As New DataSet
-                DB.Fill(DV, "Preguntas_Tusaber_Transicion")
+
+                If CBOSIMULACRO.Text = "902" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber_Transicion_Simulacro8 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber_Transicion_Simulacro8")
+
+                Else
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber_Transicion WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber_Transicion")
+                End If
+
+
 
                 'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
                 Dim columnas As Integer
@@ -14050,6 +14062,9 @@ Public Class Niveles_pensamiento
                 ElseIf CBOSIMULACRO.Text = "703" Then
                     Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber1_Simulacro6 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                     DB.Fill(DV, "Preguntas_Tusaber1_Simulacro6")
+                ElseIf CBOSIMULACRO.Text = "803" Or CBOSIMULACRO.Text = "903" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber1_Simulacro7 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber1_Simulacro7")
                 Else
                     Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber1 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                     DB.Fill(DV, "Preguntas_Tusaber1")
@@ -14089,6 +14104,12 @@ Public Class Niveles_pensamiento
                 ElseIf CBOSIMULACRO.Text = "704" Then
                     Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber2_Simulacro6 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                     DB.Fill(DV, "Preguntas_Tusaber2_Simulacro6")
+                ElseIf CBOSIMULACRO.Text = "804" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber2_Simulacro7 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber2_Simulacro7")
+                ElseIf CBOSIMULACRO.Text = "904" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber2_Simulacro8 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber2_Simulacro8")
                 Else
                     Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                     DB.Fill(DV, "Preguntas_Tusaber2")
@@ -14128,6 +14149,9 @@ Public Class Niveles_pensamiento
                 ElseIf CBOSIMULACRO.Text = "705" Then
                     Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber3_Simulacro6 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                     DB.Fill(DV, "Preguntas_Tusaber3_Simulacro6")
+                ElseIf CBOSIMULACRO.Text = "805" Or CBOSIMULACRO.Text = "905" Then
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber3_Simulacro7 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Preguntas_Tusaber3_Simulacro7")
                 Else
                     Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                     DB.Fill(DV, "Preguntas_Tusaber3")
@@ -14158,7 +14182,7 @@ Public Class Niveles_pensamiento
                 If CBOSIMULACRO.Text = "306" Then
                     Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber4_Simulacro2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                     DB.Fill(DV, "Preguntas_Tusaber4_Simulacro2")
-                ElseIf CBOSIMULACRO.Text = "406" Or CBOSIMULACRO.Text = "506" Or CBOSIMULACRO.Text = "606" Or CBOSIMULACRO.Text = "706" Then
+                ElseIf CBOSIMULACRO.Text = "406" Or CBOSIMULACRO.Text = "506" Or CBOSIMULACRO.Text = "606" Or CBOSIMULACRO.Text = "706" Or CBOSIMULACRO.Text = "806" Or CBOSIMULACRO.Text = "906" Then
                     Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber4_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                     DB.Fill(DV, "Preguntas_Tusaber4_Simulacro3")
                 Else
@@ -14192,7 +14216,7 @@ Public Class Niveles_pensamiento
                 If CBOSIMULACRO.Text = "307" Then
                     Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber5_Simulacro2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                     DB.Fill(DV, "Preguntas_Tusaber5_Simulacro2")
-                ElseIf CBOSIMULACRO.Text = "407" Or CBOSIMULACRO.Text = "507" Or CBOSIMULACRO.Text = "607" Or CBOSIMULACRO.Text = "707" Then
+                ElseIf CBOSIMULACRO.Text = "407" Or CBOSIMULACRO.Text = "507" Or CBOSIMULACRO.Text = "607" Or CBOSIMULACRO.Text = "707" Or CBOSIMULACRO.Text = "807" Or CBOSIMULACRO.Text = "907" Then
                     Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber5_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                     DB.Fill(DV, "Preguntas_Tusaber5_Simulacro3")
                 Else
@@ -14222,7 +14246,7 @@ Public Class Niveles_pensamiento
             ElseIf grado_simulacro = "6°" Then
 
                 Dim DV As New DataSet
-                If CBOSIMULACRO.Text = "408" Or CBOSIMULACRO.Text = "508" Or CBOSIMULACRO.Text = "608" Or CBOSIMULACRO.Text = "708" Then
+                If CBOSIMULACRO.Text = "408" Or CBOSIMULACRO.Text = "508" Or CBOSIMULACRO.Text = "608" Or CBOSIMULACRO.Text = "708" Or CBOSIMULACRO.Text = "808" Or CBOSIMULACRO.Text = "908" Then
                     Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber6_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                     DB.Fill(DV, "Preguntas_Tusaber6_Simulacro3")
                 Else
@@ -14252,7 +14276,7 @@ Public Class Niveles_pensamiento
             ElseIf grado_simulacro = "7°" Then
 
                 Dim DV As New DataSet
-                If CBOSIMULACRO.Text = "409" Or CBOSIMULACRO.Text = "509" Or CBOSIMULACRO.Text = "609" Or CBOSIMULACRO.Text = "709" Then
+                If CBOSIMULACRO.Text = "409" Or CBOSIMULACRO.Text = "509" Or CBOSIMULACRO.Text = "609" Or CBOSIMULACRO.Text = "709" Or CBOSIMULACRO.Text = "809" Or CBOSIMULACRO.Text = "909" Then
                     Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber7_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                     DB.Fill(DV, "Preguntas_Tusaber7_Simulacro3")
                 Else
@@ -14283,7 +14307,7 @@ Public Class Niveles_pensamiento
 
                 Dim DV As New DataSet
 
-                If CBOSIMULACRO.Text = "410" Or CBOSIMULACRO.Text = "510" Or CBOSIMULACRO.Text = "610" Or CBOSIMULACRO.Text = "710" Then
+                If CBOSIMULACRO.Text = "410" Or CBOSIMULACRO.Text = "510" Or CBOSIMULACRO.Text = "610" Or CBOSIMULACRO.Text = "710" Or CBOSIMULACRO.Text = "810" Or CBOSIMULACRO.Text = "910" Then
                     Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber8_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                     DB.Fill(DV, "Preguntas_Tusaber8_Simulacro3")
                 Else
@@ -14313,7 +14337,7 @@ Public Class Niveles_pensamiento
             ElseIf grado_simulacro = "9°" Then
 
                 Dim DV As New DataSet
-                If CBOSIMULACRO.Text = "411" Or CBOSIMULACRO.Text = "511" Or CBOSIMULACRO.Text = "611" Or CBOSIMULACRO.Text = "711" Then
+                If CBOSIMULACRO.Text = "411" Or CBOSIMULACRO.Text = "511" Or CBOSIMULACRO.Text = "611" Or CBOSIMULACRO.Text = "711" Or CBOSIMULACRO.Text = "811" Or CBOSIMULACRO.Text = "911" Then
                     Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber9_Simulacro3 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                     DB.Fill(DV, "Preguntas_Tusaber9_Simulacro3")
                 Else
@@ -14342,7 +14366,7 @@ Public Class Niveles_pensamiento
             ElseIf grado_simulacro = "10°" Then
 
                 Dim DV As New DataSet
-                If CBOSIMULACRO.Text = "312" Or CBOSIMULACRO.Text = "512" Or CBOSIMULACRO.Text = "612" Or CBOSIMULACRO.Text = "712" Then
+                If CBOSIMULACRO.Text = "312" Or CBOSIMULACRO.Text = "512" Or CBOSIMULACRO.Text = "612" Or CBOSIMULACRO.Text = "712" Or CBOSIMULACRO.Text = "812" Or CBOSIMULACRO.Text = "912" Then
                     Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber10_Simulacro2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                     DB.Fill(DV, "Preguntas_Tusaber10_Simulacro2")
                 ElseIf CBOSIMULACRO.Text = "412" Then
@@ -14374,7 +14398,7 @@ Public Class Niveles_pensamiento
             ElseIf grado_simulacro = "11°" Then
 
                 Dim DV As New DataSet
-                If CBOSIMULACRO.Text = "313" Or CBOSIMULACRO.Text = "513" Or CBOSIMULACRO.Text = "613" Or CBOSIMULACRO.Text = "713" Then
+                If CBOSIMULACRO.Text = "313" Or CBOSIMULACRO.Text = "513" Or CBOSIMULACRO.Text = "613" Or CBOSIMULACRO.Text = "713" Or CBOSIMULACRO.Text = "813" Or CBOSIMULACRO.Text = "913" Then
                     Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Preguntas_Tusaber11_Simulacro2 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' ORDER BY codigo_estudiante ASC", CN)
                     DB.Fill(DV, "Preguntas_Tusaber11_Simulacro2")
                 ElseIf CBOSIMULACRO.Text = "413" Then
@@ -16622,7 +16646,6 @@ Public Class Niveles_pensamiento
                 End If
         Next
     End Sub
-
 
     ' Visualizar la bara cargando
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick

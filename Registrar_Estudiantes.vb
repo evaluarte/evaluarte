@@ -78,6 +78,10 @@ Public Class Registrar_Estudiantes
         CBOANO.Items.Add("2014")
         CBOANO.Items.Add("2015")
         CBOANO.Items.Add("2016")
+        CBOANO.Items.Add("2017")
+        CBOANO.Items.Add("2018")
+        CBOANO.Items.Add("2019")
+        CBOANO.Items.Add("2020")
 
         CBOTIPOPRUEBA.Items.Add("1")
         CBOTIPOPRUEBA.Items.Add("2")
