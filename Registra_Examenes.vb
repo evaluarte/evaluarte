@@ -3,7 +3,7 @@ Public Class Registrar_Examenes
 
 
 
-    Dim CN As New OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\Sistemas3\d\sistemaevaluarte.accdb")
+    'Dim CN As New OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\Sistemas3\d\sistemaevaluarte.accdb")
 
     Private Sub Registrar_Examenes_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         COPIA()

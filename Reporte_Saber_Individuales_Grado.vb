@@ -5,7 +5,7 @@
     End Sub
 
     Sub CARGAR()
-        Dim DG As New OleDb.OleDbDataAdapter("SELECT  nombre_prueba  FROM Pruebas WHERE codigo_prueba='3' OR codigo_prueba='4' OR codigo_prueba='10' ", CN)
+        Dim DG As New OleDb.OleDbDataAdapter("SELECT  nombre_prueba  FROM Pruebas WHERE codigo_prueba='3' OR codigo_prueba='4' OR codigo_prueba='10' OR codigo_prueba='13' ", CN)
         Dim DL As New DataSet
         DG.Fill(DL, "Pruebas")
         CBOTIPO.DataSource = DL.Tables("Pruebas")
@@ -68,6 +68,15 @@
             DB.Fill(DD, "Formato_Examen_Cantidad")
             CBOSIMULACRO.DataSource = DD.Tables("Formato_Examen_Cantidad")
             CBOSIMULACRO.DisplayMember = "codigo"
+
+        ElseIf CBOTIPO.Text = "Mi Saber Aprueba" Then
+
+            Dim DB As New OleDb.OleDbDataAdapter("SELECT  DISTINCT codigo  FROM Codigos_Pruebas  WHERE codigo_prueba='13'", CN)
+            Dim DD As New DataSet
+            DB.Fill(DD, "Codigos_Pruebas")
+            CBOSIMULACRO.DataSource = DD.Tables("Codigos_Pruebas")
+            CBOSIMULACRO.DisplayMember = "codigo"
+
         End If
     End Sub
 
@@ -91,6 +100,14 @@
             Estudiantes_Colegio.variable = CBOCODIGOSEDE.Text
             Estudiantes_Colegio.codigo_prueba = 4
             Estudiantes_Colegio.grupo = CBOCODIGOGRUPO.Text
+            Estudiantes_Colegio.Show()
+
+        ElseIf CBOTIPO.Text = "Mi Saber Aprueba" Then
+            Control = 25
+            Estudiantes_Colegio.simulacro = CBOSIMULACRO.Text
+            Estudiantes_Colegio.variable = CBOCODIGOSEDE.Text
+            Estudiantes_Colegio.grupo = CBOCODIGOGRUPO.Text
+            Estudiantes_Colegio.codigo_prueba = 13
             Estudiantes_Colegio.Show()
 
         End If

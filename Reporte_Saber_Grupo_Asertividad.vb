@@ -1,6 +1,6 @@
 ﻿Imports System.Data.OleDb
 Public Class Reporte_Saber_Grupo_Asertividad
-    Dim CN As New OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\Sistemas3\d\sistemaevaluarte.accdb")
+    'Dim CN As New OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\Sistemas3\d\sistemaevaluarte.accdb")
     Public contador_preguntas_de_una_materia As Integer
     Public contador_a As Integer
     Public contador_b As Integer
@@ -35,6 +35,7 @@ Public Class Reporte_Saber_Grupo_Asertividad
     Dim grado_simulacro As String
 
     Public contador_materia_encontrada As Integer
+
     ' RESPUESTAS DE LAS DOS SESIONES
     Dim Respuestas_Materia_1_Sesion1_Matematicas() As String
     Dim Respuestas_Materia_2_Sesion1_Naturales() As String
@@ -112,6 +113,7 @@ Public Class Reporte_Saber_Grupo_Asertividad
     Private Sub BTNCALIFICAR_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BTNCALIFICAR.Click
 
         If CBOTIPO.Text = "saber 3,5 y 9" Then
+
             'AQUI TODO CAMBIA PORQUE SOLO SON 4 MATERIAS MAXIMO
             'VERIFICAR ESO
             '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BORRAR DATOS TABLA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -352,16 +354,16 @@ Public Class Reporte_Saber_Grupo_Asertividad
                 Me.Hide()
             Else
                 '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SACAR LA MATERIA RESPUESTA COMPONENTE ESTRUCTURA%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-                Dim CMATERIA_FORMATO14 As New OleDb.OleDbDataAdapter("SELECT materia,pregunta,Respuesta,Componente,competencia, orde FROM Formato_Examen WHERE codigo='" & CBOSIMULACRO.Text & "' AND materia= '" & CBOMATERIA.Text & "' ORDER BY pregunta ASC", CN)
+                Dim CMATERIA_FORMATO14 As New OleDb.OleDbDataAdapter("SELECT materia,pregunta,Respuesta,Componente,competencia, orden, sesion_cuadernillo FROM Formato_Examen WHERE codigo='" & CBOSIMULACRO.Text & "' AND materia= '" & CBOMATERIA.Text & "' ORDER BY pregunta ASC", CN)
                 Dim DATA_FORMATO14 As New DataSet
                 CMATERIA_FORMATO14.Fill(DATA_FORMATO14, "Formato_Examen")
 
                 Dim cantidadPreguntasMateria As Integer
                 cantidadPreguntasMateria = DATA_FORMATO14.Tables(0).Rows.Count
 
-                ReDim Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(cantidadPreguntasMateria - 1, 7)
+                ReDim Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(cantidadPreguntasMateria - 1, 8)
                 For x = 0 To cantidadPreguntasMateria - 1   ' cantidad de materias de cada materia
-                    For y = 0 To 5
+                    For y = 0 To 6
                         Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(x, y) = DATA_FORMATO14.Tables(0).Rows(x).Item(y).ToString
                     Next
                 Next
@@ -531,7 +533,7 @@ Public Class Reporte_Saber_Grupo_Asertividad
                             Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
                             Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
                             Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
-
+                            Contador_respuestas_cada_materia(i, 13) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 6)   'COMPETENCIA
                         ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 2 Then
                             Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
                             Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)
@@ -540,7 +542,7 @@ Public Class Reporte_Saber_Grupo_Asertividad
                             Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
                             Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
                             Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
-
+                            Contador_respuestas_cada_materia(i, 13) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 6)   'SESION
                         ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 3 Then
                             Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
                             Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)
@@ -549,7 +551,7 @@ Public Class Reporte_Saber_Grupo_Asertividad
                             Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
                             Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
                             Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
-
+                            Contador_respuestas_cada_materia(i, 13) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 6)   'SESION
                         ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 4 Then
                             Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
                             Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)
@@ -558,6 +560,7 @@ Public Class Reporte_Saber_Grupo_Asertividad
                             Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
                             Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
                             Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
+                            Contador_respuestas_cada_materia(i, 13) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 6)   'SESION
 
                         ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 5 Then
                             Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
@@ -567,6 +570,7 @@ Public Class Reporte_Saber_Grupo_Asertividad
                             Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
                             Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
                             Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
+                            Contador_respuestas_cada_materia(i, 13) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 6)   'SESION
 
                         ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 6 Then
                             Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
@@ -576,6 +580,7 @@ Public Class Reporte_Saber_Grupo_Asertividad
                             Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
                             Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
                             Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
+                            Contador_respuestas_cada_materia(i, 13) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 6)   'SESION
 
                         ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 7 Then
                             Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
@@ -585,7 +590,7 @@ Public Class Reporte_Saber_Grupo_Asertividad
                             Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
                             Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
                             Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
-
+                            Contador_respuestas_cada_materia(i, 13) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 6)   'SESION
 
                         ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 8 Then
                             Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
@@ -595,6 +600,8 @@ Public Class Reporte_Saber_Grupo_Asertividad
                             Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
                             Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
                             Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
+                            Contador_respuestas_cada_materia(i, 13) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 6)   'SESION
+
                         End If
                     Next
 
@@ -610,45 +617,45 @@ Public Class Reporte_Saber_Grupo_Asertividad
 
                     For i = 0 To cantidadPreguntasMateria - 1
                         If Contador_respuestas_cada_materia(i, 10) = "1" Then   'SI ES A
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 2) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 2) / cant_registros) * 100 & "','" & Contador_respuestas_cada_materia(i, 13) & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
                         ElseIf Contador_respuestas_cada_materia(i, 10) = "2" Then  'SI ES B
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 3) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 3) / cant_registros) * 100 & "','" & Contador_respuestas_cada_materia(i, 13) & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
                         ElseIf Contador_respuestas_cada_materia(i, 10) = "3" Then 'SI ES C
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 4) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 4) / cant_registros) * 100 & "','" & Contador_respuestas_cada_materia(i, 13) & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
                         ElseIf Contador_respuestas_cada_materia(i, 10) = "4" Then  'SI ES D
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 5) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 5) / cant_registros) * 100 & "','" & Contador_respuestas_cada_materia(i, 13) & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
                         ElseIf Contador_respuestas_cada_materia(i, 10) = "5" Then  'SI ES E
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 6) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 6) / cant_registros) * 100 & "','" & Contador_respuestas_cada_materia(i, 13) & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
 
                         ElseIf Contador_respuestas_cada_materia(i, 10) = "6" Then  'SI ES F
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 7) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 7) / cant_registros) * 100 & "','" & Contador_respuestas_cada_materia(i, 13) & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
 
                         ElseIf Contador_respuestas_cada_materia(i, 10) = "7" Then  'SI ES G
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 8) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 8) / cant_registros) * 100 & "','" & Contador_respuestas_cada_materia(i, 13) & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
 
                         ElseIf Contador_respuestas_cada_materia(i, 10) = "8" Then  'SI ES H
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & CInt(Contador_respuestas_cada_materia(i, 11)) & "','" & CInt(Contador_respuestas_cada_materia(i, 12)) & "','" & (Contador_respuestas_cada_materia(i, 9) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & CInt(Contador_respuestas_cada_materia(i, 11)) & "','" & CInt(Contador_respuestas_cada_materia(i, 12)) & "','" & (Contador_respuestas_cada_materia(i, 9) / cant_registros) * 100 & "','" & Contador_respuestas_cada_materia(i, 13) & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
@@ -669,6 +676,267 @@ Public Class Reporte_Saber_Grupo_Asertividad
                 Estudiantes_Colegio.grupo = CBOCODIGOGRUPO.Text
                 Estudiantes_Colegio.codigo_prueba = 4
                 Estudiantes_Colegio.Show()
+            End If
+
+
+        ElseIf CBOTIPO.Text = "Mi Saber Aprueba" Then
+
+            '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BORRAR DATOS TABLA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            Dim CMD1 As New OleDb.OleDbCommand("DELETE FROM asertividad_materias_calculada WHERE 1", CN)
+            CN.Open()
+            CMD1.ExecuteNonQuery()
+            CN.Close()
+
+            '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% OBTENER NÚMERO DE PREGUNTAS DE CADA SESION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            Dim DA As New OleDb.OleDbDataAdapter("SELECT codigo_estudiante FROM Auxiliar_Reporte_Asertividad_Preguntas_Saber_Sesion2 WHERE sesion='1' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "'AND codigo_grupo='" & CBOCODIGOGRUPO.Text & "'AND Identificacion_Prueba= '" & CBOSIMULACRO.Text & "'  ORDER BY codigo_estudiante ASC", CN)
+            Dim DQ As New DataSet
+            DA.Fill(DQ, "Auxiliar_Reporte_Asertividad_Preguntas_Saber_Sesion2")
+            cant_registros = DQ.Tables(0).Rows.Count
+
+            If cant_registros = 0 Then
+                MsgBox("NO EXISTEN REGISTROS EN LA TABLA", 16, "ERROR")
+                Me.Hide()
+            Else
+                ' CONSULTAR EL TIPO DE GRADO DEL SIMULACRO 
+                Dim CMD As New OleDb.OleDbCommand("SELECT DISTINCT grado FROM Formato_Examen_Cantidad WHERE sesion='1' AND codigo='" & CBOSIMULACRO.Text & "'", CN)
+                Dim DR As OleDb.OleDbDataReader
+                CN.Open()
+                DR = CMD.ExecuteReader
+                If DR.Read Then
+                    grado_simulacro = DR(0)
+                Else
+                    MsgBox("ERROR. NO SE ENCONTRO EL REGISTRO, EL GRADO NO EXISTE")
+                End If
+                CN.Close()
+                '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SACAR LA MATERIA RESPUESTA Formato_Examen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+                Dim CMATERIA_FORMATO14 As New OleDb.OleDbDataAdapter("SELECT materia,pregunta,Respuesta,Componente,competencia,orden FROM Formato_Examen WHERE codigo='" & CBOSIMULACRO.Text & "' AND materia= '" & CBOMATERIA.Text & "' ORDER BY pregunta ASC", CN)
+                Dim DATA_FORMATO14 As New DataSet
+                CMATERIA_FORMATO14.Fill(DATA_FORMATO14, "Formato_Examen")
+
+                Dim cantidadPreguntasMateria As Integer
+                cantidadPreguntasMateria = DATA_FORMATO14.Tables(0).Rows.Count
+
+                ReDim Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(cantidadPreguntasMateria - 1, 7)
+                For x = 0 To cantidadPreguntasMateria - 1   ' cantidad de materias de cada materia
+                    For y = 0 To 5
+                        Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(x, y) = DATA_FORMATO14.Tables(0).Rows(x).Item(y).ToString
+                    Next
+                Next
+
+                ReDim Contador_respuestas_cada_materia(cantidadPreguntasMateria - 1, 13)
+
+                For i = 0 To cantidadPreguntasMateria - 1
+                    For b = 0 To 13
+                        Contador_respuestas_cada_materia(i, b) = 0
+                    Next
+                Next
+
+                '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    TODAS LAS MATERIAS  "Formato_Examen_Cantidad" %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                ReDim Materia_Cantidad_Componentes_Competencias_Sesion1(13, 4)
+                Dim DC As New OleDb.OleDbDataAdapter("SELECT  materia,cantidad_preguntas,cantidad_componente1,cantidad_componente2,cantidad_componente3,cantidad_componente4,cantidad_competencias1,cantidad_competencias2,cantidad_competencias3,cantidad_competencias4,cantidad_competencias5,cantidad_competencias6, cantidad_competencias7, cantidad_competencias8  FROM Formato_Examen_Cantidad WHERE codigo='" & CBOSIMULACRO.Text & "'", CN)
+                Dim DL As New DataSet
+                DC.Fill(DL, "Formato_Examen_Cantidad")
+
+                For p = 0 To DL.Tables(0).Rows.Count - 1
+                    For i = 0 To 13
+                        Materia_Cantidad_Componentes_Competencias_Sesion1(i, p) = DL.Tables(0).Rows(p).Item(i).ToString
+                    Next
+                Next
+
+                '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ASERTIVIDAD %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                For y = 0 To cant_registros - 1    'cant_registros: numero de estudiantes de ese grupo con el filtro por colegio y simulacro
+
+                    codigoestudiante = DQ.Tables(0).Rows(y).Item(0).ToString      'codigo de cada estudiante
+                    '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  LAS RESPUESTAS DISEÑADAS EN EL FORMATO LISTAS PARA VERIFICARLAS %%%%%%%%%%%%%%%%%%%%%%%%%%
+                    Dim DV As New DataSet
+                    Dim DB As New OleDb.OleDbDataAdapter("SELECT  * FROM Asertividad_Mi_Saber_Aprueba1 WHERE codigo_estudiante='" & codigoestudiante & "' AND codigo_colegio='" & CBOCODIGOSEDE.Text & "' AND Identificacion_Prueba='" & CBOSIMULACRO.Text & "' ORDER BY codigo_estudiante ASC", CN)
+                    DB.Fill(DV, "Asertividad_Mi_Saber_Aprueba1")
+
+                    'COLUMNAS DE LA TABLA Preguntas_Saber_Sesion2
+                    Dim columnas As Integer
+                    columnas = DV.Tables(0).Columns.Count
+                    'Para guardar las respuestas
+                    ReDim Respuestas_Sesion1(columnas - 1)
+
+                    For j = 0 To 0
+                        For i = 0 To columnas - 1
+                            NUMERO2.Text = DV.Tables(0).Rows(j).Item(i).ToString
+                            If NUMERO2.Text = "" Then
+                                NUMERO2.Text = "0"
+                            End If
+                            sesion1(i) = NUMERO2.Text.ToString
+                            Respuestas_Sesion1(i) = NUMERO2.Text.ToString
+                            'AQUI ESTAN TODAS LAS RESPUESTAS DE LA PRIMER SESION DEL SIMULACRO ESCANEADO. INCLUYENDO EL CODIGO.
+                        Next
+                    Next
+
+                    ' %%%%%%%%%%%%%%%%%%%%%%%%% VALIDA LAS MATERIAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                    ReDim Respuestas_Materia_1_Sesion1_Matematicas(cantidadPreguntasMateria - 1)
+                    If CBOMATERIA.Text = Materia_Cantidad_Componentes_Competencias_Sesion1(0, 0) Then
+                        'MATEMATICAS
+                        '%%%%%%%%%%%%%%% GUARDAR LAS RESPUESTA DE MATEMATICAS DEL ESTUDIANTE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        For i = 0 To cantidadPreguntasMateria - 1
+                            Respuestas_Materia_1_Sesion1_Matematicas(i) = Respuestas_Sesion1(i + 4)
+                        Next
+                    ElseIf CBOMATERIA.Text = Materia_Cantidad_Componentes_Competencias_Sesion1(0, 1) Then
+                        'LENGUAJE
+                        For i = 0 To cantidadPreguntasMateria - 1
+                            Respuestas_Materia_1_Sesion1_Matematicas(i) = Respuestas_Sesion1(i + 4 + Materia_Cantidad_Componentes_Competencias_Sesion1(1, 0))
+                        Next
+                    ElseIf CBOMATERIA.Text = Materia_Cantidad_Componentes_Competencias_Sesion1(0, 2) Then
+                        'SOCIALES Y CIUDADANAS
+                        For i = 0 To cantidadPreguntasMateria - 1
+                            Respuestas_Materia_1_Sesion1_Matematicas(i) = Respuestas_Sesion1(i + 4 + Materia_Cantidad_Componentes_Competencias_Sesion1(1, 0) + Materia_Cantidad_Componentes_Competencias_Sesion1(1, 1))
+                        Next
+                    ElseIf CBOMATERIA.Text = Materia_Cantidad_Componentes_Competencias_Sesion1(0, 3) Then
+                        'CIENCIAS NATURALES
+                        For i = 0 To cantidadPreguntasMateria - 1
+                            Respuestas_Materia_1_Sesion1_Matematicas(i) = Respuestas_Sesion1(i + 4 + Materia_Cantidad_Componentes_Competencias_Sesion1(1, 0) + Materia_Cantidad_Componentes_Competencias_Sesion1(1, 1) + Materia_Cantidad_Componentes_Competencias_Sesion1(1, 2))
+                        Next
+                    ElseIf CBOMATERIA.Text = Materia_Cantidad_Componentes_Competencias_Sesion1(0, 4) Then
+                        'INGLES
+                        For i = 0 To cantidadPreguntasMateria - 1
+                            Respuestas_Materia_1_Sesion1_Matematicas(i) = Respuestas_Sesion1(i + 4 + Materia_Cantidad_Componentes_Competencias_Sesion1(1, 0) + Materia_Cantidad_Componentes_Competencias_Sesion1(1, 1) + Materia_Cantidad_Componentes_Competencias_Sesion1(1, 2) + Materia_Cantidad_Componentes_Competencias_Sesion1(1, 3))
+                        Next
+                    End If
+
+                    '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   MAGIA  cantidadPreguntasMateria
+
+                    For i = 0 To cantidadPreguntasMateria - 1
+                        If Respuestas_Materia_1_Sesion1_Matematicas(i) = 1 Then
+                            'Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text 'MATERIA
+                            Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)    'NUMERO_PREGUNTA_ORDEN
+                            Contador_respuestas_cada_materia(i, 2) = Contador_respuestas_cada_materia(i, 2) + 1              'CANTIDAD PREGUNTA  A
+                            Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
+                            Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
+                            Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
+                        ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 2 Then
+                            'Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
+                            Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)    'NUMERO_PREGUNTA
+                            Contador_respuestas_cada_materia(i, 3) = Contador_respuestas_cada_materia(i, 3) + 1             'CANTIDAD PREGUNTA  B
+                            Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
+                            Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
+                            Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
+                        ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 3 Then
+                            'Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
+                            Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)    'NUMERO_PREGUNTA
+                            Contador_respuestas_cada_materia(i, 4) = Contador_respuestas_cada_materia(i, 4) + 1              'CANTIDAD PREGUNTA  C
+                            Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
+                            Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
+                            Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
+                        ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 4 Then
+                            'Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
+                            Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)    'NUMERO_PREGUNTA
+                            Contador_respuestas_cada_materia(i, 5) = Contador_respuestas_cada_materia(i, 5) + 1             'CANTIDAD PREGUNTA  D
+                            Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
+                            Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
+                            Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
+                        ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 5 Then
+                            Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)    'NUMERO_PREGUNTA
+                            Contador_respuestas_cada_materia(i, 6) = Contador_respuestas_cada_materia(i, 6) + 1             'CANTIDAD PREGUNTA  E
+                            Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
+                            Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
+                            Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
+                        ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 6 Then
+                            Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)    'NUMERO_PREGUNTA
+                            Contador_respuestas_cada_materia(i, 7) = Contador_respuestas_cada_materia(i, 7) + 1             'CANTIDAD PREGUNTA  F
+                            Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
+                            Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
+                            Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
+                        ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 7 Then
+                            Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)    'NUMERO_PREGUNTA
+                            Contador_respuestas_cada_materia(i, 8) = Contador_respuestas_cada_materia(i, 8) + 1             'CANTIDAD PREGUNTA  G
+                            Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
+                            Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
+                            Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
+                        ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 8 Then
+                            Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)    'NUMERO_PREGUNTA
+                            Contador_respuestas_cada_materia(i, 9) = Contador_respuestas_cada_materia(i, 9) + 1             'CANTIDAD PREGUNTA  H
+                            Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
+                            Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
+                            Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
+                        End If
+                    Next
+
+                Next
+
+                For i = 0 To cantidadPreguntasMateria - 1
+                    For b = 0 To 13
+                        If Contador_respuestas_cada_materia(i, b).GetType().ToString() = "System.String" Then
+
+                            If Contador_respuestas_cada_materia(i, b) = "" Then
+                                Contador_respuestas_cada_materia(i, b) = 0
+                            End If
+
+                        End If
+                    Next
+                Next
+
+                '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    FIN  SIMULACRO EN LA SESION 1  Y 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                Try
+
+                    Dim aux_cogido_colegio As String
+                    Dim aux_codigo_grupo As String
+                    aux_cogido_colegio = Mid(codigoestudiante, 2, 3)
+                    aux_codigo_grupo = Mid(codigoestudiante, 5, 2)
+
+                    For i = 0 To cantidadPreguntasMateria - 1
+                        If Contador_respuestas_cada_materia(i, 10) = "1" Then   'SI ES A
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & CBOMATERIA.Text & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 2) / cant_registros) * 100 & "','" & 1 & "')", CN)
+                            CN.Open()
+                            CMD2.ExecuteNonQuery()
+                            CN.Close()
+                        ElseIf Contador_respuestas_cada_materia(i, 10) = "2" Then  'SI ES B
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & CBOMATERIA.Text & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 3) / cant_registros) * 100 & "','" & 1 & "')", CN)
+                            CN.Open()
+                            CMD2.ExecuteNonQuery()
+                            CN.Close()
+                        ElseIf Contador_respuestas_cada_materia(i, 10) = "3" Then 'SI ES C
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & CBOMATERIA.Text & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 4) / cant_registros) * 100 & "','" & 1 & "')", CN)
+                            CN.Open()
+                            CMD2.ExecuteNonQuery()
+                            CN.Close()
+                        ElseIf Contador_respuestas_cada_materia(i, 10) = "4" Then  'SI ES D
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & CBOMATERIA.Text & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & CInt(Contador_respuestas_cada_materia(i, 11)) & "','" & CInt(Contador_respuestas_cada_materia(i, 12)) & "','" & (CInt(Contador_respuestas_cada_materia(i, 5)) / cant_registros) * 100 & "','" & 1 & "')", CN)
+                            CN.Open()
+                            CMD2.ExecuteNonQuery()
+                            CN.Close()
+                        ElseIf Contador_respuestas_cada_materia(i, 10) = "5" Then  'SI ES E
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & CBOMATERIA.Text & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & CInt(Contador_respuestas_cada_materia(i, 11)) & "','" & CInt(Contador_respuestas_cada_materia(i, 12)) & "','" & (CInt(Contador_respuestas_cada_materia(i, 5)) / cant_registros) * 100 & "','" & 1 & "')", CN)
+                            CN.Open()
+                            CMD2.ExecuteNonQuery()
+                            CN.Close()
+                        ElseIf Contador_respuestas_cada_materia(i, 10) = "6" Then  'SI ES F
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & CBOMATERIA.Text & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & CInt(Contador_respuestas_cada_materia(i, 11)) & "','" & CInt(Contador_respuestas_cada_materia(i, 12)) & "','" & (CInt(Contador_respuestas_cada_materia(i, 5)) / cant_registros) * 100 & "','" & 1 & "')", CN)
+                            CN.Open()
+                            CMD2.ExecuteNonQuery()
+                            CN.Close()
+                        ElseIf Contador_respuestas_cada_materia(i, 10) = "7" Then  'SI ES G
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & CBOMATERIA.Text & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & CInt(Contador_respuestas_cada_materia(i, 11)) & "','" & CInt(Contador_respuestas_cada_materia(i, 12)) & "','" & (CInt(Contador_respuestas_cada_materia(i, 5)) / cant_registros) * 100 & "','" & 1 & "')", CN)
+                            CN.Open()
+                            CMD2.ExecuteNonQuery()
+                            CN.Close()
+                        ElseIf Contador_respuestas_cada_materia(i, 10) = "8" Then  'SI ES H
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & CBOMATERIA.Text & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & CInt(Contador_respuestas_cada_materia(i, 11)) & "','" & CInt(Contador_respuestas_cada_materia(i, 12)) & "','" & (CInt(Contador_respuestas_cada_materia(i, 5)) / cant_registros) * 100 & "','" & 1 & "')", CN)
+                            CN.Open()
+                            CMD2.ExecuteNonQuery()
+                            CN.Close()
+                        End If
+                    Next
+
+                Catch ex As Exception
+                    MsgBox("ocurrio un problema al insertar en la tabla asertividad_materias", 16, "error")
+                    Me.Hide()
+                End Try
+
+                Control = 14
+                Estudiantes_Colegio.simulacro = CBOSIMULACRO.Text
+                Estudiantes_Colegio.variable = CBOCODIGOSEDE.Text
+                Estudiantes_Colegio.materia = CBOMATERIA.Text
+                Estudiantes_Colegio.grupo = CBOCODIGOGRUPO.Text
+                Estudiantes_Colegio.codigo_prueba = 4
+                Estudiantes_Colegio.Show()
+
             End If
 
         ElseIf CBOTIPO.Text = "Tu saber" Then
@@ -713,7 +981,15 @@ Public Class Reporte_Saber_Grupo_Asertividad
                         Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(x, y) = DATA_FORMATO14.Tables(0).Rows(x).Item(y).ToString
                     Next
                 Next
+
                 ReDim Contador_respuestas_cada_materia(cantidadPreguntasMateria - 1, 13)
+
+                For i = 0 To cantidadPreguntasMateria - 1
+                    For b = 0 To 13
+                        Contador_respuestas_cada_materia(i, b) = 0
+                    Next
+                Next
+
                 '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    TODAS LAS MATERIAS  "Formato_Examen_Cantidad" %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                 ReDim Materia_Cantidad_Componentes_Competencias_Sesion1(13, 4)
                 Dim DC As New OleDb.OleDbDataAdapter("SELECT  materia,cantidad_preguntas,cantidad_componente1,cantidad_componente2,cantidad_componente3,cantidad_componente4,cantidad_competencias1,cantidad_competencias2,cantidad_competencias3,cantidad_competencias4,cantidad_competencias5,cantidad_competencias6, cantidad_competencias7, cantidad_competencias8  FROM Formato_Examen_Cantidad WHERE codigo='" & CBOSIMULACRO.Text & "'", CN)
@@ -725,6 +1001,7 @@ Public Class Reporte_Saber_Grupo_Asertividad
                         Materia_Cantidad_Componentes_Competencias_Sesion1(i, p) = DL.Tables(0).Rows(p).Item(i).ToString
                     Next
                 Next
+
                 '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ASERTIVIDAD %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                 For y = 0 To cant_registros - 1    'cant_registros: numero de estudiantes de ese grupo con el filtro por colegio y simulacro
                     codigoestudiante = DQ.Tables(0).Rows(y).Item(0).ToString      'codigo de cada estudiante
@@ -1239,30 +1516,31 @@ Public Class Reporte_Saber_Grupo_Asertividad
                     End If
 
                     '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   MAGIA  cantidadPreguntasMateria
+
                     For i = 0 To cantidadPreguntasMateria - 1
                         If Respuestas_Materia_1_Sesion1_Matematicas(i) = 1 Then
-                            Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text 'MATERIA
-                            Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)    'NUMERO_PREGUNTA
+                            'Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text 'MATERIA
+                            Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)    'NUMERO_PREGUNTA_ORDEN
                             Contador_respuestas_cada_materia(i, 2) = Contador_respuestas_cada_materia(i, 2) + 1              'CANTIDAD PREGUNTA  A
                             Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
                             Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
                             Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
                         ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 2 Then
-                            Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
+                            'Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
                             Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)    'NUMERO_PREGUNTA
                             Contador_respuestas_cada_materia(i, 3) = Contador_respuestas_cada_materia(i, 3) + 1             'CANTIDAD PREGUNTA  B
                             Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
                             Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
                             Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
                         ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 3 Then
-                            Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
+                            'Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
                             Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)    'NUMERO_PREGUNTA
                             Contador_respuestas_cada_materia(i, 4) = Contador_respuestas_cada_materia(i, 4) + 1              'CANTIDAD PREGUNTA  C
                             Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
                             Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
                             Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
                         ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 4 Then
-                            Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
+                            'Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
                             Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)    'NUMERO_PREGUNTA
                             Contador_respuestas_cada_materia(i, 5) = Contador_respuestas_cada_materia(i, 5) + 1             'CANTIDAD PREGUNTA  D
                             Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
@@ -1270,10 +1548,24 @@ Public Class Reporte_Saber_Grupo_Asertividad
                             Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
                         End If
                     Next
+
+                Next
+
+                For i = 0 To cantidadPreguntasMateria - 1
+                    For b = 0 To 13
+                        If Contador_respuestas_cada_materia(i, b).GetType().ToString() = "System.String" Then
+
+                            If Contador_respuestas_cada_materia(i, b) = "" Then
+                                Contador_respuestas_cada_materia(i, b) = 0
+                            End If
+
+                        End If
+                    Next
                 Next
 
                 '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    FIN  SIMULACRO EN LA SESION 1  Y 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                 Try
+
                     Dim aux_cogido_colegio As String
                     Dim aux_codigo_grupo As String
                     aux_cogido_colegio = Mid(codigoestudiante, 2, 3)
@@ -1281,31 +1573,32 @@ Public Class Reporte_Saber_Grupo_Asertividad
 
                     For i = 0 To cantidadPreguntasMateria - 1
                         If Contador_respuestas_cada_materia(i, 10) = "1" Then   'SI ES A
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 2) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & CBOMATERIA.Text & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 2) / cant_registros) * 100 & "','" & 1 & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
                         ElseIf Contador_respuestas_cada_materia(i, 10) = "2" Then  'SI ES B
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 3) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & CBOMATERIA.Text & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 3) / cant_registros) * 100 & "','" & 1 & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
                         ElseIf Contador_respuestas_cada_materia(i, 10) = "3" Then 'SI ES C
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 4) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & CBOMATERIA.Text & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 4) / cant_registros) * 100 & "','" & 1 & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
                         ElseIf Contador_respuestas_cada_materia(i, 10) = "4" Then  'SI ES D
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 5) / cant_registros) * 100 & "')", CN)
-                            CN.Open()
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & CBOMATERIA.Text & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & CInt(Contador_respuestas_cada_materia(i, 11)) & "','" & CInt(Contador_respuestas_cada_materia(i, 12)) & "','" & (CInt(Contador_respuestas_cada_materia(i, 5)) / cant_registros) * 100 & "','" & 1 & "')", CN)
                             CMD2.ExecuteNonQuery()
                             CN.Close()
                         End If
                     Next
+
                 Catch ex As Exception
-                    MsgBox("OCURRIO UN PROBLEMA AL INSERTAR EN LA TABLA asertividad_materias", 16, "ERROR")
+                    MsgBox("ocurrio un problema al insertar en la tabla asertividad_materias", 16, "error")
                     Me.Hide()
                 End Try
+
                 Control = 14
                 Estudiantes_Colegio.simulacro = CBOSIMULACRO.Text
                 Estudiantes_Colegio.variable = CBOCODIGOSEDE.Text
@@ -1343,17 +1636,19 @@ Public Class Reporte_Saber_Grupo_Asertividad
                     MsgBox("ERROR. NO SE ENCONTRO EL REGISTRO, EL GRADO NO EXISTE")
                 End If
                 CN.Close()
+
+
                 '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SACAR LA MATERIA RESPUESTA Formato_Examen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-                Dim CMATERIA_FORMATO14 As New OleDb.OleDbDataAdapter("SELECT materia,pregunta,Respuesta,Componente,competencia, orden  FROM Formato_Examen WHERE codigo='" & CBOSIMULACRO.Text & "' AND materia= '" & CBOMATERIA.Text & "' ORDER BY pregunta ASC", CN)
+                Dim CMATERIA_FORMATO14 As New OleDb.OleDbDataAdapter("SELECT materia,pregunta,Respuesta,Componente,competencia,orden,sesion_cuadernillo   FROM Formato_Examen WHERE codigo='" & CBOSIMULACRO.Text & "' AND materia= '" & CBOMATERIA.Text & "' ORDER BY pregunta ASC", CN)
                 Dim DATA_FORMATO14 As New DataSet
                 CMATERIA_FORMATO14.Fill(DATA_FORMATO14, "Formato_Examen")
 
                 Dim cantidadPreguntasMateria As Integer
                 cantidadPreguntasMateria = DATA_FORMATO14.Tables(0).Rows.Count
 
-                ReDim Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(cantidadPreguntasMateria - 1, 7)
+                ReDim Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(cantidadPreguntasMateria - 1, 8)
                 For x = 0 To cantidadPreguntasMateria - 1   ' cantidad de materias de cada materia
-                    For y = 0 To 5
+                    For y = 0 To 6
                         Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(x, y) = DATA_FORMATO14.Tables(0).Rows(x).Item(y).ToString
                     Next
                 Next
@@ -1765,6 +2060,7 @@ Public Class Reporte_Saber_Grupo_Asertividad
                             Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
                             Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
                             Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
+                            Contador_respuestas_cada_materia(i, 13) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 6)   'SESION
                         ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 2 Then
                             Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
                             Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)   'NUMERO_PREGUNTA
@@ -1772,6 +2068,7 @@ Public Class Reporte_Saber_Grupo_Asertividad
                             Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
                             Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
                             Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
+                            Contador_respuestas_cada_materia(i, 13) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 6)   'SESION
                         ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 3 Then
                             Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
                             Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)   'NUMERO_PREGUNTA
@@ -1779,6 +2076,7 @@ Public Class Reporte_Saber_Grupo_Asertividad
                             Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
                             Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
                             Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
+                            Contador_respuestas_cada_materia(i, 13) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 6)   'SESION
                         ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 4 Then
                             Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
                             Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)   'NUMERO_PREGUNTA
@@ -1786,6 +2084,7 @@ Public Class Reporte_Saber_Grupo_Asertividad
                             Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
                             Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
                             Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
+                            Contador_respuestas_cada_materia(i, 13) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 6)   'SESION
                         ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 5 Then
                             Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
                             Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)   'UMERO_PREGUNTA
@@ -1793,6 +2092,7 @@ Public Class Reporte_Saber_Grupo_Asertividad
                             Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
                             Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
                             Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
+                            Contador_respuestas_cada_materia(i, 13) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 6)   'SESION
                         ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 6 Then
                             Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
                             Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)   'UMERO_PREGUNTA
@@ -1800,6 +2100,7 @@ Public Class Reporte_Saber_Grupo_Asertividad
                             Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
                             Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
                             Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
+                            Contador_respuestas_cada_materia(i, 13) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 6)   'SESION
                         ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 7 Then
                             Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
                             Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)   'UMERO_PREGUNTA
@@ -1807,6 +2108,7 @@ Public Class Reporte_Saber_Grupo_Asertividad
                             Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
                             Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
                             Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
+                            Contador_respuestas_cada_materia(i, 13) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 6)   'SESION
                         ElseIf Respuestas_Materia_1_Sesion1_Matematicas(i) = 8 Then
                             Contador_respuestas_cada_materia(i, 0) = CBOMATERIA.Text
                             Contador_respuestas_cada_materia(i, 1) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 5)   'UMERO_PREGUNTA
@@ -1814,6 +2116,7 @@ Public Class Reporte_Saber_Grupo_Asertividad
                             Contador_respuestas_cada_materia(i, 10) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 2)   'RESPUESTA CORRECTA
                             Contador_respuestas_cada_materia(i, 11) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 3)   'COMPONENTE
                             Contador_respuestas_cada_materia(i, 12) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 4)   'COMPETENCIA
+                            Contador_respuestas_cada_materia(i, 13) = Materia_Preguntas_Respuesta_Componente_Competencia_Sesion1_Materia1_Matematicas(i, 6)   'SESION
 
                         End If
                     Next
@@ -1828,42 +2131,42 @@ Public Class Reporte_Saber_Grupo_Asertividad
 
                     For i = 0 To cantidadPreguntasMateria - 1
                         If Contador_respuestas_cada_materia(i, 10) = "1" Then   'SI ES A
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 2) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 2) / cant_registros) * 100 & "','" & Contador_respuestas_cada_materia(i, 13) & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
                         ElseIf Contador_respuestas_cada_materia(i, 10) = "2" Then  'SI ES B
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 3) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 3) / cant_registros) * 100 & "','" & Contador_respuestas_cada_materia(i, 13) & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
                         ElseIf Contador_respuestas_cada_materia(i, 10) = "3" Then 'SI ES C
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 4) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 4) / cant_registros) * 100 & "','" & Contador_respuestas_cada_materia(i, 13) & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
                         ElseIf Contador_respuestas_cada_materia(i, 10) = "4" Then  'SI ES D
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 5) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 5) / cant_registros) * 100 & "','" & Contador_respuestas_cada_materia(i, 13) & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
                         ElseIf Contador_respuestas_cada_materia(i, 10) = "5" Then  'SI ES E
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 6) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 6) / cant_registros) * 100 & "','" & Contador_respuestas_cada_materia(i, 13) & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
                         ElseIf Contador_respuestas_cada_materia(i, 10) = "6" Then  'SI ES F
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 7) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 7) / cant_registros) * 100 & "','" & Contador_respuestas_cada_materia(i, 13) & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
                         ElseIf Contador_respuestas_cada_materia(i, 10) = "7" Then  'SI ES G
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 8) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 8) / cant_registros) * 100 & "','" & Contador_respuestas_cada_materia(i, 13) & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
                         ElseIf Contador_respuestas_cada_materia(i, 10) = "8" Then  'SI ES H
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 9) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & CInt(Contador_respuestas_cada_materia(i, 7)) & "','" & CInt(Contador_respuestas_cada_materia(i, 8)) & "','" & CInt(Contador_respuestas_cada_materia(i, 9)) & "','" & CInt(Contador_respuestas_cada_materia(i, 10)) & "','" & Contador_respuestas_cada_materia(i, 11) & "','" & Contador_respuestas_cada_materia(i, 12) & "','" & (Contador_respuestas_cada_materia(i, 9) / cant_registros) * 100 & "','" & Contador_respuestas_cada_materia(i, 13) & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
@@ -2064,27 +2367,27 @@ Public Class Reporte_Saber_Grupo_Asertividad
 
                         If Contador_respuestas_cada_materia(i, 7) = "1" Then
 
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & Contador_respuestas_cada_materia(i, 7) & "','" & Contador_respuestas_cada_materia(i, 8) & "','" & Contador_respuestas_cada_materia(i, 9) & "','" & (Contador_respuestas_cada_materia(i, 2) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & Contador_respuestas_cada_materia(i, 7) & "','" & Contador_respuestas_cada_materia(i, 8) & "','" & Contador_respuestas_cada_materia(i, 9) & "','" & (Contador_respuestas_cada_materia(i, 2) / cant_registros) * 100 & "','" & 1 & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
                         ElseIf Contador_respuestas_cada_materia(i, 7) = "2" Then
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & Contador_respuestas_cada_materia(i, 7) & "','" & Contador_respuestas_cada_materia(i, 8) & "','" & Contador_respuestas_cada_materia(i, 9) & "','" & (Contador_respuestas_cada_materia(i, 3) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & Contador_respuestas_cada_materia(i, 7) & "','" & Contador_respuestas_cada_materia(i, 8) & "','" & Contador_respuestas_cada_materia(i, 9) & "','" & (Contador_respuestas_cada_materia(i, 3) / cant_registros) * 100 & "','" & 1 & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
                         ElseIf Contador_respuestas_cada_materia(i, 7) = "3" Then
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & Contador_respuestas_cada_materia(i, 7) & "','" & Contador_respuestas_cada_materia(i, 8) & "','" & Contador_respuestas_cada_materia(i, 9) & "','" & (Contador_respuestas_cada_materia(i, 4) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & Contador_respuestas_cada_materia(i, 7) & "','" & Contador_respuestas_cada_materia(i, 8) & "','" & Contador_respuestas_cada_materia(i, 9) & "','" & (Contador_respuestas_cada_materia(i, 4) / cant_registros) * 100 & "','" & 1 & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
                         ElseIf Contador_respuestas_cada_materia(i, 7) = "4" Then
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & Contador_respuestas_cada_materia(i, 7) & "','" & Contador_respuestas_cada_materia(i, 8) & "','" & Contador_respuestas_cada_materia(i, 9) & "','" & (Contador_respuestas_cada_materia(i, 5) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & Contador_respuestas_cada_materia(i, 7) & "','" & Contador_respuestas_cada_materia(i, 8) & "','" & Contador_respuestas_cada_materia(i, 9) & "','" & (Contador_respuestas_cada_materia(i, 5) / cant_registros) * 100 & "','" & 1 & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
                         ElseIf Contador_respuestas_cada_materia(i, 7) = "5" Then
-                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & Contador_respuestas_cada_materia(i, 7) & "','" & Contador_respuestas_cada_materia(i, 8) & "','" & Contador_respuestas_cada_materia(i, 9) & "','" & (Contador_respuestas_cada_materia(i, 6) / cant_registros) * 100 & "')", CN)
+                            Dim CMD2 As New OleDb.OleDbCommand("INSERT INTO asertividad_materias_calculada VALUES ( '" & CBOTIPO.Text & "','" & aux_cogido_colegio & "','" & aux_codigo_grupo & "','" & CBOSIMULACRO.Text & "','" & Contador_respuestas_cada_materia(i, 0) & "','" & cant_registros & "','" & CInt(Contador_respuestas_cada_materia(i, 1)) & "','" & CInt(Contador_respuestas_cada_materia(i, 2)) & "','" & CInt(Contador_respuestas_cada_materia(i, 3)) & "','" & CInt(Contador_respuestas_cada_materia(i, 4)) & "','" & CInt(Contador_respuestas_cada_materia(i, 5)) & "','" & CInt(Contador_respuestas_cada_materia(i, 6)) & "','" & Contador_respuestas_cada_materia(i, 7) & "','" & Contador_respuestas_cada_materia(i, 8) & "','" & Contador_respuestas_cada_materia(i, 9) & "','" & (Contador_respuestas_cada_materia(i, 6) / cant_registros) * 100 & "','" & 1 & "')", CN)
                             CN.Open()
                             CMD2.ExecuteNonQuery()
                             CN.Close()
@@ -2104,6 +2407,7 @@ Public Class Reporte_Saber_Grupo_Asertividad
                 Estudiantes_Colegio.Show()
 
             End If
+
 
         End If
 

@@ -415,4 +415,8 @@
         MDIForm.MdiParent = Me
         MDIForm.Show()
     End Sub
+
+    Private Sub ArchivoToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ArchivoToolStripMenuItem.Click
+
+    End Sub
 End Class

@@ -539,7 +539,7 @@ Partial Class Calificar_examenes
         '
         Me.IndividualesToolStripMenuItem4.Image = CType(resources.GetObject("IndividualesToolStripMenuItem4.Image"), System.Drawing.Image)
         Me.IndividualesToolStripMenuItem4.Name = "IndividualesToolStripMenuItem4"
-        Me.IndividualesToolStripMenuItem4.Size = New System.Drawing.Size(152, 22)
+        Me.IndividualesToolStripMenuItem4.Size = New System.Drawing.Size(137, 22)
         Me.IndividualesToolStripMenuItem4.Text = "Individuales"
         '
         'GrupoToolStripMenuItem7
@@ -547,7 +547,7 @@ Partial Class Calificar_examenes
         Me.GrupoToolStripMenuItem7.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PromediosGeneralesToolStripMenuItem4})
         Me.GrupoToolStripMenuItem7.Image = CType(resources.GetObject("GrupoToolStripMenuItem7.Image"), System.Drawing.Image)
         Me.GrupoToolStripMenuItem7.Name = "GrupoToolStripMenuItem7"
-        Me.GrupoToolStripMenuItem7.Size = New System.Drawing.Size(152, 22)
+        Me.GrupoToolStripMenuItem7.Size = New System.Drawing.Size(137, 22)
         Me.GrupoToolStripMenuItem7.Text = "Grupo"
         '
         'PromediosGeneralesToolStripMenuItem4
@@ -562,7 +562,7 @@ Partial Class Calificar_examenes
         Me.InstituciónToolStripMenuItem5.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PromediosGeneralesToolStripMenuItem5})
         Me.InstituciónToolStripMenuItem5.Image = CType(resources.GetObject("InstituciónToolStripMenuItem5.Image"), System.Drawing.Image)
         Me.InstituciónToolStripMenuItem5.Name = "InstituciónToolStripMenuItem5"
-        Me.InstituciónToolStripMenuItem5.Size = New System.Drawing.Size(152, 22)
+        Me.InstituciónToolStripMenuItem5.Size = New System.Drawing.Size(137, 22)
         Me.InstituciónToolStripMenuItem5.Text = "Institución"
         '
         'PromediosGeneralesToolStripMenuItem5

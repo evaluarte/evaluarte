@@ -4,7 +4,7 @@ Public Class Buscar_Estudiante
     Private Sub Buscar_Estudiante_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'SistemaevaluarteDataSet.Listado_Estudiantes' table. You can move, or remove it, as needed.
     End Sub
-    Dim CN As New OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\Sistemas3\d\sistemaevaluarte.accdb")
+    'Dim CN As New OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\Sistemas3\d\sistemaevaluarte.accdb")
 
     Sub CARGAR1()
 

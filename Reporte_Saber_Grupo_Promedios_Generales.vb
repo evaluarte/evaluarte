@@ -29,7 +29,7 @@
     End Sub
 
     Sub CARGAR()
-        Dim DG As New OleDb.OleDbDataAdapter("SELECT  nombre_prueba  FROM Pruebas WHERE codigo_prueba='3' OR codigo_prueba='4' OR codigo_prueba='10'  OR codigo_prueba='11' ", CN)
+        Dim DG As New OleDb.OleDbDataAdapter("SELECT  nombre_prueba  FROM Pruebas WHERE codigo_prueba='3' OR codigo_prueba='4' OR codigo_prueba='10'  OR codigo_prueba='11' OR codigo_prueba='14' ", CN)
         Dim DL As New DataSet
         DG.Fill(DL, "Pruebas")
         CBOTIPO.DataSource = DL.Tables("Pruebas")
@@ -60,6 +60,8 @@
             Estudiantes_Colegio.codigo_prueba = 4
         ElseIf CBOTIPO.Text = "Tu saber" Then
             Estudiantes_Colegio.codigo_prueba = 11
+        ElseIf CBOTIPO.Text = "Mi Saber Aprueba" Then
+            Estudiantes_Colegio.codigo_prueba = 14
         End If
         Estudiantes_Colegio.Show()
     End Sub
@@ -95,10 +97,22 @@
             CBOSIMULACRO.DataSource = DD.Tables("Codigos_Pruebas")
             CBOSIMULACRO.DisplayMember = "codigo"
 
+        ElseIf CBOTIPO.Text = "Mi Saber Aprueba" Then
+
+            Dim DB As New OleDb.OleDbDataAdapter("SELECT  DISTINCT codigo  FROM Codigos_Pruebas  WHERE codigo_prueba='14'", CN)
+            Dim DD As New DataSet
+            DB.Fill(DD, "Codigos_Pruebas")
+            CBOSIMULACRO.DataSource = DD.Tables("Codigos_Pruebas")
+            CBOSIMULACRO.DisplayMember = "codigo"
+
+
         End If
 
     End Sub
 
 
 
+    Private Sub CBOSIMULACRO_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles CBOSIMULACRO.SelectedIndexChanged
+
+    End Sub
 End Class

@@ -24,7 +24,7 @@ Public Class Administrar_estudiantes
         BUSCAR_CODIGO()
     End Sub
 
-    Dim CN As New OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\Sistemas3\d\sistemaevaluarte.accdb")
+    'Dim CN As New OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\Sistemas3\d\sistemaevaluarte.accdb")
     Sub MOSTRAR()
         Dim DA As New OleDb.OleDbDataAdapter("SELECT * FROM estudiantes", CN)
         Dim DS As New DataSet
